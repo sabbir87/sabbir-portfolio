@@ -625,21 +625,13 @@
     .form-control:focus { border-color: var(--accent); }
     textarea.form-control { min-height: 110px; resize: vertical; }
 
-    .saved-msgs-box {
-      margin-top: 20px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      padding: 18px;
-    }
-
-    .saved-msg-item {
-      padding: 10px 12px;
-      border-radius: 10px;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      margin-top: 10px;
-      font-size: 0.88rem;
+    .privacy-note {
+      margin-top: 12px;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     footer {
@@ -976,7 +968,7 @@
       <div class="section-header">
         <span class="section-tag">Get In Touch</span>
         <h2 class="section-title">Contact Me</h2>
-        <p class="section-subtitle">Reach out for software/web projects, custom jersey & sportswear orders, or collaborations.</p>
+        <p class="section-subtitle">Send a private message directly to my email inbox.</p>
       </div>
       <div class="contact-grid">
         <div class="contact-info-list">
@@ -1001,16 +993,6 @@
               <div class="info-value">github.com/sabbir87</div>
             </div>
           </div>
-
-          <div class="saved-msgs-box" id="saved-messages-box">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-              <strong><i class="fas fa-inbox" style="color: var(--accent);"></i> Submitted Messages (This Browser)</strong>
-              <button type="button" id="clear-msgs-btn" class="btn btn-outline btn-sm">Clear</button>
-            </div>
-            <div id="saved-messages-list">
-              <p style="color: var(--text-secondary); font-size: 0.86rem; margin-top: 8px;">No messages saved yet.</p>
-            </div>
-          </div>
         </div>
 
         <form class="contact-form" id="contact-form">
@@ -1027,8 +1009,12 @@
             <textarea id="sender-message" name="message" class="form-control" placeholder="Write your message..." required></textarea>
           </div>
           <button type="submit" id="send-msg-btn" class="btn btn-primary" style="width: 100%; justify-content: center;">
-            <i class="fas fa-paper-plane"></i> Send via Email App & Save
+            <i class="fas fa-paper-plane"></i> Send Private Message
           </button>
+          <p class="privacy-note">
+            <i class="fas fa-lock" style="color: var(--accent);"></i>
+            Messages are delivered directly to my email and are not shown publicly on the website.
+          </p>
         </form>
       </div>
     </div>
@@ -1073,7 +1059,7 @@
 
   <script>
     const PROFILE_DATA = {
-      contactEmail: "YOUR_EMAIL_HERE", // <-- এখানে আপনার নিজের ইমেইল দিন (যেমন: example@gmail.com)
+      web3FormsAccessKey: "956e0e28-45d1-439d-8c3d-8754b959434f",
       profileImage: "https://raw.githubusercontent.com/sabbir87/sabbir-portfolio/main/sabbir.jpeg",
       cvPdfUrl: "https://sabbir87.github.io/sabbir-portfolio/CV_Sabbir_Ahommed.pdf",
       roles: [
@@ -1306,76 +1292,55 @@
       if (e.target === cvModal) hideCvModal();
     });
 
-    // Contact form -> Saves locally & opens mail client with prefilled message
+    // Private contact form -> Delivers only to your configured email via Web3Forms
     const contactForm = document.getElementById("contact-form");
-    const savedListEl = document.getElementById("saved-messages-list");
-    const clearMsgsBtn = document.getElementById("clear-msgs-btn");
-    const STORAGE_KEY = "sabbir_portfolio_messages_v1";
+    const sendBtn = document.getElementById("send-msg-btn");
 
-    function loadMessages() {
-      try {
-        return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-      } catch {
-        return [];
-      }
-    }
+    contactForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-    function renderMessages() {
-      const msgs = loadMessages();
-      if (!msgs.length) {
-        savedListEl.innerHTML = '<p style="color: var(--text-secondary); font-size: 0.86rem; margin-top: 8px;">No messages saved yet.</p>';
+      if (!PROFILE_DATA.web3FormsAccessKey || PROFILE_DATA.web3FormsAccessKey === "YOUR_WEB3FORMS_ACCESS_KEY") {
+        showToast("Set web3FormsAccessKey in PROFILE_DATA first.");
         return;
       }
-      savedListEl.innerHTML = msgs
-        .map(
-          (m) => `
-          <div class="saved-msg-item">
-            <div><strong>${escapeHtml(m.name)}</strong> (${escapeHtml(m.email)})</div>
-            <div style="color: var(--text-secondary); margin-top: 4px;">${escapeHtml(m.message)}</div>
-          </div>
-        `
-        )
-        .join("");
-    }
 
-    function escapeHtml(str) {
-      return String(str)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;");
-    }
-
-    contactForm.addEventListener("submit", (e) => {
-      e.preventDefault();
       const name = document.getElementById("sender-name").value.trim();
       const email = document.getElementById("sender-email").value.trim();
       const message = document.getElementById("sender-message").value.trim();
 
-      const msgs = loadMessages();
-      msgs.unshift({ name, email, message, time: new Date().toLocaleString() });
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(msgs));
-      renderMessages();
+      sendBtn.disabled = true;
+      sendBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
-      if (PROFILE_DATA.contactEmail && PROFILE_DATA.contactEmail !== "YOUR_EMAIL_HERE") {
-        const subject = encodeURIComponent(`Portfolio Message from ${name}`);
-        const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-        window.location.href = `mailto:${encodeURIComponent(PROFILE_DATA.contactEmail)}?subject=${subject}&body=${body}`;
-        showToast("Message saved & email app opened!");
-      } else {
-        showToast("Message saved! Set contactEmail in code to open mail app.");
+      try {
+        const res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({
+            access_key: PROFILE_DATA.web3FormsAccessKey,
+            subject: `New Portfolio Message from ${name}`,
+            from_name: name,
+            email: email,
+            message: message
+          })
+        });
+
+        const data = await res.json();
+        if (res.ok && data.success) {
+          contactForm.reset();
+          showToast("Message sent privately to your email!");
+        } else {
+          showToast(data.message || "Could not send message.");
+        }
+      } catch {
+        showToast("Network error while sending message.");
+      } finally {
+        sendBtn.disabled = false;
+        sendBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Private Message';
       }
-
-      contactForm.reset();
     });
-
-    clearMsgsBtn.addEventListener("click", () => {
-      localStorage.removeItem(STORAGE_KEY);
-      renderMessages();
-      showToast("Saved messages cleared.");
-    });
-
-    renderMessages();
 
     // Toast helper
     const toast = document.getElementById("toast");
