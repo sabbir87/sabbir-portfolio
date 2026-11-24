@@ -10,13 +10,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <style>
-    /* =========================================
-       1. CSS VARIABLES & THEME SYSTEM
-       ========================================= */
     :root {
       --bg-primary: #0a0e17;
       --bg-secondary: #111827;
-      --bg-card: rgba(23, 32, 51, 0.78);
+      --bg-card: rgba(23, 32, 51, 0.82);
       --text-primary: #f3f4f6;
       --text-secondary: #9ca3af;
       --accent: #38bdf8;
@@ -32,7 +29,7 @@
     [data-theme="light"] {
       --bg-primary: #f8fafc;
       --bg-secondary: #ffffff;
-      --bg-card: rgba(255, 255, 255, 0.9);
+      --bg-card: rgba(255, 255, 255, 0.92);
       --text-primary: #0f172a;
       --text-secondary: #475569;
       --accent: #0284c7;
@@ -73,12 +70,12 @@
     }
 
     section {
-      padding: 88px 0;
+      padding: 84px 0;
     }
 
     .section-header {
       text-align: center;
-      margin-bottom: 48px;
+      margin-bottom: 44px;
     }
 
     .section-tag {
@@ -107,9 +104,7 @@
       font-size: 0.98rem;
     }
 
-    /* =========================================
-       2. NAVBAR
-       ========================================= */
+    /* NAVBAR */
     .navbar {
       position: fixed;
       top: 0;
@@ -151,7 +146,6 @@
       font-size: 0.88rem;
       font-weight: 500;
       color: var(--text-secondary);
-      position: relative;
       transition: var(--transition);
     }
 
@@ -188,15 +182,12 @@
 
     .menu-btn { display: none; }
 
-    /* =========================================
-       3. HERO & BUTTONS
-       ========================================= */
+    /* HERO */
     .hero {
-      min-height: 95vh;
+      min-height: 92vh;
       display: flex;
       align-items: center;
       padding-top: 96px;
-      position: relative;
     }
 
     .hero-grid {
@@ -265,7 +256,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     .btn {
@@ -355,6 +346,7 @@
       height: 100%;
       object-fit: cover;
       border-radius: 18px;
+      display: block;
     }
 
     .floating-chip {
@@ -377,9 +369,7 @@
 
     .floating-chip i { color: var(--accent); }
 
-    /* =========================================
-       4. PERSONAL INFO & STATS
-       ========================================= */
+    /* PERSONAL INFO */
     .personal-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -467,20 +457,18 @@
       font-size: 0.86rem;
     }
 
-    /* =========================================
-       5. ACADEMIC TIMELINE & CERTIFICATES
-       ========================================= */
+    /* ACADEMIC */
     .edu-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 22px;
     }
 
     .edu-card {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
       border-radius: var(--radius);
-      overflow: hidden;
+      padding: 22px;
       display: flex;
       flex-direction: column;
       transition: var(--transition);
@@ -491,44 +479,11 @@
       transform: translateY(-4px);
     }
 
-    .edu-cert-box {
-      position: relative;
-      height: 185px;
-      background: var(--bg-secondary);
-      border-bottom: 1px solid var(--border-color);
-      overflow: hidden;
-    }
-
-    .edu-cert-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .edu-badge {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      background: var(--accent);
-      color: #06101c;
-      font-weight: 700;
-      font-size: 0.78rem;
-      padding: 4px 10px;
-      border-radius: 8px;
-    }
-
-    .edu-body {
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-    }
-
     .edu-year {
       font-size: 0.82rem;
       color: var(--accent);
       font-weight: 600;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     .edu-degree {
@@ -543,206 +498,45 @@
     }
 
     .edu-result {
-      font-size: 0.86rem;
+      font-size: 0.88rem;
       font-weight: 600;
-      margin-bottom: 14px;
       color: var(--text-primary);
     }
 
-    .edu-actions {
-      margin-top: auto;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    /* =========================================
-       6. EXTRACURRICULAR (SCOUT SUB-TABS & SPORTS)
-       ========================================= */
-    .main-tabs, .sub-tabs, .filter-tabs {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 28px;
-    }
-
-    .tab-btn, .filter-btn {
-      padding: 9px 18px;
-      border-radius: 999px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      color: var(--text-secondary);
-      font-size: 0.88rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .tab-btn.active, .tab-btn:hover,
-    .filter-btn.active, .filter-btn:hover {
-      background: var(--accent);
-      color: #06101c;
-      border-color: var(--accent);
-      font-weight: 600;
-    }
-
-    .scout-panel {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      padding: 26px;
-      margin-bottom: 24px;
-    }
-
-    .scout-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-
-    .scout-desc {
-      color: var(--text-secondary);
-      margin-bottom: 20px;
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 18px;
-    }
-
-    .gallery-card {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .gallery-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-3px);
-    }
-
-    .gallery-card img {
-      width: 100%;
-      height: 165px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .gallery-caption {
-      padding: 10px 12px;
-      font-size: 0.86rem;
-      color: var(--text-secondary);
-    }
-
-    .upload-strip {
-      margin-top: 20px;
-      padding-top: 16px;
-      border-top: 1px dashed var(--border-color);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .sports-grid, .design-grid, .skills-grid, .projects-grid {
+    /* CARDS & GRIDS */
+    .cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
       gap: 22px;
     }
 
-    .sport-card, .design-card, .skill-card, .project-card {
+    .feature-card {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
       border-radius: var(--radius);
-      overflow: hidden;
+      padding: 22px;
       transition: var(--transition);
     }
 
-    .sport-card:hover, .design-card:hover, .skill-card:hover, .project-card:hover {
+    .feature-card:hover {
       border-color: var(--accent);
       transform: translateY(-4px);
     }
 
-    .card-img-top {
-      width: 100%;
-      height: 190px;
-      object-fit: cover;
-      display: block;
-      cursor: pointer;
+    .feature-card h3 {
+      margin-bottom: 8px;
+      font-size: 1.12rem;
     }
 
-    .card-body {
-      padding: 18px;
-    }
-
-    .skill-card { padding: 20px; }
-
-    .skill-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
-    .skill-info {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .skill-info i { color: var(--accent); font-size: 1.3rem; }
-
-    .progress-bar {
-      width: 100%;
-      height: 7px;
-      background: var(--border-color);
-      border-radius: 999px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: var(--accent);
-      border-radius: 999px;
-    }
-
-    .project-card { display: flex; flex-direction: column; }
-    .project-body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
-    .project-category {
-      font-size: 0.76rem;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 700;
-      letter-spacing: 0.8px;
-    }
-    .project-title { font-size: 1.18rem; margin: 6px 0 8px; }
-    .project-desc { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 14px; flex: 1; }
-    .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
-    .tag {
-      font-size: 0.76rem;
-      padding: 3px 9px;
-      border-radius: 6px;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
+    .feature-card p {
       color: var(--text-secondary);
+      font-size: 0.92rem;
     }
-    .project-actions { display: flex; gap: 10px; }
 
-    /* =========================================
-       7. VIDEO RESUME & CV DOWNLOAD SECTION
-       ========================================= */
+    /* CV & VIDEO */
     .cv-video-grid {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
+      grid-template-columns: 1.1fr 0.9fr;
       gap: 28px;
       align-items: start;
     }
@@ -756,7 +550,7 @@
 
     .video-player {
       width: 100%;
-      max-height: 360px;
+      max-height: 340px;
       border-radius: 12px;
       background: #000;
       margin-bottom: 14px;
@@ -776,9 +570,7 @@
       margin-right: 8px;
     }
 
-    /* =========================================
-       8. CONTACT, FOOTER, MODAL & TOAST
-       ========================================= */
+    /* CONTACT */
     .contact-grid {
       display: grid;
       grid-template-columns: 0.9fr 1.1fr;
@@ -841,6 +633,7 @@
       font-size: 0.9rem;
     }
 
+    /* MODAL & TOAST */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -859,37 +652,44 @@
       background: var(--bg-secondary);
       border: 1px solid var(--border-color);
       border-radius: 18px;
-      max-width: 680px;
+      max-width: 820px;
       width: 100%;
       max-height: 90vh;
-      overflow-y: auto;
-      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-color);
     }
 
     .modal-close {
-      position: sticky;
-      top: 12px;
-      float: right;
-      margin: 12px 12px 0 0;
-      width: 36px;
-      height: 36px;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
-      border: none;
-      background: rgba(0, 0, 0, 0.65);
-      color: #fff;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-primary);
       cursor: pointer;
-      z-index: 10;
     }
 
-    .modal-img {
+    .modal-body {
+      padding: 16px;
+      overflow-y: auto;
+    }
+
+    .cv-frame {
       width: 100%;
-      max-height: 420px;
-      object-fit: contain;
-      background: #050811;
-      display: block;
+      height: 70vh;
+      border: none;
+      border-radius: 10px;
+      background: #fff;
     }
-
-    .modal-content { padding: 22px; }
 
     .toast {
       position: fixed;
@@ -943,14 +743,13 @@
   <!-- NAVBAR -->
   <header class="navbar">
     <div class="container nav-inner">
-      <a href="#home" class="logo" id="nav-brand">Sabbir's<span>Space</span></a>
+      <a href="#home" class="logo">Sabbir's<span>Space</span></a>
       <nav>
         <ul class="nav-links" id="nav-links">
           <li><a href="#home" class="active">Home</a></li>
           <li><a href="#personal">Personal</a></li>
           <li><a href="#academic">Academic</a></li>
-          <li><a href="#extracurricular">Activities</a></li>
-          <li><a href="#graphics">Graphics</a></li>
+          <li><a href="#activities">Activities</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#resume-cv">Video & CV</a></li>
           <li><a href="#contact">Contact</a></li>
@@ -973,136 +772,128 @@
       <div class="hero-content">
         <div class="hero-badge">
           <span class="status-dot"></span>
-          <span id="hero-status">Student Associate • Senior Rover Mate • DIU CSE (64th Batch)</span>
+          <span>Student Associate • Senior Rover Mate • DIU CSE (64th Batch)</span>
         </div>
-        <h1 class="hero-title">Hi, I'm <span id="hero-name">Sabbir Ahommed</span></h1>
+        <h1 class="hero-title">Hi, I'm <span>Sabbir Ahommed</span></h1>
         <div class="hero-typing">
           I do <span id="typed-text"></span><span class="typing-cursor">|</span>
         </div>
-        <p class="hero-desc" id="hero-bio"></p>
+        <p class="hero-desc">
+          Computer Science & Engineering student and Student Associate at Daffodil International University, Senior Rover Mate & Crew Council VP at DIU Air Rover Scout Group, graphic designer, and custom sportswear maker.
+        </p>
         <div class="hero-btns">
           <a href="#resume-cv" class="btn btn-primary">
             <i class="fas fa-file-download"></i> CV & Video Resume
           </a>
-          <a href="#extracurricular" class="btn btn-outline">
-            <i class="fas fa-campground"></i> Scout & Sports
+          <a href="#personal" class="btn btn-outline">
+            <i class="fas fa-user"></i> Personal Profile
           </a>
           <a href="#contact" class="btn btn-outline">
             <i class="fas fa-paper-plane"></i> Contact
           </a>
         </div>
-        <div class="hero-socials" id="hero-socials"></div>
+        <div class="hero-socials">
+          <a href="https://github.com/sabbir87" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="#contact" class="social-icon" aria-label="Email">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
       </div>
 
       <div class="hero-visual">
         <div class="avatar-card">
-          <img src="" alt="Sabbir Ahommed Profile Photo" class="avatar-img" id="hero-img" />
+          <img
+            src="https://raw.githubusercontent.com/sabbir87/sabbir-portfolio/main/sabbir.jpeg"
+            alt="Sabbir Ahommed Profile Photo"
+            class="avatar-img"
+            id="hero-img"
+          />
           <div class="floating-chip">
             <i class="fas fa-award"></i>
-            <span id="hero-chip-text">Student Associate • CSE • Rover</span>
+            <span>Student Associate • CSE • Rover</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PERSONAL INFORMATION & ABOUT -->
+  <!-- PERSONAL INFORMATION -->
   <section id="personal">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">Personal Profile</span>
         <h2 class="section-title">Personal Information</h2>
-        <p class="section-subtitle">Parents, permanent & current address, NID, blood group, university role, and core overview.</p>
+        <p class="section-subtitle">Key profile details, blood group, university leadership, and scouting roles.</p>
       </div>
 
       <div class="personal-grid" id="personal-info-grid"></div>
 
       <div class="about-grid">
-        <div class="about-text" id="about-paragraphs"></div>
-        <div class="stats-grid" id="about-stats"></div>
+        <div class="about-text">
+          <p>
+            I am Sabbir Ahommed, pursuing a B.Sc. in Computer Science and Engineering (64th Batch) at Daffodil International University (ID: 0242310005101349) and serving as a Student Associate.
+          </p>
+          <p>
+            Alongside software development, machine learning, and 3D graphics, I serve as Senior Rover Mate and Vice President of the Crew Council at the DIU Air Rover Scout Group, design custom sublimation jerseys and sportswear, and volunteer in community and international youth initiatives.
+          </p>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">B+</div>
+            <div class="stat-label">Blood Group</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">64th</div>
+            <div class="stat-label">DIU CSE Batch</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">VP</div>
+            <div class="stat-label">Air Rover Crew Council</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">2025</div>
+            <div class="stat-label">BIMSTEC Volunteer Rep</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ACADEMIC INFORMATION & CERTIFICATES -->
+  <!-- ACADEMIC -->
   <section id="academic">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">Education & Certificates</span>
-        <h2 class="section-title">Academic Journey (PSC to B.Sc.)</h2>
-        <p class="section-subtitle">Institutions attended from PSC, JSC, SSC, and HSC to B.Sc. in CSE with certificate preview & upload option.</p>
+        <span class="section-tag">Education</span>
+        <h2 class="section-title">Academic Background</h2>
+        <p class="section-subtitle">Educational milestones across Rajshahi Board and Daffodil International University.</p>
       </div>
       <div class="edu-grid" id="academic-grid"></div>
     </div>
   </section>
 
-  <!-- EXTRACURRICULAR ACTIVITIES (SCOUT SUB-TABS & SPORTS) -->
-  <section id="extracurricular">
+  <!-- ACTIVITIES & DESIGN -->
+  <section id="activities">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">Extracurricular Activities</span>
-        <h2 class="section-title">Rover Scouting & Sports</h2>
-        <p class="section-subtitle">Dedicated options for every Scout training/expedition with photo gallery, plus Volleyball & Cricket tournaments.</p>
+        <span class="section-tag">Leadership & Creative Work</span>
+        <h2 class="section-title">Scouting, Sports & Custom Sportswear</h2>
+        <p class="section-subtitle">Rover scouting leadership, university sports, graphic design, and custom jersey manufacturing.</p>
       </div>
-
-      <div class="main-tabs" id="activity-main-tabs">
-        <button class="tab-btn active" data-main="scout"><i class="fas fa-compass"></i> Scout Activities</button>
-        <button class="tab-btn" data-main="sports"><i class="fas fa-trophy"></i> Sports (Volleyball & Cricket)</button>
-      </div>
-
-      <!-- SCOUT SECTION -->
-      <div id="scout-section">
-        <div class="sub-tabs" id="scout-sub-tabs"></div>
-        <div class="scout-panel" id="scout-detail-panel"></div>
-      </div>
-
-      <!-- SPORTS SECTION -->
-      <div id="sports-section" style="display: none;">
-        <div class="filter-tabs" id="sports-filter-tabs">
-          <button class="filter-btn active" data-sport="all">All Tournaments</button>
-          <button class="filter-btn" data-sport="volleyball">Volleyball Tournament</button>
-          <button class="filter-btn" data-sport="cricket">Cricket Tournament</button>
-        </div>
-        <div class="sports-grid" id="sports-grid"></div>
-      </div>
+      <div class="cards-grid" id="activities-grid"></div>
     </div>
   </section>
 
-  <!-- GRAPHIC DESIGN SHOWCASE -->
-  <section id="graphics">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Creative Work</span>
-        <h2 class="section-title">Graphic Design & Custom Sportswear</h2>
-        <p class="section-subtitle">Custom sublimation jerseys, tracksuits, event banners, and vector designs.</p>
-      </div>
-      <div class="design-grid" id="design-grid"></div>
-    </div>
-  </section>
-
-  <!-- SKILLS & TECHNICAL PROJECTS -->
+  <!-- PROJECTS -->
   <section id="projects">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">Technical Work</span>
-        <h2 class="section-title">Skills & Featured Projects</h2>
-        <p class="section-subtitle">Software development, machine learning, and graphics simulation work.</p>
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-subtitle">Research, web applications, and graphics simulation work.</p>
       </div>
-
-      <div class="filter-tabs" id="skill-filters">
-        <button class="filter-btn active" data-filter="all">All Skills</button>
-        <button class="filter-btn" data-filter="frontend">Web & Graphics</button>
-        <button class="filter-btn" data-filter="backend">Programming & ML</button>
-        <button class="filter-btn" data-filter="tools">Tools</button>
-      </div>
-      <div class="skills-grid" id="skills-container" style="margin-bottom: 52px;"></div>
-
-      <div class="filter-tabs" id="project-filters">
-        <button class="filter-btn active" data-filter="all">All Projects</button>
-        <button class="filter-btn" data-filter="web">Web Apps</button>
-        <button class="filter-btn" data-filter="ai">AI & 3D Graphics</button>
-      </div>
-      <div class="projects-grid" id="projects-container"></div>
+      <div class="cards-grid" id="projects-grid"></div>
     </div>
   </section>
 
@@ -1112,7 +903,7 @@
       <div class="section-header">
         <span class="section-tag">Resume & Introduction</span>
         <h2 class="section-title">Video Resume & Download CV</h2>
-        <p class="section-subtitle">Watch video introduction, upload a new video resume from your device, or download my CV directly.</p>
+        <p class="section-subtitle">Preview or download my CV and watch/upload a video resume.</p>
       </div>
 
       <div class="cv-video-grid">
@@ -1123,7 +914,7 @@
             Your browser does not support HTML5 video.
           </video>
           <p id="video-status-note" style="font-size: 0.86rem; color: var(--text-secondary); margin-bottom: 14px;">
-            Set a default video path in <code>USER_PROFILE.videoResumeUrl</code> or upload a video file below to preview.
+            Upload a video file below to preview your video resume in this browser session.
           </p>
           <label class="btn btn-outline btn-sm" style="cursor: pointer;">
             <i class="fas fa-upload"></i> Upload Video Resume
@@ -1134,21 +925,21 @@
         <div class="cv-box">
           <h3 style="margin-bottom: 8px;"><i class="fas fa-file-pdf" style="color: var(--accent);"></i> Curriculum Vitae (CV)</h3>
           <p style="color: var(--text-secondary); font-size: 0.92rem;">
-            Complete academic record, university Student Associate & Rover Scout leadership, international conference experience, technical projects, and sportswear/design portfolio.
+            Academic record, Student Associate & Senior Rover Mate leadership, BIMSTEC volunteer experience, and technical/design work.
           </p>
           <ul class="cv-highlights">
             <li><i class="fas fa-check-circle"></i> Student Associate & B.Sc. in CSE (64th Batch) — DIU</li>
             <li><i class="fas fa-check-circle"></i> Senior Rover Mate & Crew Council VP (Air Rover Scout Group)</li>
-            <li><i class="fas fa-check-circle"></i> Volunteer Representative — BIMSTEC Conference 2025 (India)</li>
+            <li><i class="fas fa-check-circle"></i> Volunteer Representative — BIMSTEC Conference 2025</li>
             <li><i class="fas fa-check-circle"></i> AI Phishing Detection Thesis, Web & 3D OpenGL Projects</li>
           </ul>
           <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-            <a href="file:///C:/Users/niloy/OneDrive/Desktop/sabbir/image/CV_Sabbir_Ahommed.pdf" id="cv-download-btn" download="CV_Sabbir_Ahommed.pdf" class="btn btn-primary" style="flex: 1; justify-content: center;">
+            <a href="https://raw.githubusercontent.com/sabbir87/sabbir-portfolio/main/CV_Sabbir_Ahommed.pdf" id="cv-download-btn" download="CV_Sabbir_Ahommed.pdf" class="btn btn-primary" style="flex: 1; justify-content: center;">
               <i class="fas fa-download"></i> Download CV (PDF)
             </a>
-            <a href="file:///C:/Users/niloy/OneDrive/Desktop/sabbir/image/CV_Sabbir_Ahommed.pdf" id="cv-view-btn" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="justify-content: center;">
+            <button type="button" id="cv-view-btn" class="btn btn-outline" style="justify-content: center;">
               <i class="fas fa-eye"></i> View CV
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -1161,22 +952,45 @@
       <div class="section-header">
         <span class="section-tag">Get In Touch</span>
         <h2 class="section-title">Contact Me</h2>
-        <p class="section-subtitle">Reach out for software/web projects, custom jersey & sportswear orders, or event collaborations.</p>
+        <p class="section-subtitle">Reach out for software/web projects, custom jersey & sportswear orders, or collaborations.</p>
       </div>
       <div class="contact-grid">
-        <div class="contact-info-list" id="contact-info"></div>
-        <form class="contact-form" id="contact-form" action="https://formspree.io/f/xkjrpzeq" method="POST">
+        <div class="contact-info-list">
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-university"></i></div>
+            <div>
+              <div class="info-label">University & Role</div>
+              <div class="info-value">Student Associate, Daffodil International University</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-location-dot"></i></div>
+            <div>
+              <div class="info-label">Location</div>
+              <div class="info-value">Birulia, Savar / Ashulia, Dhaka</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fab fa-github"></i></div>
+            <div>
+              <div class="info-label">GitHub</div>
+              <div class="info-value">github.com/sabbir87</div>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contact-form">
           <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" class="form-control" placeholder="Enter your full name" required />
+            <label for="sender-name">Your Name</label>
+            <input type="text" id="sender-name" class="form-control" placeholder="Enter your name" required />
           </div>
           <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" class="form-control" placeholder="you@example.com" required />
+            <label for="sender-email">Your Email</label>
+            <input type="email" id="sender-email" class="form-control" placeholder="Enter your email" required />
           </div>
           <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" class="form-control" placeholder="Write your message here..." required></textarea>
+            <label for="sender-message">Message</label>
+            <textarea id="sender-message" class="form-control" placeholder="Write your message..." required></textarea>
           </div>
           <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
             <i class="fas fa-paper-plane"></i> Send Message
@@ -1186,788 +1000,285 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <div class="container">
-      <p>© 2026 Sabbir Ahommed. All Rights Reserved.</p>
+      <p>© <span id="year"></span> Sabbir Ahommed. Built with HTML, CSS & JavaScript.</p>
     </div>
   </footer>
 
-  <!-- PREVIEW MODAL (CERTIFICATES, GALLERY & PROJECTS) -->
-  <div class="modal-backdrop" id="preview-modal">
+  <!-- CV PREVIEW MODAL -->
+  <div class="modal-backdrop" id="cv-modal" aria-hidden="true">
     <div class="modal-box">
-      <button class="modal-close" id="modal-close" aria-label="Close Modal"><i class="fas fa-times"></i></button>
-      <img src="" alt="Preview" class="modal-img" id="modal-img" />
-      <div class="modal-content">
-        <span class="project-category" id="modal-cat"></span>
-        <h3 class="project-title" id="modal-title"></h3>
-        <p class="project-desc" id="modal-desc"></p>
-        <div class="project-tags" id="modal-tags"></div>
-        <div class="project-actions" id="modal-links" style="display: none;">
-          <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" id="modal-live">
-            <i class="fas fa-external-link-alt"></i> Live Demo
+      <div class="modal-top">
+        <strong>CV_Sabbir_Ahommed.pdf</strong>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <a href="https://raw.githubusercontent.com/sabbir87/sabbir-portfolio/main/CV_Sabbir_Ahommed.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+            <i class="fas fa-external-link-alt"></i> Open in New Tab
           </a>
-          <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" id="modal-repo">
-            <i class="fab fa-github"></i> Source Code
-          </a>
+          <button type="button" class="modal-close" id="close-cv-modal" aria-label="Close Modal">
+            <i class="fas fa-times"></i>
+          </button>
         </div>
+      </div>
+      <div class="modal-body">
+        <iframe src="https://raw.githubusercontent.com/sabbir87/sabbir-portfolio/main/CV_Sabbir_Ahommed.pdf" class="cv-frame" title="Sabbir Ahommed CV Preview"></iframe>
       </div>
     </div>
   </div>
 
   <!-- TOAST -->
   <div class="toast" id="toast">
-    <i class="fas fa-check-circle" id="toast-icon" style="color: var(--accent);"></i>
+    <i class="fas fa-check-circle" style="color: var(--accent);"></i>
     <span id="toast-msg">Done!</span>
   </div>
 
   <script>
-    /* =========================================================================
-       USER_PROFILE DATA
-       ========================================================================= */
-    const USER_PROFILE = {
-      brandFirst: "Sabbir's",
-      brandSecond: "Space",
-      name: "Sabbir Ahommed",
-      statusText: "Student Associate • Senior Rover Mate • DIU CSE (64th Batch)",
-      chipText: "Student Associate • CSE • Rover",
-      profileImage: "file:///C:/Users/niloy/OneDrive/Desktop/sabbir/image/sabbir.jpeg",
-      cvUrl: "file:///C:/Users/niloy/OneDrive/Desktop/sabbir/image/CV_Sabbir_Ahommed.pdf",
-      videoResumeUrl: "", // Example: "videos/video_resume.mp4"
-
-      personal: [
-        { icon: "fas fa-user", label: "Full Name", value: "Sabbir Ahommed (সাব্বির আহম্মেদ)" },
-        { icon: "fas fa-briefcase", label: "University Role", value: "Student Associate — Daffodil International University" },
-        { icon: "fas fa-male", label: "Father's Name", value: "Md. Mokteb Ali" },
-        { icon: "fas fa-female", label: "Mother's Name", value: "Most. Pahari Begum" },
-        { icon: "fas fa-tint", label: "Blood Group", value: "B+" },
-        { icon: "fas fa-id-card", label: "NID Number", value: "Private / Add When Needed" },
-        { icon: "fas fa-map-marker-alt", label: "Village & Thana (Permanent)", value: "Shahagola, Atrai" },
-        { icon: "fas fa-city", label: "District (Permanent)", value: "Naogaon, Rajshahi" },
-        { icon: "fas fa-location-dot", label: "Current Address", value: "Birulia, Savar / Ashulia, Dhaka" }
+    const PROFILE_DATA = {
+      profileImage: "https://raw.githubusercontent.com/sabbir87/sabbir-portfolio/main/sabbir.jpeg",
+      cvUrl: "https://raw.githubusercontent.com/sabbir87/sabbir-portfolio/main/CV_Sabbir_Ahommed.pdf",
+      roles: [
+        "CSE Student & Student Associate",
+        "Senior Rover Mate & Crew Council VP",
+        "Graphic & Custom Sportswear Designer",
+        "Web & AI Project Builder"
       ],
-
-      typingRoles: [
-        "University Student Associate Work",
-        "Full-Stack Web & ML Systems",
-        "Rover Scouting & Event Leadership",
-        "Custom Sportswear & Graphic Design"
+      personalCards: [
+        { icon: "fa-user", label: "Full Name", value: "Sabbir Ahommed" },
+        { icon: "fa-graduation-cap", label: "Current Role", value: "Student Associate • B.Sc. in CSE (64th Batch)" },
+        { icon: "fa-id-card", label: "Student ID", value: "0242310005101349 (DIU)" },
+        { icon: "fa-droplet", label: "Blood Group", value: "B+ (Positive)" },
+        { icon: "fa-campground", label: "Scouting Leadership", value: "Senior Rover Mate & Crew Council VP (DIU Air Rover)" },
+        { icon: "fa-shirt", label: "Creative & Business", value: "Graphic Designer & Custom Sportswear Maker" }
       ],
-
-      heroBio: "Working as a Student Associate at Daffodil International University while pursuing B.Sc. in CSE (64th Batch), serving as Senior Rover Mate & Crew Council VP (DIU Air Rover Scout Group), and creating graphic designs & custom sportswear.",
-
-      aboutParagraphs: [
-        "I am Sabbir Ahommed, working as a Student Associate at Daffodil International University and pursuing a B.Sc. in Computer Science and Engineering. My technical work spans algorithms, Python/machine learning (including AI-based phishing website detection thesis), C/C++ OpenGL graphics, and web development.",
-        "Alongside my university role and academics, I serve as Senior Rover Mate and Vice President of the Crew Council for DIU Air Rover Scout Group, coordinate volunteer teams, play volleyball and cricket, and run custom sportswear & jersey design/production."
-      ],
-
-      stats: [
-        { number: "B+", label: "Blood Group" },
-        { number: "64th", label: "DIU CSE Batch" },
-        { number: "2+ Yrs", label: "Graphic Design" },
-        { number: "2025", label: "BIMSTEC Delegate" }
-      ],
-
-      // PSC, JSC, SSC, HSC, B.Sc.
       academic: [
         {
-          level: "PSC",
-          degree: "Primary School Certificate (PSC)",
-          institution: "Shahagola Kochi Kacha Kinder Garten School",
-          year: "2013 • Board: Rajshahi",
-          result: "GPA: 5.00 / 5.00",
-          certificateImg: "images/psc-cert.jpg"
+          year: "Current",
+          degree: "B.Sc. in Computer Science & Engineering",
+          inst: "Daffodil International University (64th Batch)",
+          result: "Student ID: 0242310005101349"
         },
         {
-          level: "JSC",
-          degree: "Junior School Certificate (JSC)",
-          institution: "Rajshahi Shikkha Board Govt. Model School and College",
-          year: "2016 • Board: Rajshahi",
-          result: "GPA: 5.00 / 5.00",
-          certificateImg: "images/jsc-cert.jpg"
-        },
-        {
-          level: "SSC",
-          degree: "Secondary School Certificate (SSC)",
-          institution: "Rajshahi Shikkha Board Govt. Model School and College",
-          year: "2019 • Board: Rajshahi",
-          result: "GPA: 4.72 / 5.00",
-          certificateImg: "images/ssc-cert.jpg"
-        },
-        {
-          level: "HSC",
+          year: "2021",
           degree: "Higher Secondary Certificate (HSC)",
-          institution: "Rajshahi Shikkha Board Govt. Model School and College",
-          year: "2021 • Board: Rajshahi",
-          result: "GPA: 5.00 / 5.00",
-          certificateImg: "images/hsc-cert.jpg"
+          inst: "Rajshahi Shikkha Board Govt. Model School and College",
+          result: "GPA: 5.00"
         },
         {
-          level: "B.Sc.",
-          degree: "B.Sc. in Computer Science & Engineering (CSE)",
-          institution: "Daffodil International University (DIU)",
-          year: "64th Batch (Ongoing)",
-          result: "ID: 0242310005101349",
-          certificateImg: "images/bsc-cert.jpg"
+          year: "2019",
+          degree: "Secondary School Certificate (SSC)",
+          inst: "Rajshahi Shikkha Board Govt. Model School and College",
+          result: "GPA: 4.72"
+        },
+        {
+          year: "Earlier Milestones",
+          degree: "JSC & PSC",
+          inst: "Rajshahi Board",
+          result: "Completed with Certificates"
         }
       ],
-
-      // Scout Activities with individual options & photo gallery
-      scoutActivities: [
+      activities: [
         {
-          id: "skill-dev",
-          title: "Skill Development Course",
-          role: "Participant / Trainee",
-          summary: "Practical scouting skills, teamwork, leadership, first aid, and service readiness.",
-          photos: [
-            { src: "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=800&q=80", caption: "Skill Development Session" }
-          ]
+          title: "DIU Air Rover Scout Group",
+          desc: "Serving as Senior Rover Mate and Vice President of the Crew Council; leading training camps, orientation classes, and volunteer contingents."
         },
         {
-          id: "rover-mate",
-          title: "Course for Rover Mate",
-          role: "Rover Mate Trainee",
-          summary: "Training focused on crew leadership, planning, mentoring Rovers, and unit administration.",
-          photos: [
-            { src: "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=800&q=80", caption: "Course for Rover Mate Training" }
-          ]
+          title: "Custom Sportswear & Graphic Design",
+          desc: "Designing and manufacturing customized sports jerseys, trousers, and tracksuits along with event banners and vector graphics."
         },
         {
-          id: "unit-leader",
-          title: "Unit Leader Basic Course",
-          role: "Unit Leader Trainee",
-          summary: "Foundational scout unit leadership, camp management, and training methodology.",
-          photos: [
-            { src: "https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&w=800&q=80", caption: "Unit Leader Basic Course" }
-          ]
-        },
-        {
-          id: "air-scout-adv",
-          title: "Air Scout Advance Course",
-          role: "Air Rover Scout",
-          summary: "Advanced air scouting skills, aviation awareness, discipline, and structured operations.",
-          photos: [
-            { src: "https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=800&q=80", caption: "Air Scout Advance Training" }
-          ]
-        },
-        {
-          id: "aero-pioneering",
-          title: "Aero Pioneering Course",
-          role: "Participant / Organizer",
-          summary: "Pioneering structures, ropework, knot craft, and air-themed practical engineering.",
-          photos: [
-            { src: "https://images.unsplash.com/photo-1533240332313-0db49b459ad6?auto=format&fit=crop&w=800&q=80", caption: "Aero Pioneering & Ropework" }
-          ]
-        },
-        {
-          id: "hajj-camp",
-          title: "Hajj Camp",
-          role: "Scout Service Volunteer",
-          summary: "Crowd assistance, guidance, emergency support, and disciplined humanitarian service.",
-          photos: [
-            { src: "https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=800&q=80", caption: "Hajj Camp Service Duty" }
-          ]
-        },
-        {
-          id: "convocation",
-          title: "Convocation Volunteering",
-          role: "Volunteer Coordinator / Rover",
-          summary: "Protocol, guest guidance, crowd management, and smooth ceremony operations at DIU.",
-          photos: [
-            { src: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=800&q=80", caption: "Convocation Volunteer Team" }
-          ]
-        },
-        {
-          id: "bimstec-2025",
-          title: "BIMSTEC Conference India - 2025",
-          role: "Volunteer Representative (Bangladesh Scouts)",
-          summary: "Represented Bangladesh Scouts as a volunteer delegate at the international BIMSTEC Conference in India (2025).",
-          photos: [
-            { src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80", caption: "BIMSTEC Conference 2025 Delegation" }
-          ]
+          title: "Sports & Community Service",
+          desc: "Active in university-level volleyball and football, local cricket, and community & international youth volunteering."
         }
       ],
-
-      // Sports: Volleyball & Cricket Tournaments
-      sports: [
-        {
-          type: "volleyball",
-          title: "University Volleyball Tournament",
-          role: "Player",
-          summary: "Competing in university-level volleyball matches with team coordination, spike/serve execution, and match stamina.",
-          image: "https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?auto=format&fit=crop&w=800&q=80"
-        },
-        {
-          type: "cricket",
-          title: "Independence Day Cricket Tournament (Shahagola)",
-          role: "Winning Captain (Obibahito Dol)",
-          summary: "Led the team as captain to win the Independence Day 2026 cricket tournament hosted by Shahagola Tarun Sangsad.",
-          image: "https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=800&q=80"
-        }
-      ],
-
-      // Graphic Design & Sportswear Works
-      designs: [
-        {
-          title: "Custom Sublimation Sports Jerseys",
-          category: "Sportswear Design & Production",
-          description: "Customized team jerseys with modern typography, geometric/chevron patterns, and print-ready flat layouts.",
-          image: "https://images.unsplash.com/photo-1551958219-acbc608c6377?auto=format&fit=crop&w=800&q=80"
-        },
-        {
-          title: "Tracksuits & Athletic Trousers",
-          category: "Apparel & Pattern Layout",
-          description: "Custom sportswear sets designed and produced for teams, clubs, and events.",
-          image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=800&q=80"
-        },
-        {
-          title: "Event Banners, Posters & Vector Logos",
-          category: "Illustrator • Photoshop • Canva",
-          description: "High-resolution promotional banners, scout/university event posters, and clean vector branding.",
-          image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80"
-        }
-      ],
-
-      skills: [
-        { name: "HTML5 / CSS3 / JavaScript", level: 88, category: "frontend", icon: "fab fa-js" },
-        { name: "Illustrator, Photoshop & Canva", level: 92, category: "frontend", icon: "fas fa-pen-nib" },
-        { name: "Python & ML (LightGBM/CatBoost)", level: 85, category: "backend", icon: "fab fa-python" },
-        { name: "C / C++ & OpenGL", level: 86, category: "backend", icon: "fas fa-code" },
-        { name: "Java, Flutter & SQL", level: 80, category: "backend", icon: "fas fa-database" },
-        { name: "Git, VS Code & Google Workspace", level: 90, category: "tools", icon: "fas fa-wrench" }
-      ],
-
       projects: [
         {
-          title: "Hybrid Phishing Detection (AI Thesis)",
-          category: "ai",
-          categoryLabel: "AI & Machine Learning",
-          image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80",
-          description: "B.Sc. thesis research using Python, scikit-learn, LightGBM, and CatBoost to detect phishing websites.",
-          tags: ["Python", "LightGBM", "CatBoost", "ML"],
-          liveUrl: "#",
-          repoUrl: "https://github.com"
+          title: "Hybrid Phishing Website Detection Using AI",
+          desc: "B.Sc. thesis machine learning project using Python and gradient boosting models to detect phishing websites."
         },
         {
-          title: "Ticket Kothay — Movie Booking System",
-          category: "web",
-          categoryLabel: "Web Application",
-          image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
-          description: "Full-stack movie ticket booking web application built with HTML5, CSS3, JavaScript, and SQL.",
-          tags: ["HTML5", "CSS3", "JavaScript", "SQL"],
-          liveUrl: "#",
-          repoUrl: "https://github.com"
+          title: "Ticket Kothay & Web Applications",
+          desc: "Full-stack movie ticket booking and web applications built with HTML5, CSS3, JavaScript, and SQL."
         },
         {
           title: "DIU Air Traffic Control (3D OpenGL)",
-          category: "ai",
-          categoryLabel: "3D Graphics Simulation",
-          image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
-          description: "Interactive 3D OpenGL C++ simulation with multi-plane takeoff, landing, and radar animations.",
-          tags: ["C++", "OpenGL", "3D Graphics"],
-          liveUrl: "#",
-          repoUrl: "https://github.com"
+          desc: "Interactive 3D C++ and OpenGL air traffic control simulation featuring aircraft movement and radar visuals."
         }
-      ],
-
-      contact: {
-        email: "sabbirahommed91@gmail.com",
-        phone: "01590030988",
-        whatsapp: "01721994526",
-        location: "Birulia, Savar / Ashulia, Dhaka (Home: Shahagola, Naogaon)"
-      },
-
-      socials: [
-        { icon: "fab fa-facebook-f", url: "https://www.facebook.com/share/1LeUDYciSW/", label: "Facebook" },
-        { icon: "fab fa-instagram", url: "https://www.instagram.com/sabbir_r8798.official_?fqnt=eW1qaWJ5bjBzaG9", label: "Instagram" },
-        { icon: "fab fa-whatsapp", url: "https://wa.me/8801721994526", label: "WhatsApp" },
-        { icon: "fab fa-linkedin-in", url: "#", label: "LinkedIn" },
-        { icon: "fas fa-envelope", url: "mailto:sabbirahommed91@gmail.com", label: "Gmail" }
       ]
     };
 
-    /* =========================================================================
-       APPLICATION LOGIC
-       ========================================================================= */
-    document.addEventListener("DOMContentLoaded", () => {
-      const toast = document.getElementById("toast");
-      function showToast(msg, isError = false) {
-        document.getElementById("toast-msg").textContent = msg;
-        document.getElementById("toast-icon").className = isError ? "fas fa-exclamation-circle" : "fas fa-check-circle";
-        toast.classList.add("show");
-        setTimeout(() => toast.classList.remove("show"), 3200);
-      }
+    // Theme toggle
+    const themeBtn = document.getElementById("theme-toggle");
+    const htmlEl = document.documentElement;
+    themeBtn.addEventListener("click", () => {
+      const nextTheme = htmlEl.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      htmlEl.setAttribute("data-theme", nextTheme);
+      themeBtn.innerHTML = nextTheme === "dark"
+        ? '<i class="fas fa-sun"></i>'
+        : '<i class="fas fa-moon"></i>';
+    });
 
-      // Modal Helper
-      const modal = document.getElementById("preview-modal");
-      function openPreviewModal({ image, category = "", title = "", description = "", tags = [], liveUrl = "", repoUrl = "" }) {
-        document.getElementById("modal-img").src = image;
-        document.getElementById("modal-cat").textContent = category;
-        document.getElementById("modal-title").textContent = title;
-        document.getElementById("modal-desc").textContent = description;
-        document.getElementById("modal-tags").innerHTML = tags.map(t => `<span class="tag">${t}</span>`).join("");
+    // Mobile menu
+    const menuBtn = document.getElementById("menu-toggle");
+    const navLinks = document.getElementById("nav-links");
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => navLinks.classList.remove("active"));
+    });
 
-        const linksBox = document.getElementById("modal-links");
-        if (liveUrl || repoUrl) {
-          linksBox.style.display = "flex";
-          document.getElementById("modal-live").href = liveUrl || "#";
-          document.getElementById("modal-repo").href = repoUrl || "#";
-        } else {
-          linksBox.style.display = "none";
+    // Typing effect
+    const typedEl = document.getElementById("typed-text");
+    let roleIdx = 0;
+    let charIdx = 0;
+    let deleting = false;
+
+    function typeLoop() {
+      const current = PROFILE_DATA.roles[roleIdx];
+      if (!deleting) {
+        typedEl.textContent = current.slice(0, ++charIdx);
+        if (charIdx === current.length) {
+          deleting = true;
+          setTimeout(typeLoop, 1400);
+          return;
         }
-        modal.classList.add("open");
+      } else {
+        typedEl.textContent = current.slice(0, --charIdx);
+        if (charIdx === 0) {
+          deleting = false;
+          roleIdx = (roleIdx + 1) % PROFILE_DATA.roles.length;
+        }
       }
-      document.getElementById("modal-close").addEventListener("click", () => modal.classList.remove("open"));
-      modal.addEventListener("click", (e) => { if (e.target === modal) modal.classList.remove("open"); });
+      setTimeout(typeLoop, deleting ? 55 : 90);
+    }
+    typeLoop();
 
-      // Basic Profile & Hero
-      document.title = `${USER_PROFILE.name} | Portfolio`;
-      document.getElementById("nav-brand").innerHTML = `${USER_PROFILE.brandFirst}<span>${USER_PROFILE.brandSecond}</span>`;
-      document.getElementById("hero-status").textContent = USER_PROFILE.statusText;
-      document.getElementById("hero-name").textContent = USER_PROFILE.name;
-      document.getElementById("hero-bio").textContent = USER_PROFILE.heroBio;
-      document.getElementById("hero-chip-text").textContent = USER_PROFILE.chipText;
+    // Profile image setup with clean fallback
+    const heroImg = document.getElementById("hero-img");
+    heroImg.src = PROFILE_DATA.profileImage;
+    heroImg.addEventListener("error", () => {
+      heroImg.src =
+        "data:image/svg+xml;utf8," +
+        encodeURIComponent(
+          `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="460" viewBox="0 0 400 460">
+            <rect width="400" height="460" rx="24" fill="#172033"/>
+            <circle cx="200" cy="175" r="68" fill="#38bdf8" opacity="0.25"/>
+            <circle cx="200" cy="165" r="42" fill="#38bdf8"/>
+            <path d="M95 360 C95 285, 305 285, 305 360 Z" fill="#38bdf8" opacity="0.85"/>
+            <text x="200" y="415" text-anchor="middle" fill="#f3f4f6" font-family="Arial, sans-serif" font-size="20">Sabbir Ahommed</text>
+          </svg>`
+        );
+    });
 
-      const heroImg = document.getElementById("hero-img");
-      heroImg.src = USER_PROFILE.profileImage;
-      heroImg.onerror = () => {
-        heroImg.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80";
-      };
-
-      document.getElementById("hero-socials").innerHTML = USER_PROFILE.socials.map(s => `
-        <a href="${s.url}" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="${s.label}" title="${s.label}">
-          <i class="${s.icon}"></i>
-        </a>
-      `).join("");
-
-      // Personal Info & About
-      document.getElementById("personal-info-grid").innerHTML = USER_PROFILE.personal.map(item => `
+    // Render personal cards
+    const personalGrid = document.getElementById("personal-info-grid");
+    personalGrid.innerHTML = PROFILE_DATA.personalCards
+      .map(
+        (item) => `
         <div class="info-card">
-          <div class="info-icon"><i class="${item.icon}"></i></div>
+          <div class="info-icon"><i class="fas ${item.icon}"></i></div>
           <div>
             <div class="info-label">${item.label}</div>
             <div class="info-value">${item.value}</div>
           </div>
         </div>
-      `).join("");
+      `
+      )
+      .join("");
 
-      document.getElementById("about-paragraphs").innerHTML = USER_PROFILE.aboutParagraphs.map(p => `<p>${p}</p>`).join("");
-      document.getElementById("about-stats").innerHTML = USER_PROFILE.stats.map(st => `
-        <div class="stat-card">
-          <div class="stat-number">${st.number}</div>
-          <div class="stat-label">${st.label}</div>
+    // Render academic cards
+    const academicGrid = document.getElementById("academic-grid");
+    academicGrid.innerHTML = PROFILE_DATA.academic
+      .map(
+        (edu) => `
+        <div class="edu-card">
+          <div class="edu-year">${edu.year}</div>
+          <h3 class="edu-degree">${edu.degree}</h3>
+          <div class="edu-inst">${edu.inst}</div>
+          <div class="edu-result">${edu.result}</div>
         </div>
-      `).join("");
+      `
+      )
+      .join("");
 
-      // Academic Cards + Certificate View & Live Upload
-      const academicGrid = document.getElementById("academic-grid");
-      function renderAcademic() {
-        academicGrid.innerHTML = USER_PROFILE.academic.map((edu, idx) => `
-          <div class="edu-card">
-            <div class="edu-cert-box">
-              <span class="edu-badge">${edu.level}</span>
-              <img src="${edu.certificateImg}" alt="${edu.level} Certificate" class="edu-cert-img" id="cert-img-${idx}" />
-            </div>
-            <div class="edu-body">
-              <div class="edu-year">${edu.year}</div>
-              <h3 class="edu-degree">${edu.degree}</h3>
-              <p class="edu-inst"><i class="fas fa-school"></i> ${edu.institution}</p>
-              <div class="edu-result">${edu.result}</div>
-              <div class="edu-actions">
-                <button class="btn btn-primary btn-sm view-cert-btn" data-idx="${idx}">
-                  <i class="fas fa-certificate"></i> View Certificate
-                </button>
-                <label class="btn btn-outline btn-sm" style="cursor: pointer;">
-                  <i class="fas fa-image"></i> Add/Change Pic
-                  <input type="file" accept="image/*" class="cert-upload-input" data-idx="${idx}" hidden />
-                </label>
-              </div>
-            </div>
-          </div>
-        `).join("");
-
-        document.querySelectorAll(".view-cert-btn").forEach(btn => {
-          btn.addEventListener("click", () => {
-            const item = USER_PROFILE.academic[btn.dataset.idx];
-            openPreviewModal({
-              image: item.certificateImg,
-              category: `${item.level} Certificate`,
-              title: item.degree,
-              description: `${item.institution} • ${item.year} • ${item.result}`
-            });
-          });
-        });
-
-        document.querySelectorAll(".cert-upload-input").forEach(input => {
-          input.addEventListener("change", (e) => {
-            const file = e.target.files[0];
-            if (!file) return;
-            const url = URL.createObjectURL(file);
-            USER_PROFILE.academic[input.dataset.idx].certificateImg = url;
-            renderAcademic();
-            showToast(`${USER_PROFILE.academic[input.dataset.idx].level} certificate image updated!`);
-          });
-        });
-      }
-      renderAcademic();
-
-      // Extracurricular: Main Tab Switch (Scout vs Sports)
-      document.querySelectorAll("#activity-main-tabs .tab-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-          document.querySelectorAll("#activity-main-tabs .tab-btn").forEach(b => b.classList.remove("active"));
-          btn.classList.add("active");
-          const isScout = btn.dataset.main === "scout";
-          document.getElementById("scout-section").style.display = isScout ? "block" : "none";
-          document.getElementById("sports-section").style.display = isScout ? "none" : "block";
-        });
-      });
-
-      // Scout Sub-tabs & Gallery
-      const scoutSubTabs = document.getElementById("scout-sub-tabs");
-      const scoutPanel = document.getElementById("scout-detail-panel");
-      let activeScoutIdx = 0;
-
-      function renderScoutTabs() {
-        scoutSubTabs.innerHTML = USER_PROFILE.scoutActivities.map((act, idx) => `
-          <button class="tab-btn ${idx === activeScoutIdx ? "active" : ""}" data-scout-idx="${idx}">
-            ${act.title}
-          </button>
-        `).join("");
-
-        document.querySelectorAll("#scout-sub-tabs .tab-btn").forEach(btn => {
-          btn.addEventListener("click", () => {
-            activeScoutIdx = Number(btn.dataset.scoutIdx);
-            renderScoutTabs();
-            renderScoutPanel();
-          });
-        });
-      }
-
-      function renderScoutPanel() {
-        const act = USER_PROFILE.scoutActivities[activeScoutIdx];
-        scoutPanel.innerHTML = `
-          <div class="scout-header">
-            <div>
-              <span class="project-category">${act.role}</span>
-              <h3 style="font-size: 1.35rem; margin-top: 2px;">${act.title}</h3>
-            </div>
-            <span class="tag"><i class="fas fa-images"></i> ${act.photos.length} Photo(s)</span>
-          </div>
-          <p class="scout-desc">${act.summary}</p>
-          <div class="gallery-grid">
-            ${act.photos.map((ph, pIdx) => `
-              <div class="gallery-card open-scout-photo" data-pidx="${pIdx}">
-                <img src="${ph.src}" alt="${ph.caption}" />
-                <div class="gallery-caption">${ph.caption}</div>
-              </div>
-            `).join("")}
-          </div>
-          <div class="upload-strip">
-            <span style="font-size: 0.86rem; color: var(--text-secondary);">
-              Add event photos to <strong>${act.title}</strong> gallery:
-            </span>
-            <label class="btn btn-outline btn-sm" style="cursor: pointer;">
-              <i class="fas fa-plus-circle"></i> Add Photo
-              <input type="file" accept="image/*" multiple id="scout-photo-upload" hidden />
-            </label>
-          </div>
-        `;
-
-        scoutPanel.querySelectorAll(".open-scout-photo").forEach(card => {
-          card.addEventListener("click", () => {
-            const ph = act.photos[card.dataset.pidx];
-            openPreviewModal({
-              image: ph.src,
-              category: "Scout Activity Gallery",
-              title: act.title,
-              description: `${ph.caption} (${act.role})`
-            });
-          });
-        });
-
-        document.getElementById("scout-photo-upload").addEventListener("change", (e) => {
-          const files = Array.from(e.target.files || []);
-          if (!files.length) return;
-          files.forEach(file => {
-            act.photos.push({
-              src: URL.createObjectURL(file),
-              caption: file.name.replace(/\.[^/.]+$/, "")
-            });
-          });
-          renderScoutTabs();
-          renderScoutPanel();
-          showToast(`${files.length} photo(s) added to ${act.title}!`);
-        });
-      }
-      renderScoutTabs();
-      renderScoutPanel();
-
-      // Sports Render & Filter
-      const sportsGrid = document.getElementById("sports-grid");
-      function renderSports(filter = "all") {
-        const list = filter === "all"
-          ? USER_PROFILE.sports
-          : USER_PROFILE.sports.filter(s => s.type === filter);
-
-        sportsGrid.innerHTML = list.map(sp => `
-          <div class="sport-card">
-            <img src="${sp.image}" alt="${sp.title}" class="card-img-top sport-img-click" data-title="${sp.title}" data-desc="${sp.summary}" data-img="${sp.image}" />
-            <div class="card-body">
-              <span class="project-category">${sp.type.toUpperCase()} • ${sp.role}</span>
-              <h3 class="project-title">${sp.title}</h3>
-              <p class="project-desc">${sp.summary}</p>
-            </div>
-          </div>
-        `).join("");
-
-        sportsGrid.querySelectorAll(".sport-img-click").forEach(img => {
-          img.addEventListener("click", () => {
-            openPreviewModal({
-              image: img.dataset.img,
-              category: "Sports Tournament",
-              title: img.dataset.title,
-              description: img.dataset.desc
-            });
-          });
-        });
-      }
-      renderSports();
-
-      document.querySelectorAll("#sports-filter-tabs .filter-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-          document.querySelectorAll("#sports-filter-tabs .filter-btn").forEach(b => b.classList.remove("active"));
-          btn.classList.add("active");
-          renderSports(btn.dataset.sport);
-        });
-      });
-
-      // Graphic Design Grid
-      const designGrid = document.getElementById("design-grid");
-      designGrid.innerHTML = USER_PROFILE.designs.map((d, idx) => `
-        <div class="design-card">
-          <img src="${d.image}" alt="${d.title}" class="card-img-top open-design-btn" data-didx="${idx}" />
-          <div class="card-body">
-            <span class="project-category">${d.category}</span>
-            <h3 class="project-title">${d.title}</h3>
-            <p class="project-desc">${d.description}</p>
-            <button class="btn btn-outline btn-sm open-design-btn" data-didx="${idx}">
-              <i class="fas fa-expand"></i> View Design
-            </button>
-          </div>
+    // Render activities & projects
+    const activitiesGrid = document.getElementById("activities-grid");
+    activitiesGrid.innerHTML = PROFILE_DATA.activities
+      .map(
+        (act) => `
+        <div class="feature-card">
+          <h3>${act.title}</h3>
+          <p>${act.desc}</p>
         </div>
-      `).join("");
+      `
+      )
+      .join("");
 
-      designGrid.querySelectorAll(".open-design-btn").forEach(el => {
-        el.addEventListener("click", () => {
-          const item = USER_PROFILE.designs[el.dataset.didx];
-          openPreviewModal({
-            image: item.image,
-            category: item.category,
-            title: item.title,
-            description: item.description
-          });
-        });
-      });
-
-      // Typing Effect
-      const typedEl = document.getElementById("typed-text");
-      let roleIdx = 0, charIdx = 0, isDeleting = false;
-      function typeLoop() {
-        const currentRole = USER_PROFILE.typingRoles[roleIdx];
-        typedEl.textContent = isDeleting
-          ? currentRole.substring(0, charIdx--)
-          : currentRole.substring(0, charIdx++);
-
-        let delay = isDeleting ? 45 : 90;
-        if (!isDeleting && charIdx > currentRole.length) {
-          delay = 1500;
-          isDeleting = true;
-        } else if (isDeleting && charIdx < 0) {
-          isDeleting = false;
-          roleIdx = (roleIdx + 1) % USER_PROFILE.typingRoles.length;
-          charIdx = 0;
-          delay = 350;
-        }
-        setTimeout(typeLoop, delay);
-      }
-      typeLoop();
-
-      // Skills & Projects
-      const skillsContainer = document.getElementById("skills-container");
-      function renderSkills(filter = "all") {
-        const filtered = filter === "all"
-          ? USER_PROFILE.skills
-          : USER_PROFILE.skills.filter(s => s.category === filter);
-
-        skillsContainer.innerHTML = filtered.map(skill => `
-          <div class="skill-card">
-            <div class="skill-top">
-              <div class="skill-info">
-                <i class="${skill.icon}"></i>
-                <span style="font-weight: 600;">${skill.name}</span>
-              </div>
-              <span style="font-size: 0.85rem; color: var(--text-secondary); font-weight: 600;">${skill.level}%</span>
-            </div>
-            <div class="progress-bar">
-              <div class="progress-fill" style="width: ${skill.level}%"></div>
-            </div>
-          </div>
-        `).join("");
-      }
-      renderSkills();
-
-      document.querySelectorAll("#skill-filters .filter-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-          document.querySelectorAll("#skill-filters .filter-btn").forEach(b => b.classList.remove("active"));
-          btn.classList.add("active");
-          renderSkills(btn.dataset.filter);
-        });
-      });
-
-      const projectsContainer = document.getElementById("projects-container");
-      function renderProjects(filter = "all") {
-        const filtered = filter === "all"
-          ? USER_PROFILE.projects
-          : USER_PROFILE.projects.filter(p => p.category === filter);
-
-        projectsContainer.innerHTML = filtered.map(proj => {
-          const realIdx = USER_PROFILE.projects.indexOf(proj);
-          return `
-            <div class="project-card">
-              <img src="${proj.image}" alt="${proj.title}" class="card-img-top" />
-              <div class="project-body">
-                <span class="project-category">${proj.categoryLabel}</span>
-                <h3 class="project-title">${proj.title}</h3>
-                <p class="project-desc">${proj.description}</p>
-                <div class="project-tags">
-                  ${proj.tags.map(t => `<span class="tag">${t}</span>`).join("")}
-                </div>
-                <div class="project-actions">
-                  <button class="btn btn-primary btn-sm open-proj-modal" data-idx="${realIdx}">
-                    <i class="fas fa-eye"></i> Details
-                  </button>
-                  <a href="${proj.repoUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
-                    <i class="fab fa-github"></i> Code
-                  </a>
-                </div>
-              </div>
-            </div>
-          `;
-        }).join("");
-
-        projectsContainer.querySelectorAll(".open-proj-modal").forEach(btn => {
-          btn.addEventListener("click", () => {
-            const p = USER_PROFILE.projects[btn.dataset.idx];
-            openPreviewModal({
-              image: p.image,
-              category: p.categoryLabel,
-              title: p.title,
-              description: p.description,
-              tags: p.tags,
-              liveUrl: p.liveUrl,
-              repoUrl: p.repoUrl
-            });
-          });
-        });
-      }
-      renderProjects();
-
-      document.querySelectorAll("#project-filters .filter-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-          document.querySelectorAll("#project-filters .filter-btn").forEach(b => b.classList.remove("active"));
-          btn.classList.add("active");
-          renderProjects(btn.dataset.filter);
-        });
-      });
-
-      // Video Resume & CV Download Setup
-      const videoPlayer = document.getElementById("video-resume-player");
-      const videoNote = document.getElementById("video-status-note");
-      if (USER_PROFILE.videoResumeUrl) {
-        videoPlayer.src = USER_PROFILE.videoResumeUrl;
-        videoNote.textContent = `Loaded video resume: ${USER_PROFILE.videoResumeUrl}`;
-      }
-
-      document.getElementById("video-upload-input").addEventListener("change", (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
-        videoPlayer.src = URL.createObjectURL(file);
-        videoPlayer.play().catch(() => {});
-        videoNote.textContent = `Previewing uploaded video: ${file.name}`;
-        showToast("Video resume loaded for preview!");
-      });
-
-      const cvBtn = document.getElementById("cv-download-btn");
-      const cvViewBtn = document.getElementById("cv-view-btn");
-      cvBtn.href = USER_PROFILE.cvUrl || "#";
-      cvViewBtn.href = USER_PROFILE.cvUrl || "#";
-      cvBtn.addEventListener("click", (e) => {
-        if (!USER_PROFILE.cvUrl || USER_PROFILE.cvUrl === "#") {
-          e.preventDefault();
-          showToast("CV path is not set.", true);
-        } else {
-          showToast("Downloading CV_Sabbir_Ahommed.pdf...");
-        }
-      });
-
-      // Contact Info & Form
-      const c = USER_PROFILE.contact;
-      document.getElementById("contact-info").innerHTML = `
-        <div class="contact-item">
-          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-          <div><h4>Email</h4><p><a href="mailto:${c.email}">${c.email}</a></p></div>
+    const projectsGrid = document.getElementById("projects-grid");
+    projectsGrid.innerHTML = PROFILE_DATA.projects
+      .map(
+        (proj) => `
+        <div class="feature-card">
+          <h3>${proj.title}</h3>
+          <p>${proj.desc}</p>
         </div>
-        <div class="contact-item">
-          <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
-          <div><h4>Phone</h4><p><a href="tel:${c.phone}">${c.phone}</a></p></div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
-          <div><h4>WhatsApp</h4><p><a href="https://wa.me/88${c.whatsapp}" target="_blank" rel="noopener noreferrer">${c.whatsapp}</a></p></div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-          <div><h4>Location</h4><p>${c.location}</p></div>
-        </div>
-      `;
+      `
+      )
+      .join("");
 
-      const contactForm = document.getElementById("contact-form");
-      contactForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const btn = contactForm.querySelector("button[type='submit']");
-        btn.disabled = true;
-        try {
-          const res = await fetch(contactForm.action, {
-            method: "POST",
-            body: new FormData(contactForm),
-            headers: { "Accept": "application/json" }
-          });
-          if (res.ok) {
-            showToast("Message sent successfully!");
-            contactForm.reset();
-          } else {
-            showToast("Could not send message. Please try again.", true);
-          }
-        } catch {
-          showToast("Network error!", true);
-        } finally {
-          btn.disabled = false;
-        }
-      });
+    // Video upload preview
+    const videoInput = document.getElementById("video-upload-input");
+    const videoPlayer = document.getElementById("video-resume-player");
+    const videoNote = document.getElementById("video-status-note");
 
-      // Theme & Mobile Menu
-      const themeBtn = document.getElementById("theme-toggle");
-      themeBtn.addEventListener("click", () => {
-        const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-        document.documentElement.setAttribute("data-theme", isDark ? "light" : "dark");
-        themeBtn.innerHTML = isDark ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
-      });
-
-      const menuBtn = document.getElementById("menu-toggle");
-      const navLinks = document.getElementById("nav-links");
-      menuBtn.addEventListener("click", () => navLinks.classList.toggle("active"));
-      navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => navLinks.classList.remove("active")));
+    videoInput.addEventListener("change", (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      const url = URL.createObjectURL(file);
+      videoPlayer.src = url;
+      videoPlayer.load();
+      videoNote.textContent = `Loaded video: ${file.name}`;
+      showToast("Video resume loaded for preview!");
     });
+
+    // CV Modal
+    const cvModal = document.getElementById("cv-modal");
+    const cvViewBtn = document.getElementById("cv-view-btn");
+    const closeCvModal = document.getElementById("close-cv-modal");
+
+    cvViewBtn.addEventListener("click", () => {
+      cvModal.classList.add("open");
+      cvModal.setAttribute("aria-hidden", "false");
+    });
+
+    function hideCvModal() {
+      cvModal.classList.remove("open");
+      cvModal.setAttribute("aria-hidden", "true");
+    }
+
+    closeCvModal.addEventListener("click", hideCvModal);
+    cvModal.addEventListener("click", (e) => {
+      if (e.target === cvModal) hideCvModal();
+    });
+
+    // Contact form
+    const contactForm = document.getElementById("contact-form");
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      contactForm.reset();
+      showToast("Message noted! Thank you for reaching out.");
+    });
+
+    // Toast helper
+    const toast = document.getElementById("toast");
+    const toastMsg = document.getElementById("toast-msg");
+    function showToast(msg) {
+      toastMsg.textContent = msg;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 3000);
+    }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
