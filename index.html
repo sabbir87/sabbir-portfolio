@@ -625,6 +625,23 @@
     .form-control:focus { border-color: var(--accent); }
     textarea.form-control { min-height: 110px; resize: vertical; }
 
+    .saved-msgs-box {
+      margin-top: 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+
+    .saved-msg-item {
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      margin-top: 10px;
+      font-size: 0.88rem;
+    }
+
     footer {
       border-top: 1px solid var(--border-color);
       padding: 28px 0;
@@ -798,7 +815,7 @@
           <a href="https://github.com/sabbir87" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
             <i class="fab fa-github"></i>
           </a>
-          <a href="#contact" class="social-icon" aria-label="Email">
+          <a href="#contact" class="social-icon" aria-label="Contact">
             <i class="fas fa-envelope"></i>
           </a>
         </div>
@@ -984,6 +1001,16 @@
               <div class="info-value">github.com/sabbir87</div>
             </div>
           </div>
+
+          <div class="saved-msgs-box" id="saved-messages-box">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <strong><i class="fas fa-inbox" style="color: var(--accent);"></i> Submitted Messages (This Browser)</strong>
+              <button type="button" id="clear-msgs-btn" class="btn btn-outline btn-sm">Clear</button>
+            </div>
+            <div id="saved-messages-list">
+              <p style="color: var(--text-secondary); font-size: 0.86rem; margin-top: 8px;">No messages saved yet.</p>
+            </div>
+          </div>
         </div>
 
         <form class="contact-form" id="contact-form">
@@ -1000,7 +1027,7 @@
             <textarea id="sender-message" name="message" class="form-control" placeholder="Write your message..." required></textarea>
           </div>
           <button type="submit" id="send-msg-btn" class="btn btn-primary" style="width: 100%; justify-content: center;">
-            <i class="fas fa-paper-plane"></i> Send Message
+            <i class="fas fa-paper-plane"></i> Send via Email App & Save
           </button>
         </form>
       </div>
@@ -1046,7 +1073,7 @@
 
   <script>
     const PROFILE_DATA = {
-      contactEmail: "YOUR_EMAIL_HERE", // <-- এখানে আপনার নিজের ইমেইল দিন
+      contactEmail: "YOUR_EMAIL_HERE", // <-- এখানে আপনার নিজের ইমেইল দিন (যেমন: example@gmail.com)
       profileImage: "https://raw.githubusercontent.com/sabbir87/sabbir-portfolio/main/sabbir.jpeg",
       cvPdfUrl: "https://sabbir87.github.io/sabbir-portfolio/CV_Sabbir_Ahommed.pdf",
       roles: [
@@ -1279,54 +1306,76 @@
       if (e.target === cvModal) hideCvModal();
     });
 
-    // Contact form -> Sends directly to your email via FormSubmit AJAX
+    // Contact form -> Saves locally & opens mail client with prefilled message
     const contactForm = document.getElementById("contact-form");
-    const sendBtn = document.getElementById("send-msg-btn");
+    const savedListEl = document.getElementById("saved-messages-list");
+    const clearMsgsBtn = document.getElementById("clear-msgs-btn");
+    const STORAGE_KEY = "sabbir_portfolio_messages_v1";
 
-    contactForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
+    function loadMessages() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+      } catch {
+        return [];
+      }
+    }
 
-      if (!PROFILE_DATA.contactEmail || PROFILE_DATA.contactEmail === "YOUR_EMAIL_HERE") {
-        showToast("Please set your email in PROFILE_DATA.contactEmail first.");
+    function renderMessages() {
+      const msgs = loadMessages();
+      if (!msgs.length) {
+        savedListEl.innerHTML = '<p style="color: var(--text-secondary); font-size: 0.86rem; margin-top: 8px;">No messages saved yet.</p>';
         return;
       }
+      savedListEl.innerHTML = msgs
+        .map(
+          (m) => `
+          <div class="saved-msg-item">
+            <div><strong>${escapeHtml(m.name)}</strong> (${escapeHtml(m.email)})</div>
+            <div style="color: var(--text-secondary); margin-top: 4px;">${escapeHtml(m.message)}</div>
+          </div>
+        `
+        )
+        .join("");
+    }
 
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
       const name = document.getElementById("sender-name").value.trim();
       const email = document.getElementById("sender-email").value.trim();
       const message = document.getElementById("sender-message").value.trim();
 
-      sendBtn.disabled = true;
-      sendBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+      const msgs = loadMessages();
+      msgs.unshift({ name, email, message, time: new Date().toLocaleString() });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(msgs));
+      renderMessages();
 
-      try {
-        const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(PROFILE_DATA.contactEmail)}`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-          },
-          body: JSON.stringify({
-            name,
-            email,
-            message,
-            _subject: `New Portfolio Message from ${name}`
-          })
-        });
-
-        const data = await res.json();
-        if (res.ok && (data.success === "true" || data.success === true)) {
-          contactForm.reset();
-          showToast("Message sent! Check your email (and confirm if first time).");
-        } else {
-          showToast("Could not send message. Please check email activation.");
-        }
-      } catch (err) {
-        showToast("Network error while sending message.");
-      } finally {
-        sendBtn.disabled = false;
-        sendBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+      if (PROFILE_DATA.contactEmail && PROFILE_DATA.contactEmail !== "YOUR_EMAIL_HERE") {
+        const subject = encodeURIComponent(`Portfolio Message from ${name}`);
+        const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+        window.location.href = `mailto:${encodeURIComponent(PROFILE_DATA.contactEmail)}?subject=${subject}&body=${body}`;
+        showToast("Message saved & email app opened!");
+      } else {
+        showToast("Message saved! Set contactEmail in code to open mail app.");
       }
+
+      contactForm.reset();
     });
+
+    clearMsgsBtn.addEventListener("click", () => {
+      localStorage.removeItem(STORAGE_KEY);
+      renderMessages();
+      showToast("Saved messages cleared.");
+    });
+
+    renderMessages();
 
     // Toast helper
     const toast = document.getElementById("toast");
@@ -1334,7 +1383,7 @@
     function showToast(msg) {
       toastMsg.textContent = msg;
       toast.classList.add("show");
-      setTimeout(() => toast.classList.remove("show"), 3500);
+      setTimeout(() => toast.classList.remove("show"), 3200);
     }
 
     document.getElementById("year").textContent = new Date().getFullYear();
