@@ -506,10 +506,27 @@
       object-fit: cover;
     }
 
+    .protected-media {
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+      pointer-events: none;
+    }
+
+    .protected-shield {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: transparent;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
     .edu-badge {
       position: absolute;
       top: 12px;
       left: 12px;
+      z-index: 3;
       background: var(--accent);
       color: #06101c;
       font-weight: 700;
@@ -869,7 +886,7 @@
       background: var(--bg-secondary);
       border: 1px solid var(--border-color);
       border-radius: 18px;
-      max-width: 780px;
+      max-width: 820px;
       width: 100%;
       max-height: 90vh;
       overflow-y: auto;
@@ -891,15 +908,57 @@
       z-index: 10;
     }
 
+    .modal-img-wrap {
+      position: relative;
+      background: #050811;
+    }
+
     .modal-img {
       width: 100%;
-      max-height: 440px;
+      max-height: 520px;
       object-fit: contain;
       background: #050811;
       display: block;
     }
 
+    .modal-pdf {
+      width: 100%;
+      height: 70vh;
+      border: none;
+      display: block;
+      background: #050811;
+    }
+
     .modal-content { padding: 22px; }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 22px;
+      left: 22px;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition);
+      z-index: 1500;
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .back-to-top:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
 
     .toast {
       position: fixed;
@@ -1006,7 +1065,7 @@
 
       <div class="hero-visual">
         <div class="avatar-card">
-          <img src="" alt="Sabbir Ahommed Profile Photo" class="avatar-img" id="hero-img" />
+          <img src="sabbir.jpeg" alt="Sabbir Ahommed Profile Photo" class="avatar-img" id="hero-img" />
           <div class="floating-chip">
             <i class="fas fa-award"></i>
             <span id="hero-chip-text">Student Associate • CSE • Rover</span>
@@ -1176,487 +1235,552 @@
       <div class="section-header">
         <span class="section-tag">Get In Touch</span>
         <h2 class="section-title">Contact Me</h2>
-        <p class="section-subtitle">Connect via Gmail, WhatsApp, or phone, or send a private message directly to my email inbox.</p>
+        <p class="section-subtitle">Reach out for collaboration, volunteer/scout coordination, custom sportswear design, or academic inquiries.</p>
       </div>
 
       <div class="contact-grid">
-        <div class="contact-info-list">
-          <div class="contact-item">
-            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-            <div>
-              <div class="info-label">Gmail</div>
-              <div class="info-value"><a href="mailto:sabbirahommed91@gmail.com">sabbirahommed91@gmail.com</a></div>
-            </div>
-          </div>
-
-          <div class="contact-item">
-            <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
-            <div>
-              <div class="info-label">WhatsApp</div>
-              <div class="info-value"><a href="https://wa.me/8801721994526" target="_blank" rel="noopener noreferrer">01721994526</a></div>
-            </div>
-          </div>
-
-          <div class="contact-item">
-            <div class="contact-icon"><i class="fas fa-phone"></i></div>
-            <div>
-              <div class="info-label">Contact</div>
-              <div class="info-value"><a href="tel:01590030988">01590030988</a></div>
-            </div>
-          </div>
-
-          <div class="contact-item">
-            <div class="contact-icon"><i class="fas fa-location-dot"></i></div>
-            <div>
-              <div class="info-label">Location</div>
-              <div class="info-value">Shahagola, Rajshahi • Birulia, Savar/Ashulia, Dhaka</div>
-            </div>
-          </div>
-        </div>
+        <div class="contact-info-list" id="contact-info-list"></div>
 
         <form class="contact-form" id="contact-form">
           <div class="form-group">
             <label for="sender-name">Your Name</label>
-            <input type="text" id="sender-name" name="name" class="form-control" placeholder="Enter your name" required />
+            <input type="text" id="sender-name" class="form-control" placeholder="Enter your name" required />
           </div>
           <div class="form-group">
             <label for="sender-email">Your Email</label>
-            <input type="email" id="sender-email" name="email" class="form-control" placeholder="Enter your email" required />
+            <input type="email" id="sender-email" class="form-control" placeholder="Enter your email address" required />
+          </div>
+          <div class="form-group">
+            <label for="sender-subject">Subject</label>
+            <input type="text" id="sender-subject" class="form-control" placeholder="Project, Scouting, Design, or Inquiry" required />
           </div>
           <div class="form-group">
             <label for="sender-message">Message</label>
-            <textarea id="sender-message" name="message" class="form-control" placeholder="Write your message..." required></textarea>
+            <textarea id="sender-message" class="form-control" placeholder="Write your message..." required></textarea>
           </div>
-          <button type="submit" id="send-msg-btn" class="btn btn-primary" style="width: 100%; justify-content: center;">
-            <i class="fas fa-paper-plane"></i> Send Private Message
+          <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+            <i class="fas fa-paper-plane"></i> Send Message
           </button>
           <p class="privacy-note">
-            <i class="fas fa-lock" style="color: var(--accent);"></i>
-            Messages are sent privately to sabbirahommed91@gmail.com and are never displayed publicly on the site.
+            <i class="fas fa-shield-alt"></i>
+            Static GitHub Pages form: validates inputs in-browser and opens your mail client with pre-filled details.
           </p>
         </form>
       </div>
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     <div class="container">
-      <p>© <span id="year"></span> Sabbir Ahommed. Built with HTML, CSS & JavaScript.</p>
+      <p>&copy; <span id="footer-year">2026</span> Sabbir Ahommed. Built with HTML, CSS & JavaScript.</p>
     </div>
   </footer>
 
   <!-- PREVIEW MODAL -->
   <div class="modal-backdrop" id="preview-modal" aria-hidden="true">
-    <div class="modal-box">
-      <button type="button" class="modal-close" id="close-modal" aria-label="Close Modal">
+    <div class="modal-box" role="dialog" aria-modal="true">
+      <button type="button" class="modal-close" id="modal-close" aria-label="Close Modal">
         <i class="fas fa-times"></i>
       </button>
-      <div id="modal-media-area"></div>
-      <div class="modal-content" id="modal-text-area"></div>
+      <div id="modal-body-content"></div>
     </div>
   </div>
 
-  <!-- TOAST -->
+  <!-- BACK TO TOP & TOAST -->
+  <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to Top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
   <div class="toast" id="toast">
     <i class="fas fa-check-circle" style="color: var(--accent);"></i>
-    <span id="toast-msg">Done!</span>
+    <span id="toast-message">Action completed!</span>
   </div>
 
   <script>
-    const USER_PROFILE = {
-      web3FormsAccessKey: "956e0e28-45d1-439d-8c3d-8754b959434f",
-      brand: "Sabbir'sSpace",
-      name: "Sabbir Ahommed",
-      status: "Student Associate • Senior Rover Mate • DIU CSE (64th Batch)",
-      chipText: "Student Associate • CSE • Rover",
-      bio: "Computer Science & Engineering student and Student Associate at Daffodil International University, Senior Rover Mate & Crew Council VP at DIU Air Rover Scout Group, graphic designer, and custom sportswear maker.",
-      profileImage: "https://raw.githubusercontent.com/sabbir87/sabbir-portfolio/main/sabbir.jpeg",
-      cvPdfUrl: "https://sabbir87.github.io/sabbir-portfolio/CV_Sabbir_Ahommed.pdf",
-      email: "sabbirahommed91@gmail.com",
-      whatsapp: "01721994526",
-      phone: "01590030988",
-      roles: [
-        "CSE Student & Student Associate",
-        "Senior Rover Mate & Crew Council VP",
-        "Graphic & Custom Sportswear Designer",
-        "Web & AI Project Builder"
-      ],
-      socials: [
-        { icon: "fab fa-github", url: "https://github.com/sabbir87", label: "GitHub" },
-        { icon: "fas fa-envelope", url: "mailto:sabbirahommed91@gmail.com", label: "Gmail" },
-        { icon: "fab fa-whatsapp", url: "https://wa.me/8801721994526", label: "WhatsApp" },
-        { icon: "fas fa-phone", url: "tel:01590030988", label: "Phone" }
-      ],
-      personalCards: [
-        { icon: "fa-user", label: "Full Name", value: "Sabbir Ahommed" },
-        { icon: "fa-user-tie", label: "Father's Name", value: "Md. Mokteb Ali" },
-        { icon: "fa-person-dress", label: "Mother's Name", value: "Most. Pahari Begum" },
-        { icon: "fa-map-pin", label: "Gram / Village", value: "Shahagola" },
-        { icon: "fa-location-dot", label: "Thana / Upazila", value: "Bagmara (Update if different)" },
-        { icon: "fa-city", label: "Zila / District", value: "Rajshahi (Current: Birulia, Savar/Ashulia, Dhaka)" },
-        { icon: "fa-graduation-cap", label: "Current Role", value: "Student Associate • B.Sc. in CSE (64th Batch)" },
-        { icon: "fa-id-card", label: "Student ID", value: "0242310005101349 (DIU)" },
-        { icon: "fa-droplet", label: "Blood Group", value: "B+ (Positive)" },
-        { icon: "fa-campground", label: "Scouting Leadership", value: "Senior Rover Mate & Crew Council VP (DIU Air Rover)" }
-      ],
-      aboutParagraphs: [
-        "I am Sabbir Ahommed, pursuing a B.Sc. in Computer Science and Engineering (64th Batch) at Daffodil International University (ID: 0242310005101349) and serving as a Student Associate.",
-        "Alongside software development, machine learning, and 3D graphics, I serve as Senior Rover Mate and Vice President of the Crew Council at the DIU Air Rover Scout Group, design and manufacture custom sublimation jerseys and sportswear, and volunteer in community and international youth initiatives."
-      ],
-      stats: [
-        { number: "B+", label: "Blood Group" },
-        { number: "64th", label: "DIU CSE Batch" },
-        { number: "VP", label: "Air Rover Crew Council" },
-        { number: "2025", label: "BIMSTEC Volunteer Rep" }
-      ],
+    /* =========================================
+       PORTFOLIO DATA
+       ========================================= */
+    const portfolioData = {
+      profile: {
+        name: "Sabbir Ahommed",
+        status: "Student Associate • Senior Rover Mate • DIU CSE (64th Batch)",
+        chipText: "Student Associate • CSE • Rover",
+        avatar: "sabbir.jpeg",
+        cvUrl: "https://sabbir87.github.io/sabbir-portfolio/CV_Sabbir_Ahommed.pdf",
+        roles: [
+          "Web & UI Development",
+          "AI & ML Research",
+          "Rover Scout Leadership",
+          "Custom Sportswear Design"
+        ],
+        bio: "Computer Science & Engineering undergraduate at Daffodil International University (64th Batch), Student Associate, Senior Rover Mate & Crew Council Vice President at DIU Air Rover Scout Group, and custom sportswear/graphic designer.",
+        personalInfo: [
+          { icon: "fas fa-user-tie", label: "Father's Name", value: "Md. Mokteb Ali" },
+          { icon: "fas fa-user", label: "Mother's Name", value: "Most. Pahari Begum" },
+          { icon: "fas fa-map-marker-alt", label: "Permanent Address", value: "Shahagola, Atrai, Naogaon" },
+          { icon: "fas fa-building", label: "Current Residence", value: "Daffodil Smart City, Birulia, Savar, Dhaka" },
+          { icon: "fas fa-graduation-cap", label: "University & Batch", value: "Daffodil International University (CSE 64th)" },
+          { icon: "fas fa-campground", label: "Scouting Role", value: "Senior Rover Mate & Crew Council VP (DIUARSG)" }
+        ],
+        aboutParagraphs: [
+          "I am Sabbir Ahommed, a B.Sc. in Computer Science and Engineering student at Daffodil International University. Alongside academics, I actively serve in leadership roles within the DIU Air Rover Scout Group and contribute to campus and community initiatives.",
+          "My technical interests span web interfaces, database-backed web systems, 3D graphics simulations, and applied machine learning—including research on hybrid phishing website detection and healthcare risk prediction.",
+          "Outside of coding, I design custom sublimation sports jerseys, tracksuits, vector graphics, and event banners, and enjoy competitive cricket, football, and volleyball."
+        ],
+        stats: [
+          { number: "64th", label: "CSE Batch (DIU)" },
+          { number: "2+ Yrs", label: "Graphic & Apparel Design" },
+          { number: "150 km", label: "Rover Rambling Spirit" },
+          { number: "2025", label: "BIMSTEC Scout Delegate" }
+        ]
+      },
+
       academic: [
         {
-          id: "bsc",
-          badge: "B.Sc. CSE",
-          year: "Current",
+          badge: "B.Sc. (Ongoing)",
+          year: "2023 – Present",
           degree: "B.Sc. in Computer Science & Engineering",
-          inst: "Daffodil International University (64th Batch)",
-          result: "Student ID: 0242310005101349 • Student Associate",
-          certImg: ""
+          institution: "Daffodil International University (DIU)",
+          result: "ID: 0242310005101349 • 64th Batch",
+          image: "sabbir.jpeg",
+          protected: false
         },
         {
-          id: "hsc",
           badge: "HSC",
           year: "2021",
-          degree: "Higher Secondary Certificate (HSC)",
-          inst: "Rajshahi Shikkha Board Govt. Model School and College",
-          result: "GPA: 5.00 (Rajshahi Board)",
-          certImg: ""
+          degree: "Higher Secondary Certificate (Science)",
+          institution: "Rajshahi Shikkha Board Govt. Model School and College",
+          result: "GPA: 5.00 / 5.00",
+          image: "https://raw.githubusercontent.com/sabbir87/sabbir-portfolio/main/HSC%20Mark%20Sheet.jpeg",
+          protected: true
         },
         {
-          id: "ssc",
           badge: "SSC",
           year: "2019",
-          degree: "Secondary School Certificate (SSC)",
-          inst: "Rajshahi Shikkha Board Govt. Model School and College",
-          result: "GPA: 4.72 (Rajshahi Board)",
-          certImg: ""
+          degree: "Secondary School Certificate (Science)",
+          institution: "Rajshahi Shikkha Board Govt. Model School and College",
+          result: "GPA: 4.72 / 5.00",
+          image: "sabbir.jpeg",
+          protected: false
         },
         {
-          id: "jsc",
           badge: "JSC",
-          year: "Earlier",
-          degree: "Junior School Certificate (JSC)",
-          inst: "Rajshahi Board",
-          result: "Completed",
-          certImg: ""
-        },
-        {
-          id: "psc",
-          badge: "PSC",
-          year: "Earlier",
-          degree: "Primary School Certificate (PSC)",
-          inst: "Primary Education Board",
-          result: "Completed",
-          certImg: ""
+          year: "2016",
+          degree: "Junior School Certificate",
+          institution: "Rajshahi Shikkha Board Govt. Model School and College",
+          result: "JSC Mark Sheet (View Only)",
+          image: "https://raw.githubusercontent.com/sabbir87/sabbir-portfolio/main/JSC%20Mark%20Sheet.jpg.jpeg",
+          protected: true
         }
       ],
+
       scoutActivities: [
         {
-          id: "investiture",
-          title: "22nd Investiture & Leadership Camp",
-          role: "Senior Rover Mate & Crew Council VP",
-          desc: "Led training, patrol organization, and coordination at the 22nd Investiture Camp, Air Scout Unit Leader Basic Course, and Course for Rover Mate.",
-          photos: []
+          id: "investiture-training",
+          title: "Investiture & Rover Mate Training",
+          badge: "Training & Leadership",
+          description: "Participation and coordination in Investiture Camps, Air Scout Unit Leader Basic Course, and Rover Mate training courses at National & Regional Scout Training Centers.",
+          photos: [
+            { src: "sabbir.jpeg", caption: "Scout training & leadership camp session" },
+            { src: "sabbir.jpeg", caption: "Unit coordination & team briefing" }
+          ]
         },
         {
-          id: "bimstec",
-          title: "BIMSTEC Conference 2025",
-          role: "Volunteer Representative — Bangladesh Scouts",
-          desc: "Represented Bangladesh Scouts as a Volunteer Representative at the BIMSTEC Conference 2025.",
-          photos: []
+          id: "rambling-service",
+          title: "150 km Rambling & Community Service",
+          badge: "Expedition & SDG",
+          description: "Long-distance rambling (পরিভ্রমণ) expeditions, pioneering skill sessions, JOTA-JOTI outreach, Safe from Harm training, and community clean-up & dengue awareness drives.",
+          photos: [
+            { src: "sabbir.jpeg", caption: "Outdoor field expedition & community outreach" },
+            { src: "sabbir.jpeg", caption: "SDG & clean-up awareness initiative" }
+          ]
         },
         {
-          id: "air-rover",
-          title: "DIU Air Rover Scout Group",
-          role: "Senior Rover Mate & Crew Council Vice President",
-          desc: "Organizing orientation classes, training camps, community service, and university event volunteer contingents.",
-          photos: []
+          id: "bimstec-protocol",
+          title: "BIMSTEC 2025 & University Protocol",
+          badge: "Volunteer & Protocol",
+          description: "Served as a Volunteer Representative for Bangladesh Scouts at BIMSTEC Conference 2025 (New Delhi) and coordinated Rover Scout volunteer & protocol teams for major university events.",
+          photos: [
+            { src: "sabbir.jpeg", caption: "International & campus protocol duty" },
+            { src: "sabbir.jpeg", caption: "Volunteer team deployment" }
+          ]
         }
       ],
+
       sports: [
         {
-          id: "volleyball-1",
-          type: "volleyball",
-          title: "University Volleyball Tournament",
-          role: "Player",
-          desc: "Competed in university-level volleyball matches and team tournaments.",
-          img: ""
+          type: "cricket",
+          title: "Shahagola Cricket Championship",
+          subtitle: "Shahagola Cricket Team & শাহাগোলা তরুণ সংসদ",
+          detail: "Captained the winning squad in the March 2026 tournament and received the championship trophy.",
+          image: "sabbir.jpeg"
         },
         {
-          id: "cricket-1",
+          type: "volleyball",
+          title: "Inter University Volleyball Tournament",
+          subtitle: "University Sports Representation",
+          detail: "Competed in Inter University Volleyball competition representing team spirit and court agility.",
+          image: "sabbir.jpeg"
+        },
+        {
           type: "cricket",
-          title: "Independence Day Cricket Tournament",
-          role: "Winning Captain",
-          desc: "Captained the winning team in the Independence Day cricket tournament in Shahagola.",
-          img: ""
+          title: "DIU Central Club Football & Campus Sports",
+          subtitle: "DIU Air Rover Scout Group Team",
+          detail: "Active team player across campus tournaments and inter-club sports events.",
+          image: "sabbir.jpeg"
         }
       ],
+
       designs: [
         {
           title: "Custom Sublimation Sports Jerseys",
-          category: "Sportswear Design & Production",
-          desc: "Custom-designed sublimation jerseys, trousers, and tracksuits for teams, clubs, and events.",
-          img: ""
+          category: "Sportswear Pattern Design",
+          desc: "Geometric, chevron, and dynamic team jersey layouts tailored for clubs and tournaments.",
+          image: "sabbir.jpeg"
+        },
+        {
+          title: "Tracksuits & Athletic Trousers",
+          category: "Apparel & Mockups",
+          desc: "Coordinated sports tracksuits and training wear designs with clean color blocking.",
+          image: "sabbir.jpeg"
         },
         {
           title: "Event Banners & Vector Graphics",
-          category: "Graphic Design",
-          desc: "Event posters, banners, vector illustrations, and apparel mockups crafted in Illustrator, Photoshop, and Canva.",
-          img: ""
+          category: "Illustrator & Canva",
+          desc: "Camp banners, scouting event posters, logos, and custom vector illustrations.",
+          image: "sabbir.jpeg"
         }
       ],
+
       skills: [
-        { name: "HTML5 / CSS3 / JavaScript", level: 82, cat: "frontend", icon: "fab fa-js" },
-        { name: "Graphic & Jersey Design", level: 90, cat: "frontend", icon: "fas fa-pen-nib" },
-        { name: "C / C++ / Python / SQL", level: 85, cat: "backend", icon: "fas fa-code" },
-        { name: "Machine Learning", level: 78, cat: "backend", icon: "fas fa-brain" },
-        { name: "Git / GitHub / VS Code", level: 84, cat: "tools", icon: "fab fa-git-alt" }
+        { name: "HTML5 & CSS3", category: "frontend", level: 90, icon: "fab fa-html5" },
+        { name: "JavaScript", category: "frontend", level: 78, icon: "fab fa-js" },
+        { name: "Adobe Illustrator & Canva", category: "frontend", level: 88, icon: "fas fa-pen-nib" },
+        { name: "Python & ML (LightGBM / RF)", category: "backend", level: 84, icon: "fab fa-python" },
+        { name: "C, C++ (OpenGL) & Java", category: "backend", level: 82, icon: "fas fa-code" },
+        { name: "SQL, MySQL & XAMPP", category: "tools", level: 80, icon: "fas fa-database" },
+        { name: "Git, GitHub & VS Code", category: "tools", level: 85, icon: "fab fa-github" }
       ],
+
       projects: [
         {
-          id: "phishing-ai",
-          cat: "ai",
-          categoryLabel: "AI & Cybersecurity",
-          title: "Hybrid Phishing Website Detection Using AI",
-          desc: "B.Sc. thesis machine learning project evaluating models with Python to detect phishing websites.",
-          tags: ["Python", "Machine Learning", "Thesis"],
-          github: "https://github.com/sabbir87",
-          demo: ""
+          title: "Hybrid Phishing Website Detection (AI)",
+          category: "ai",
+          desc: "B.Sc. thesis research in Python evaluating machine learning & ensemble models (Random Forest, Decision Tree, SVM, Gradient Boosting, LightGBM, CatBoost, VotingClassifier) for phishing URL detection.",
+          tags: ["Python", "Machine Learning", "LightGBM", "CatBoost"],
+          repoUrl: "https://github.com/sabbir87"
         },
         {
-          id: "ticket-kothay",
-          cat: "web",
-          categoryLabel: "Web Application",
-          title: "Ticket Kothay",
-          desc: "Movie ticket booking web application built with HTML5, CSS3, JavaScript, and SQL database.",
+          title: "Ticket Kothay — Movie Ticket Booking",
+          category: "web",
+          desc: "Web-based movie ticket booking system built with HTML5, CSS3, JavaScript, and SQL for structured database management and booking workflows.",
           tags: ["HTML5", "CSS3", "JavaScript", "SQL"],
-          github: "https://github.com/sabbir87",
-          demo: ""
+          repoUrl: "https://github.com/sabbir87"
         },
         {
-          id: "atc-3d",
-          cat: "ai",
-          categoryLabel: "3D Graphics",
-          title: "DIU Air Traffic Control (3D OpenGL)",
-          desc: "Interactive 3D C++ and OpenGL simulation featuring aircraft movement and radar animations.",
-          tags: ["C++", "OpenGL", "3D Graphics"],
-          github: "https://github.com/sabbir87",
-          demo: ""
+          title: "DIU Air Traffic Control (3D Simulation)",
+          category: "ai",
+          desc: "Interactive 3D air traffic control simulation developed in C++ using OpenGL and GLUT for Computer Graphics coursework.",
+          tags: ["C++", "OpenGL", "GLUT", "3D Graphics"],
+          repoUrl: "https://github.com/sabbir87"
         }
+      ],
+
+      socials: [
+        { icon: "fab fa-github", url: "https://github.com/sabbir87", label: "GitHub" },
+        { icon: "fas fa-envelope", url: "#contact", label: "Email" },
+        { icon: "fas fa-file-pdf", url: "#resume-cv", label: "CV" }
+      ],
+
+      contactItems: [
+        { icon: "fas fa-envelope", label: "Email", value: "sabbir.ahommed@example.com", copyText: "sabbir.ahommed@example.com" },
+        { icon: "fab fa-github", label: "GitHub Repository", value: "github.com/sabbir87/sabbir-portfolio", url: "https://github.com/sabbir87/sabbir-portfolio" },
+        { icon: "fas fa-map-marker-alt", label: "Location", value: "Daffodil Smart City, Ashulia / Savar, Dhaka" }
       ]
     };
 
-    const placeholderSvg = (label) =>
-      "data:image/svg+xml;utf8," +
-      encodeURIComponent(
-        `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="360" viewBox="0 0 600 360">
-          <rect width="600" height="360" fill="#172033"/>
-          <rect x="24" y="24" width="552" height="312" rx="16" fill="none" stroke="#38bdf8" stroke-opacity="0.35" stroke-width="2"/>
-          <text x="300" y="185" text-anchor="middle" fill="#f3f4f6" font-family="Arial, sans-serif" font-size="22">${label}</text>
-        </svg>`
-      );
+    /* =========================================
+       HELPER DOM & MODAL / TOAST
+       ========================================= */
+    const modal = document.getElementById("preview-modal");
+    const modalBody = document.getElementById("modal-body-content");
+    const toast = document.getElementById("toast");
+    const toastMessage = document.getElementById("toast-message");
 
-    // Theme toggle
-    const themeBtn = document.getElementById("theme-toggle");
-    const htmlEl = document.documentElement;
-    themeBtn.addEventListener("click", () => {
-      const next = htmlEl.getAttribute("data-theme") === "dark" ? "light" : "dark";
-      htmlEl.setAttribute("data-theme", next);
-      themeBtn.innerHTML = next === "dark" ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    function showToast(msg) {
+      toastMessage.textContent = msg;
+      toast.classList.add("show");
+      clearTimeout(window.toastTimer);
+      window.toastTimer = setTimeout(() => toast.classList.remove("show"), 2800);
+    }
+
+    function openModal(html) {
+      modalBody.innerHTML = html;
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeModal() {
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+      modalBody.innerHTML = "";
+    }
+
+    document.getElementById("modal-close").addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeModal();
     });
 
-    // Mobile menu
-    const menuBtn = document.getElementById("menu-toggle");
+    /* =========================================
+       THEME & MOBILE NAV
+       ========================================= */
+    const themeToggle = document.getElementById("theme-toggle");
+    function setTheme(theme) {
+      document.documentElement.setAttribute("data-theme", theme);
+      localStorage.setItem("portfolio-theme", theme);
+      themeToggle.innerHTML = theme === "dark"
+        ? '<i class="fas fa-sun"></i>'
+        : '<i class="fas fa-moon"></i>';
+    }
+    setTheme(localStorage.getItem("portfolio-theme") || "dark");
+    themeToggle.addEventListener("click", () => {
+      const current = document.documentElement.getAttribute("data-theme");
+      setTheme(current === "dark" ? "light" : "dark");
+    });
+
+    const menuToggle = document.getElementById("menu-toggle");
     const navLinks = document.getElementById("nav-links");
-    menuBtn.addEventListener("click", () => navLinks.classList.toggle("active"));
-    navLinks.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => navLinks.classList.remove("active")));
-
-    // Hero & typing
-    document.getElementById("nav-brand").innerHTML = `${USER_PROFILE.brand.replace("Space", "<span>Space</span>")}`;
-    document.getElementById("hero-status").textContent = USER_PROFILE.status;
-    document.getElementById("hero-name").textContent = USER_PROFILE.name;
-    document.getElementById("hero-bio").textContent = USER_PROFILE.bio;
-    document.getElementById("hero-chip-text").textContent = USER_PROFILE.chipText;
-
-    const heroImg = document.getElementById("hero-img");
-    heroImg.src = USER_PROFILE.profileImage;
-    heroImg.addEventListener("error", () => {
-      heroImg.src = placeholderSvg("Sabbir Ahommed");
+    menuToggle.addEventListener("click", () => navLinks.classList.toggle("active"));
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => navLinks.classList.remove("active"));
     });
 
-    document.getElementById("hero-socials").innerHTML = USER_PROFILE.socials
-      .map((s) => `<a href="${s.url}" ${s.url.startsWith("http") ? 'target="_blank" rel="noopener noreferrer"' : ""} class="social-icon" aria-label="${s.label}"><i class="${s.icon}"></i></a>`)
+    /* =========================================
+       HERO & TYPING EFFECT
+       ========================================= */
+    document.getElementById("hero-status").textContent = portfolioData.profile.status;
+    document.getElementById("hero-name").textContent = portfolioData.profile.name;
+    document.getElementById("hero-bio").textContent = portfolioData.profile.bio;
+    document.getElementById("hero-img").src = portfolioData.profile.avatar;
+    document.getElementById("hero-chip-text").textContent = portfolioData.profile.chipText;
+
+    document.getElementById("hero-socials").innerHTML = portfolioData.socials
+      .map((s) => `<a href="${s.url}" class="social-icon" aria-label="${s.label}" ${s.url.startsWith("http") ? 'target="_blank" rel="noopener"' : ""}><i class="${s.icon}"></i></a>`)
       .join("");
 
     const typedEl = document.getElementById("typed-text");
-    let rIdx = 0, cIdx = 0, del = false;
+    const roles = portfolioData.profile.roles;
+    let roleIdx = 0, charIdx = 0, deleting = false;
     function typeLoop() {
-      const cur = USER_PROFILE.roles[rIdx];
-      if (!del) {
-        typedEl.textContent = cur.slice(0, ++cIdx);
-        if (cIdx === cur.length) { del = true; setTimeout(typeLoop, 1400); return; }
-      } else {
-        typedEl.textContent = cur.slice(0, --cIdx);
-        if (cIdx === 0) { del = false; rIdx = (rIdx + 1) % USER_PROFILE.roles.length; }
+      const currentRole = roles[roleIdx];
+      typedEl.textContent = deleting
+        ? currentRole.slice(0, --charIdx)
+        : currentRole.slice(0, ++charIdx);
+
+      let delay = deleting ? 55 : 95;
+      if (!deleting && charIdx === currentRole.length) {
+        delay = 1400;
+        deleting = true;
+      } else if (deleting && charIdx === 0) {
+        deleting = false;
+        roleIdx = (roleIdx + 1) % roles.length;
+        delay = 350;
       }
-      setTimeout(typeLoop, del ? 55 : 90);
+      setTimeout(typeLoop, delay);
     }
     typeLoop();
 
-    // Personal info & about
-    document.getElementById("personal-info-grid").innerHTML = USER_PROFILE.personalCards
-      .map((c) => `
+    /* =========================================
+       PERSONAL & ACADEMIC RENDERING
+       ========================================= */
+    document.getElementById("personal-info-grid").innerHTML = portfolioData.profile.personalInfo
+      .map((item) => `
         <div class="info-card">
-          <div class="info-icon"><i class="fas ${c.icon}"></i></div>
+          <div class="info-icon"><i class="${item.icon}"></i></div>
           <div>
-            <div class="info-label">${c.label}</div>
-            <div class="info-value">${c.value}</div>
+            <div class="info-label">${item.label}</div>
+            <div class="info-value">${item.value}</div>
           </div>
         </div>
       `)
       .join("");
 
-    document.getElementById("about-paragraphs").innerHTML = USER_PROFILE.aboutParagraphs.map((p) => `<p>${p}</p>`).join("");
-    document.getElementById("about-stats").innerHTML = USER_PROFILE.stats
-      .map((st) => `<div class="stat-card"><div class="stat-number">${st.number}</div><div class="stat-label">${st.label}</div></div>`)
+    document.getElementById("about-paragraphs").innerHTML = portfolioData.profile.aboutParagraphs
+      .map((p) => `<p>${p}</p>`)
       .join("");
 
-    // Academic cards + certificate preview/upload
-    const academicGrid = document.getElementById("academic-grid");
+    document.getElementById("about-stats").innerHTML = portfolioData.profile.stats
+      .map((st) => `
+        <div class="stat-card">
+          <div class="stat-number">${st.number}</div>
+          <div class="stat-label">${st.label}</div>
+        </div>
+      `)
+      .join("");
+
     function renderAcademic() {
-      academicGrid.innerHTML = USER_PROFILE.academic
+      const grid = document.getElementById("academic-grid");
+      grid.innerHTML = portfolioData.academic
         .map((edu, idx) => `
-          <div class="edu-card">
-            <div class="edu-cert-box">
-              <img src="${edu.certImg || placeholderSvg(edu.badge + ' Certificate')}" alt="${edu.degree}" class="edu-cert-img" />
+          <article class="edu-card">
+            <div class="edu-cert-box" ${edu.protected ? 'oncontextmenu="return false;"' : ""}>
+              <img src="${edu.image}" alt="${edu.degree}" class="edu-cert-img ${edu.protected ? "protected-media" : ""}" id="edu-img-${idx}" draggable="false" />
+              ${edu.protected ? '<div class="protected-shield" oncontextmenu="return false;" ondragstart="return false;"></div>' : ""}
               <span class="edu-badge">${edu.badge}</span>
             </div>
             <div class="edu-body">
               <div class="edu-year">${edu.year}</div>
               <h3 class="edu-degree">${edu.degree}</h3>
-              <div class="edu-inst">${edu.inst}</div>
-              <div class="edu-result">${edu.result}</div>
+              <p class="edu-inst">${edu.institution}</p>
+              <p class="edu-result">${edu.result}</p>
               <div class="edu-actions">
-                <button type="button" class="btn btn-outline btn-sm" onclick="openImageModal('${edu.certImg || placeholderSvg(edu.badge + ' Certificate')}', '${edu.degree}', '${edu.inst} — ${edu.result}')">
-                  <i class="fas fa-eye"></i> View
+                <button type="button" class="btn btn-outline btn-sm" onclick="previewImage('${edu.image}', '${edu.degree} — ${edu.institution}', ${Boolean(edu.protected)})">
+                  <i class="fas fa-eye"></i> ${edu.protected ? "View Mark Sheet" : "Preview"}
                 </button>
-                <label class="btn btn-outline btn-sm" style="cursor:pointer;">
-                  <i class="fas fa-upload"></i> Upload Cert
-                  <input type="file" accept="image/*" hidden onchange="uploadCert(${idx}, this)" />
-                </label>
+                ${edu.protected ? "" : `
+                  <label class="btn btn-outline btn-sm" style="cursor: pointer;">
+                    <i class="fas fa-upload"></i> Update Image
+                    <input type="file" accept="image/*" hidden onchange="updateAcademicImage(event, ${idx})" />
+                  </label>
+                `}
               </div>
             </div>
-          </div>
+          </article>
         `)
         .join("");
     }
-    renderAcademic();
 
-    window.uploadCert = function (idx, input) {
-      const file = input.files && input.files[0];
+    window.updateAcademicImage = function(event, idx) {
+      const file = event.target.files[0];
       if (!file) return;
-      USER_PROFILE.academic[idx].certImg = URL.createObjectURL(file);
+      const url = URL.createObjectURL(file);
+      portfolioData.academic[idx].image = url;
       renderAcademic();
-      showToast("Certificate image updated!");
+      showToast("Certificate/card image updated for this session.");
     };
 
-    // Scout & Sports tabs
+    window.previewImage = function(src, caption, isProtected = false) {
+      openModal(`
+        <div class="modal-img-wrap" ${isProtected ? 'oncontextmenu="return false;"' : ""}>
+          <img src="${src}" alt="${caption}" class="modal-img ${isProtected ? "protected-media" : ""}" draggable="false" />
+          ${isProtected ? '<div class="protected-shield" oncontextmenu="return false;" ondragstart="return false;"></div>' : ""}
+        </div>
+        <div class="modal-content" style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;">
+          <p style="color: var(--text-secondary);">${caption}</p>
+          ${isProtected ? '<span class="section-tag" style="margin-bottom: 0;"><i class="fas fa-lock"></i> View Only • Download Disabled</span>' : ""}
+        </div>
+      `);
+    };
+
+    renderAcademic();
+
+    /* =========================================
+       SCOUT & SPORTS TABS
+       ========================================= */
     const mainTabs = document.querySelectorAll("#activity-main-tabs .tab-btn");
-    const scoutSec = document.getElementById("scout-section");
-    const sportsSec = document.getElementById("sports-section");
+    const scoutSection = document.getElementById("scout-section");
+    const sportsSection = document.getElementById("sports-section");
 
     mainTabs.forEach((btn) => {
       btn.addEventListener("click", () => {
         mainTabs.forEach((b) => b.classList.remove("active"));
         btn.classList.add("active");
         const target = btn.getAttribute("data-main");
-        scoutSec.style.display = target === "scout" ? "block" : "none";
-        sportsSec.style.display = target === "sports" ? "block" : "none";
+        scoutSection.style.display = target === "scout" ? "block" : "none";
+        sportsSection.style.display = target === "sports" ? "block" : "none";
       });
     });
 
     const scoutSubTabs = document.getElementById("scout-sub-tabs");
     const scoutPanel = document.getElementById("scout-detail-panel");
-    let activeScoutIdx = 0;
+    let activeScoutId = portfolioData.scoutActivities[0].id;
 
-    function renderScoutTabs() {
-      scoutSubTabs.innerHTML = USER_PROFILE.scoutActivities
-        .map((s, i) => `<button type="button" class="tab-btn ${i === activeScoutIdx ? "active" : ""}" onclick="selectScout(${i})">${s.title}</button>`)
-        .join("");
-      renderScoutPanel();
-    }
-
-    window.selectScout = function (i) {
-      activeScoutIdx = i;
-      renderScoutTabs();
-    };
-
-    function renderScoutPanel() {
-      const s = USER_PROFILE.scoutActivities[activeScoutIdx];
-      const photosHtml = (s.photos.length ? s.photos : [{ src: placeholderSvg(s.title), caption: s.role }])
-        .map((p) => `
-          <div class="gallery-card" onclick="openImageModal('${p.src}', '${s.title}', '${p.caption}')">
-            <img src="${p.src}" alt="${p.caption}" />
-            <div class="gallery-caption">${p.caption}</div>
-          </div>
+    function renderScoutSubTabs() {
+      scoutSubTabs.innerHTML = portfolioData.scoutActivities
+        .map((act) => `
+          <button type="button" class="tab-btn ${act.id === activeScoutId ? "active" : ""}" data-scout="${act.id}">
+            ${act.title}
+          </button>
         `)
         .join("");
+
+      scoutSubTabs.querySelectorAll(".tab-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          activeScoutId = btn.getAttribute("data-scout");
+          renderScoutSubTabs();
+          renderScoutPanel();
+        });
+      });
+    }
+
+    function renderScoutPanel() {
+      const act = portfolioData.scoutActivities.find((a) => a.id === activeScoutId);
+      if (!act) return;
 
       scoutPanel.innerHTML = `
         <div class="scout-header">
-          <div>
-            <h3>${s.title}</h3>
-            <span style="color:var(--accent);font-size:0.88rem;font-weight:600;">${s.role}</span>
-          </div>
+          <h3>${act.title}</h3>
+          <span class="section-tag" style="margin-bottom: 0;">${act.badge}</span>
         </div>
-        <p class="scout-desc">${s.desc}</p>
-        <div class="gallery-grid">${photosHtml}</div>
+        <p class="scout-desc">${act.description}</p>
+        <div class="gallery-grid">
+          ${act.photos.map((p) => `
+            <div class="gallery-card" onclick="previewImage('${p.src}', '${p.caption}')">
+              <img src="${p.src}" alt="${p.caption}" />
+              <div class="gallery-caption">${p.caption}</div>
+            </div>
+          `).join("")}
+        </div>
         <div class="upload-strip">
-          <span style="font-size:0.85rem;color:var(--text-secondary);">Add photos to this activity:</span>
-          <label class="btn btn-outline btn-sm" style="cursor:pointer;">
-            <i class="fas fa-plus"></i> Add Scout Photo
-            <input type="file" accept="image/*" hidden onchange="addScoutPhoto(this)" />
+          <span style="font-size: 0.86rem; color: var(--text-secondary);">Add a photo to this activity gallery (session preview):</span>
+          <label class="btn btn-outline btn-sm" style="cursor: pointer;">
+            <i class="fas fa-plus"></i> Add Photo
+            <input type="file" accept="image/*" hidden id="scout-photo-upload" />
           </label>
         </div>
       `;
+
+      const uploadInput = document.getElementById("scout-photo-upload");
+      uploadInput.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const url = URL.createObjectURL(file);
+        act.photos.push({ src: url, caption: file.name });
+        renderScoutPanel();
+        showToast("Photo added to gallery.");
+      });
     }
 
-    window.addScoutPhoto = function (input) {
-      const file = input.files && input.files[0];
-      if (!file) return;
-      USER_PROFILE.scoutActivities[activeScoutIdx].photos.push({
-        src: URL.createObjectURL(file),
-        caption: file.name
-      });
-      renderScoutPanel();
-      showToast("Scout photo added!");
-    };
-    renderScoutTabs();
+    renderScoutSubTabs();
+    renderScoutPanel();
 
-    // Sports filter
     const sportsGrid = document.getElementById("sports-grid");
     const sportsFilterBtns = document.querySelectorAll("#sports-filter-tabs .filter-btn");
+
     function renderSports(filter = "all") {
-      const list = filter === "all" ? USER_PROFILE.sports : USER_PROFILE.sports.filter((sp) => sp.type === filter);
+      const list = filter === "all"
+        ? portfolioData.sports
+        : portfolioData.sports.filter((s) => s.type === filter);
+
       sportsGrid.innerHTML = list
         .map((sp) => `
-          <div class="sport-card">
-            <img src="${sp.img || placeholderSvg(sp.title)}" alt="${sp.title}" class="card-img-top" onclick="openImageModal('${sp.img || placeholderSvg(sp.title)}', '${sp.title}', '${sp.desc}')" />
+          <article class="sport-card">
+            <img src="${sp.image}" alt="${sp.title}" class="card-img-top" onclick="previewImage('${sp.image}', '${sp.title} — ${sp.detail}')" />
             <div class="card-body">
-              <div style="color:var(--accent);font-size:0.8rem;font-weight:600;">${sp.role}</div>
-              <h3 style="margin:4px 0 6px;">${sp.title}</h3>
-              <p style="color:var(--text-secondary);font-size:0.9rem;">${sp.desc}</p>
+              <span class="project-category">${sp.type}</span>
+              <h3 style="margin: 6px 0 4px;">${sp.title}</h3>
+              <p style="font-size: 0.86rem; color: var(--accent); margin-bottom: 8px;">${sp.subtitle}</p>
+              <p style="font-size: 0.9rem; color: var(--text-secondary);">${sp.detail}</p>
             </div>
-          </div>
+          </article>
         `)
         .join("");
     }
+
     sportsFilterBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
         sportsFilterBtns.forEach((b) => b.classList.remove("active"));
@@ -1666,37 +1790,48 @@
     });
     renderSports();
 
-    // Graphics showcase
-    document.getElementById("design-grid").innerHTML = USER_PROFILE.designs
+    /* =========================================
+       GRAPHICS, SKILLS & PROJECTS
+       ========================================= */
+    document.getElementById("design-grid").innerHTML = portfolioData.designs
       .map((d) => `
-        <div class="design-card">
-          <img src="${d.img || placeholderSvg(d.title)}" alt="${d.title}" class="card-img-top" onclick="openImageModal('${d.img || placeholderSvg(d.title)}', '${d.title}', '${d.desc}')" />
+        <article class="design-card">
+          <img src="${d.image}" alt="${d.title}" class="card-img-top" onclick="previewImage('${d.image}', '${d.title} — ${d.desc}')" />
           <div class="card-body">
-            <div style="color:var(--accent);font-size:0.8rem;font-weight:600;">${d.category}</div>
-            <h3 style="margin:4px 0 6px;">${d.title}</h3>
-            <p style="color:var(--text-secondary);font-size:0.9rem;">${d.desc}</p>
+            <span class="project-category">${d.category}</span>
+            <h3 style="margin: 6px 0 8px;">${d.title}</h3>
+            <p style="font-size: 0.9rem; color: var(--text-secondary);">${d.desc}</p>
           </div>
-        </div>
+        </article>
       `)
       .join("");
 
-    // Skills & Projects
     const skillsContainer = document.getElementById("skills-container");
     const skillFilterBtns = document.querySelectorAll("#skill-filters .filter-btn");
+
     function renderSkills(filter = "all") {
-      const list = filter === "all" ? USER_PROFILE.skills : USER_PROFILE.skills.filter((sk) => sk.cat === filter);
-      skillsContainer.innerHTML = list
+      const items = filter === "all"
+        ? portfolioData.skills
+        : portfolioData.skills.filter((sk) => sk.category === filter);
+
+      skillsContainer.innerHTML = items
         .map((sk) => `
           <div class="skill-card">
             <div class="skill-top">
-              <div class="skill-info"><i class="${sk.icon}"></i><strong>${sk.name}</strong></div>
-              <span style="color:var(--accent);font-weight:600;font-size:0.88rem;">${sk.level}%</span>
+              <div class="skill-info">
+                <i class="${sk.icon}"></i>
+                <strong>${sk.name}</strong>
+              </div>
+              <span style="font-size: 0.86rem; color: var(--accent); font-weight: 600;">${sk.level}%</span>
             </div>
-            <div class="progress-bar"><div class="progress-fill" style="width:${sk.level}%;"></div></div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: ${sk.level}%;"></div>
+            </div>
           </div>
         `)
         .join("");
     }
+
     skillFilterBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
         skillFilterBtns.forEach((b) => b.classList.remove("active"));
@@ -1708,24 +1843,33 @@
 
     const projectsContainer = document.getElementById("projects-container");
     const projectFilterBtns = document.querySelectorAll("#project-filters .filter-btn");
+
     function renderProjects(filter = "all") {
-      const list = filter === "all" ? USER_PROFILE.projects : USER_PROFILE.projects.filter((pr) => pr.cat === filter);
-      projectsContainer.innerHTML = list
+      const items = filter === "all"
+        ? portfolioData.projects
+        : portfolioData.projects.filter((pr) => pr.category === filter);
+
+      projectsContainer.innerHTML = items
         .map((pr) => `
-          <div class="project-card">
+          <article class="project-card">
             <div class="project-body">
-              <span class="project-category">${pr.categoryLabel}</span>
+              <span class="project-category">${pr.category}</span>
               <h3 class="project-title">${pr.title}</h3>
               <p class="project-desc">${pr.desc}</p>
-              <div class="project-tags">${pr.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
+              <div class="project-tags">
+                ${pr.tags.map((t) => `<span class="tag">${t}</span>`).join("")}
+              </div>
               <div class="project-actions">
-                <a href="${pr.github}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm"><i class="fab fa-github"></i> GitHub</a>
+                <a href="${pr.repoUrl}" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
+                  <i class="fab fa-github"></i> GitHub
+                </a>
               </div>
             </div>
-          </div>
+          </article>
         `)
         .join("");
     }
+
     projectFilterBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
         projectFilterBtns.forEach((b) => b.classList.remove("active"));
@@ -1735,105 +1879,83 @@
     });
     renderProjects();
 
-    // Video resume upload preview
-    const videoInput = document.getElementById("video-upload-input");
+    /* =========================================
+       VIDEO RESUME & CV SHOW / DOWNLOAD
+       ========================================= */
     const videoPlayer = document.getElementById("video-resume-player");
-    const videoNote = document.getElementById("video-status-note");
-    videoInput.addEventListener("change", (e) => {
-      const file = e.target.files && e.target.files[0];
+    const videoUploadInput = document.getElementById("video-upload-input");
+    const videoStatusNote = document.getElementById("video-status-note");
+
+    videoUploadInput.addEventListener("change", (e) => {
+      const file = e.target.files[0];
       if (!file) return;
-      videoPlayer.src = URL.createObjectURL(file);
+      const objectUrl = URL.createObjectURL(file);
+      videoPlayer.src = objectUrl;
       videoPlayer.load();
-      videoNote.textContent = `Loaded video: ${file.name}`;
+      videoStatusNote.textContent = `Loaded "${file.name}" for this browser session.`;
       showToast("Video resume loaded!");
     });
 
-    // Modal for images & CV preview
-    const modal = document.getElementById("preview-modal");
-    const modalMedia = document.getElementById("modal-media-area");
-    const modalText = document.getElementById("modal-text-area");
-    const closeModalBtn = document.getElementById("close-modal");
+    const cvDownloadBtn = document.getElementById("cv-download-btn");
+    const cvViewBtn = document.getElementById("cv-view-btn");
+    cvDownloadBtn.href = portfolioData.profile.cvUrl;
 
-    window.openImageModal = function (src, title, desc) {
-      modalMedia.innerHTML = `<img src="${src}" alt="${title}" class="modal-img" />`;
-      modalText.innerHTML = `<h3>${title}</h3><p style="color:var(--text-secondary);margin-top:8px;">${desc}</p>`;
-      modal.classList.add("open");
-      modal.setAttribute("aria-hidden", "false");
-    };
-
-    document.getElementById("cv-view-btn").addEventListener("click", () => {
-      const viewerUrl = "https://docs.google.com/gview?embedded=true&url=" + encodeURIComponent(USER_PROFILE.cvPdfUrl);
-      modalMedia.innerHTML = `<iframe src="${viewerUrl}" style="width:100%;height:65vh;border:none;background:#fff;" title="CV Preview"></iframe>`;
-      modalText.innerHTML = `
-        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
-          <strong>CV_Sabbir_Ahommed.pdf</strong>
-          <a href="${USER_PROFILE.cvPdfUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
-            <i class="fas fa-external-link-alt"></i> Open PDF in New Tab
+    cvViewBtn.addEventListener("click", () => {
+      const url = portfolioData.profile.cvUrl;
+      openModal(`
+        <iframe src="${url}" class="modal-pdf" title="CV Preview"></iframe>
+        <div class="modal-content" style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;">
+          <span style="font-size: 0.9rem; color: var(--text-secondary);">CV_Sabbir_Ahommed.pdf</span>
+          <a href="${url}" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
+            <i class="fas fa-external-link-alt"></i> Open in New Tab
           </a>
         </div>
-      `;
-      modal.classList.add("open");
-      modal.setAttribute("aria-hidden", "false");
+      `);
     });
 
-    function closeModal() {
-      modal.classList.remove("open");
-      modal.setAttribute("aria-hidden", "true");
-      modalMedia.innerHTML = "";
-    }
-    closeModalBtn.addEventListener("click", closeModal);
-    modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
+    /* =========================================
+       CONTACT, COPY, SCROLL & FOOTER
+       ========================================= */
+    document.getElementById("contact-info-list").innerHTML = portfolioData.contactItems
+      .map((c) => `
+        <div class="contact-item">
+          <div class="contact-icon"><i class="${c.icon}"></i></div>
+          <div style="flex: 1; min-width: 0;">
+            <div class="info-label">${c.label}</div>
+            ${c.url
+              ? `<a href="${c.url}" target="_blank" rel="noopener" class="info-value" style="color: var(--accent);">${c.value}</a>`
+              : `<div class="info-value">${c.value}</div>`
+            }
+          </div>
+          ${c.copyText
+            ? `<button type="button" class="btn btn-outline btn-sm" onclick="copyValue('${c.copyText}')"><i class="fas fa-copy"></i></button>`
+            : ""
+          }
+        </div>
+      `)
+      .join("");
 
-    // Private contact form -> Delivers only to your configured email via Web3Forms
-    const contactForm = document.getElementById("contact-form");
-    const sendBtn = document.getElementById("send-msg-btn");
+    window.copyValue = function(text) {
+      navigator.clipboard.writeText(text).then(() => showToast("Copied to clipboard!"));
+    };
 
-    contactForm.addEventListener("submit", async (e) => {
+    document.getElementById("contact-form").addEventListener("submit", (e) => {
       e.preventDefault();
       const name = document.getElementById("sender-name").value.trim();
       const email = document.getElementById("sender-email").value.trim();
-      const message = document.getElementById("sender-message").value.trim();
-
-      sendBtn.disabled = true;
-      sendBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-
-      try {
-        const res = await fetch("https://api.web3forms.com/submit", {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "Accept": "application/json" },
-          body: JSON.stringify({
-            access_key: USER_PROFILE.web3FormsAccessKey,
-            subject: `New Portfolio Message from ${name}`,
-            from_name: name,
-            email,
-            message
-          })
-        });
-        const data = await res.json();
-        if (res.ok && data.success) {
-          contactForm.reset();
-          showToast("Message sent privately to sabbirahommed91@gmail.com!");
-        } else {
-          showToast(data.message || "Could not send message.");
-        }
-      } catch {
-        showToast("Network error while sending message.");
-      } finally {
-        sendBtn.disabled = false;
-        sendBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Private Message';
-      }
+      const subject = encodeURIComponent(document.getElementById("sender-subject").value.trim());
+      const message = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${document.getElementById("sender-message").value.trim()}`);
+      window.location.href = `mailto:sabbir.ahommed@example.com?subject=${subject}&body=${message}`;
+      showToast("Opening your email client...");
     });
 
-    // Toast
-    const toast = document.getElementById("toast");
-    const toastMsg = document.getElementById("toast-msg");
-    function showToast(msg) {
-      toastMsg.textContent = msg;
-      toast.classList.add("show");
-      setTimeout(() => toast.classList.remove("show"), 3200);
-    }
+    const backToTop = document.getElementById("back-to-top");
+    window.addEventListener("scroll", () => {
+      backToTop.classList.toggle("show", window.scrollY > 400);
+    });
+    backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
-    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("footer-year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
