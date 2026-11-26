@@ -592,6 +592,42 @@
       font-weight: 500;
     }
 
+    .course-directory-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 22px;
+    }
+
+    .course-list-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .course-pill-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--air-accent);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+
+    .course-pill-card strong {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .course-pill-card small {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
     .sub-activity-tabs {
       display: flex;
       flex-wrap: wrap;
@@ -1324,7 +1360,7 @@
       <div class="sec-head">
         <div class="sec-eyebrow"><i class="fas fa-campground"></i> Extracurricular Activities</div>
         <h2 class="sec-title">Rover Scouting & Sports</h2>
-        <p class="sec-sub">Separate sections for Rover Scouting (profile, activities, certificates, gallery) and Sports (events with details and gallery).</p>
+        <p class="sec-sub">Separate sections for Rover Scouting (profile, courses, activities, certificates, gallery) and Sports (events with details and gallery).</p>
       </div>
 
       <div class="part-switch" id="activity-part-tabs">
@@ -1352,10 +1388,20 @@
           <div class="scout-tags">
             <span class="scout-tag">Senior Rover Mate</span>
             <span class="scout-tag">Crew Council VP (DIUARSG)</span>
-            <span class="scout-tag">JOTA-JOTI Ambassador</span>
-            <span class="scout-tag">Safe from Harm Certified</span>
-            <span class="scout-tag">150 km Rambling</span>
+            <span class="scout-tag">Course For Rover Mate</span>
+            <span class="scout-tag">Unit Leader Basic Course</span>
+            <span class="scout-tag">Air Scout Advance Course</span>
+            <span class="scout-tag">Aero Pioneering Course</span>
+            <span class="scout-tag">Skill Development Course</span>
           </div>
+        </div>
+
+        <!-- SCOUT COURSES DIRECTORY -->
+        <div class="course-directory-box">
+          <div class="sub-block-title" style="margin-bottom: 0;">
+            <i class="fas fa-graduation-cap"></i> Completed & Participated Scout Courses
+          </div>
+          <div class="course-list-grid" id="scout-courses-list"></div>
         </div>
 
         <div class="sub-activity-tabs" id="scout-activity-tabs"></div>
@@ -1596,15 +1642,24 @@
         }
       ],
 
+      scoutCourses: [
+        { name: "Course For Rover Mate", category: "Rover Mate Leadership" },
+        { name: "Unit Leader Basic Course", category: "Unit Leadership" },
+        { name: "Air Scout Advance Course", category: "Air Scouting" },
+        { name: "Aero Pioneering Course", category: "Pioneering & Air Skills" },
+        { name: "Skill Development Course", category: "Outdoor & Practical Skills" }
+      ],
+
       scoutActivities: [
         {
           id: "investiture-training",
           name: "Investiture & Unit Leader Training",
           badge: "Training Course",
-          description: "Participated in and helped coordinate Investiture Camps, Air Scout Unit Leader Basic Course, and Rover Mate training sessions, along with Safe from Harm and JOTA-JOTI outreach.",
+          description: "Participated in and helped coordinate Course For Rover Mate, Unit Leader Basic Course, Air Scout Advance Course, and Investiture Camps, along with Safe from Harm and JOTA-JOTI outreach.",
           certificates: [
-            { title: "Rover Mate & Leadership Training", issuer: "Bangladesh Scouts Training", image: "" },
-            { title: "Safe from Harm & JOTA-JOTI", issuer: "Scouting Outreach & Safety", image: "" }
+            { title: "Course For Rover Mate", issuer: "Bangladesh Scouts Training", image: "" },
+            { title: "Unit Leader Basic Course", issuer: "Bangladesh Scouts Training", image: "" },
+            { title: "Air Scout Advance Course", issuer: "Air Scouting Training", image: "" }
           ],
           gallery: [
             { src: "", caption: "Scout camp & training session" },
@@ -1615,9 +1670,10 @@
           id: "rambling-service",
           name: "150 km Rambling & Community Drive",
           badge: "Expedition & Service",
-          description: "Completed long-distance rambling (পরিভ্রমণ) hikes, pioneering skill practice, and weekly clean-up & dengue prevention drives across campus and Savar/Ashulia neighborhoods.",
+          description: "Completed long-distance rambling (পরিভ্রমণ) hikes, Aero Pioneering Course & Skill Development Course practices, and weekly clean-up & dengue prevention drives across campus and Savar/Ashulia neighborhoods.",
           certificates: [
-            { title: "Rambling & Pioneering Record", issuer: "DIU Air Rover Scout Group", image: "" }
+            { title: "Aero Pioneering Course", issuer: "DIU Air Rover Scout Group", image: "" },
+            { title: "Skill Development Course", issuer: "Scouting Skill Program", image: "" }
           ],
           gallery: [
             { src: "", caption: "Rambling expedition route & field activity" },
@@ -1816,6 +1872,14 @@ void displayScene(void) {
         }
       ]
     };
+
+    /* Render Scout Courses List */
+    document.getElementById("scout-courses-list").innerHTML = PORTFOLIO.scoutCourses.map((c) => `
+      <div class="course-pill-card">
+        <strong>${escapeHtml(c.name)}</strong>
+        <small>${escapeHtml(c.category)}</small>
+      </div>
+    `).join("");
 
     /* Render Social Media Icons (Hero, Contact & Footer) */
     function buildSocialButtons() {
@@ -2061,7 +2125,7 @@ void displayScene(void) {
         </div>
         <p class="detail-desc">${escapeHtml(current.description)}</p>
 
-        <div class="sub-block-title"><i class="fas fa-award"></i> Certificates</div>
+        <div class="sub-block-title"><i class="fas fa-award"></i> Course & Training Certificates</div>
         <div class="cert-grid">
           ${current.certificates.map((cert, cIdx) => `
             <div class="cert-card">
