@@ -3,527 +3,495 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sabbir Ahommed | Portfolio</title>
+  <title>Sabbir Ahommed — Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <style>
-    /* =========================================
-       1. CSS VARIABLES & THEME SYSTEM
-       ========================================= */
     :root {
-      --bg-primary: #0a0e17;
-      --bg-secondary: #111827;
-      --bg-card: rgba(23, 32, 51, 0.78);
-      --text-primary: #f3f4f6;
-      --text-secondary: #9ca3af;
+      --bg: #0c111d;
+      --surface: #131b2e;
+      --card: #182238;
+      --text: #eef2f7;
+      --muted: #9aa6bd;
       --accent: #38bdf8;
-      --accent-hover: #0ea5e9;
-      --accent-glow: rgba(56, 189, 248, 0.25);
-      --border-color: rgba(255, 255, 255, 0.09);
-      --nav-bg: rgba(10, 14, 23, 0.88);
-      --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.55);
-      --radius: 16px;
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --accent-dark: #0284c7;
+      --accent-soft: rgba(56, 189, 248, 0.14);
+      --border: rgba(255, 255, 255, 0.08);
+      --nav-bg: rgba(12, 17, 29, 0.9);
+      --radius: 14px;
+      --ease: 0.25s ease;
     }
 
     [data-theme="light"] {
-      --bg-primary: #f8fafc;
-      --bg-secondary: #ffffff;
-      --bg-card: rgba(255, 255, 255, 0.9);
-      --text-primary: #0f172a;
-      --text-secondary: #475569;
+      --bg: #f6f8fb;
+      --surface: #ffffff;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #4b5563;
       --accent: #0284c7;
-      --accent-hover: #0369a1;
-      --accent-glow: rgba(2, 132, 199, 0.18);
-      --border-color: rgba(15, 23, 42, 0.1);
-      --nav-bg: rgba(248, 250, 252, 0.9);
-      --shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.12);
+      --accent-dark: #0369a1;
+      --accent-soft: rgba(2, 132, 199, 0.12);
+      --border: rgba(15, 23, 42, 0.09);
+      --nav-bg: rgba(246, 248, 251, 0.92);
     }
 
     *, *::before, *::after {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+    }
+
+    html {
       scroll-behavior: smooth;
     }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.6;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
       overflow-x: hidden;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      transition: background-color var(--ease), color var(--ease);
     }
 
-    h1, h2, h3, h4, .logo {
+    h1, h2, h3, h4, .brand {
       font-family: 'Space Grotesk', sans-serif;
+      line-height: 1.25;
     }
 
-    a { text-decoration: none; color: inherit; }
-    ul { list-style: none; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-    .container {
+    ul {
+      list-style: none;
+    }
+
+    .wrap {
       width: 92%;
-      max-width: 1220px;
+      max-width: 1180px;
       margin: 0 auto;
     }
 
     section {
-      padding: 88px 0;
+      padding: 84px 0;
+      border-top: 1px solid var(--border);
     }
 
-    .section-header {
-      text-align: center;
-      margin-bottom: 48px;
+    section:first-of-type {
+      border-top: none;
     }
 
-    .section-tag {
-      display: inline-block;
-      font-size: 0.8rem;
+    .sec-head {
+      max-width: 640px;
+      margin-bottom: 40px;
+    }
+
+    .sec-kicker {
+      font-size: 0.78rem;
       font-weight: 600;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      letter-spacing: 1.8px;
       color: var(--accent);
-      background: var(--accent-glow);
-      padding: 6px 14px;
-      border-radius: 999px;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
 
-    .section-title {
-      font-size: clamp(1.85rem, 3.4vw, 2.5rem);
+    .sec-title {
+      font-size: clamp(1.7rem, 3.2vw, 2.35rem);
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
-    .section-subtitle {
-      color: var(--text-secondary);
-      max-width: 680px;
-      margin: 0 auto;
-      font-size: 0.98rem;
+    .sec-sub {
+      color: var(--muted);
+      font-size: 0.96rem;
     }
 
-    /* =========================================
-       2. NAVBAR
-       ========================================= */
-    .navbar {
+    /* Navbar */
+    .topbar {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       z-index: 1000;
       background: var(--nav-bg);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border-color);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
     }
 
-    .nav-inner {
+    .topbar-inner {
+      height: 70px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 72px;
       gap: 16px;
     }
 
-    .logo {
-      font-size: 1.38rem;
+    .brand {
+      font-size: 1.3rem;
       font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-shrink: 0;
+      letter-spacing: -0.02em;
     }
 
-    .logo span { color: var(--accent); }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      font-size: 0.88rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      position: relative;
-      transition: var(--transition);
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
+    .brand span {
       color: var(--accent);
     }
 
-    .nav-actions {
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .nav-menu a {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color var(--ease);
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a.active {
+      color: var(--text);
+    }
+
+    .nav-menu a.active {
+      color: var(--accent);
+    }
+
+    .topbar-tools {
       display: flex;
       align-items: center;
       gap: 10px;
-      flex-shrink: 0;
     }
 
-    .theme-btn, .menu-btn {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      border: 1px solid var(--border-color);
-      background: var(--bg-card);
-      color: var(--text-primary);
-      cursor: pointer;
+    .icon-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
       display: grid;
       place-items: center;
-      font-size: 1rem;
-      transition: var(--transition);
+      cursor: pointer;
+      transition: border-color var(--ease), color var(--ease);
     }
 
-    .theme-btn:hover, .menu-btn:hover {
+    .icon-btn:hover {
       border-color: var(--accent);
       color: var(--accent);
     }
 
-    .menu-btn { display: none; }
+    .burger {
+      display: none;
+    }
 
-    /* =========================================
-       3. HERO & BUTTONS
-       ========================================= */
+    /* Hero */
     .hero {
-      min-height: 95vh;
-      display: flex;
-      align-items: center;
-      padding-top: 96px;
-      position: relative;
+      padding: 126px 0 80px;
     }
 
-    .hero-grid {
+    .hero-layout {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      align-items: center;
+      grid-template-columns: 1.25fr 0.75fr;
       gap: 44px;
+      align-items: center;
     }
 
-    .hero-badge {
+    .role-pill {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 7px 15px;
+      padding: 6px 14px;
       border-radius: 999px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      font-size: 0.86rem;
-      color: var(--text-secondary);
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.84rem;
+      font-weight: 600;
       margin-bottom: 18px;
     }
 
-    .status-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: #22c55e;
-      box-shadow: 0 0 10px #22c55e;
-    }
-
-    .hero-title {
-      font-size: clamp(2.3rem, 4.8vw, 3.6rem);
-      line-height: 1.15;
+    .hero h1 {
+      font-size: clamp(2.2rem, 4.5vw, 3.35rem);
       font-weight: 700;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
-    .hero-title span { color: var(--accent); }
-
-    .hero-typing {
-      font-size: clamp(1.1rem, 2.1vw, 1.45rem);
-      color: var(--text-secondary);
-      margin-bottom: 20px;
-      min-height: 34px;
+    .hero-role-line {
+      font-size: clamp(1.08rem, 2vw, 1.35rem);
+      color: var(--muted);
+      margin-bottom: 18px;
+      min-height: 32px;
     }
 
-    .typing-cursor {
+    .hero-role-line strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .cursor {
       color: var(--accent);
-      font-weight: 700;
-      animation: blink 0.8s infinite;
+      animation: pulse 0.9s infinite;
     }
 
-    @keyframes blink {
+    @keyframes pulse {
       0%, 100% { opacity: 1; }
       50% { opacity: 0; }
     }
 
-    .hero-desc {
-      color: var(--text-secondary);
-      font-size: 1rem;
+    .hero-summary {
+      color: var(--muted);
       max-width: 600px;
-      margin-bottom: 28px;
+      margin-bottom: 26px;
+      font-size: 0.98rem;
     }
 
-    .hero-btns {
+    .cta-row {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 12px 22px;
-      border-radius: 12px;
+      padding: 11px 20px;
+      border-radius: 10px;
+      font-size: 0.9rem;
       font-weight: 600;
-      font-size: 0.92rem;
-      cursor: pointer;
-      transition: var(--transition);
       border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform var(--ease), background-color var(--ease), border-color var(--ease);
     }
 
-    .btn-primary {
+    .btn-main {
       background: var(--accent);
-      color: #06101c;
+      color: #06101d;
     }
 
-    .btn-primary:hover {
-      background: var(--accent-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 24px var(--accent-glow);
+    .btn-main:hover {
+      background: var(--accent-dark);
+      color: #ffffff;
+      transform: translateY(-1px);
     }
 
-    .btn-outline {
-      background: var(--bg-card);
-      border-color: var(--border-color);
-      color: var(--text-primary);
+    .btn-ghost {
+      background: var(--card);
+      border-color: var(--border);
+      color: var(--text);
     }
 
-    .btn-outline:hover {
+    .btn-ghost:hover {
       border-color: var(--accent);
       color: var(--accent);
-      transform: translateY(-2px);
     }
 
     .btn-sm {
-      padding: 8px 14px;
-      font-size: 0.84rem;
-      border-radius: 10px;
+      padding: 7px 13px;
+      font-size: 0.82rem;
     }
 
-    .hero-socials {
+    .social-row {
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
+      gap: 10px;
     }
 
-    .social-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 11px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
+    .social-link {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
       display: grid;
       place-items: center;
-      color: var(--text-secondary);
-      transition: var(--transition);
+      transition: color var(--ease), border-color var(--ease);
     }
 
-    .social-icon:hover {
+    .social-link:hover {
       color: var(--accent);
       border-color: var(--accent);
-      transform: translateY(-3px);
     }
 
-    .hero-visual {
-      display: flex;
-      justify-content: center;
+    .portrait-frame {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 12px;
+      max-width: 340px;
+      margin: 0 auto;
     }
 
-    .avatar-card {
-      position: relative;
-      width: 310px;
-      height: 350px;
-      border-radius: 26px;
-      background: linear-gradient(145deg, var(--bg-secondary), var(--bg-card));
-      border: 1px solid var(--border-color);
-      padding: 14px;
-      box-shadow: var(--shadow);
-    }
-
-    .avatar-img {
+    .portrait-frame img {
       width: 100%;
-      height: 100%;
+      height: 370px;
       object-fit: cover;
-      border-radius: 18px;
+      border-radius: 14px;
       display: block;
     }
 
-    .floating-chip {
-      position: absolute;
-      bottom: -16px;
-      left: 50%;
-      transform: translateX(-50%);
-      white-space: nowrap;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      padding: 9px 16px;
-      border-radius: 14px;
+    .portrait-caption {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: var(--surface);
+      font-size: 0.84rem;
+      color: var(--muted);
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      box-shadow: var(--shadow);
     }
 
-    .floating-chip i { color: var(--accent); }
+    .portrait-caption i {
+      color: var(--accent);
+    }
 
-    /* =========================================
-       4. PERSONAL INFO & STATS
-       ========================================= */
-    .personal-grid {
+    /* Personal & Bio */
+    .info-cards {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 18px;
+      gap: 16px;
       margin-bottom: 36px;
     }
 
     .info-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
+      background: var(--card);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 18px 20px;
+      padding: 18px;
       display: flex;
-      align-items: flex-start;
       gap: 14px;
-      transition: var(--transition);
+      align-items: flex-start;
     }
 
-    .info-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-3px);
-    }
-
-    .info-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: var(--accent-glow);
+    .info-card i {
       color: var(--accent);
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
       font-size: 1rem;
+      margin-top: 3px;
     }
 
-    .info-label {
-      font-size: 0.78rem;
+    .info-card small {
+      display: block;
+      font-size: 0.75rem;
       text-transform: uppercase;
-      letter-spacing: 0.6px;
-      color: var(--text-secondary);
-      margin-bottom: 2px;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 3px;
     }
 
-    .info-value {
+    .info-card strong {
+      font-size: 0.94rem;
       font-weight: 600;
-      font-size: 0.96rem;
-      word-break: break-word;
     }
 
-    .about-grid {
+    .bio-split {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 36px;
-      align-items: center;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 32px;
+      align-items: start;
     }
 
-    .about-text p {
-      color: var(--text-secondary);
+    .bio-copy p {
+      color: var(--muted);
       margin-bottom: 14px;
+      font-size: 0.96rem;
     }
 
-    .stats-grid {
+    .metric-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+      gap: 14px;
     }
 
-    .stat-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      padding: 22px 16px;
+    .metric-box {
+      background: var(--card);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
+      padding: 20px 16px;
       text-align: center;
     }
 
-    .stat-number {
+    .metric-val {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.9rem;
+      font-size: 1.75rem;
       font-weight: 700;
       color: var(--accent);
     }
 
-    .stat-label {
-      color: var(--text-secondary);
-      font-size: 0.86rem;
+    .metric-lbl {
+      font-size: 0.84rem;
+      color: var(--muted);
+      margin-top: 4px;
     }
 
-    /* =========================================
-       5. ACADEMIC TIMELINE & CERTIFICATES
-       ========================================= */
-    .edu-grid {
+    /* Academic */
+    .edu-list {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 20px;
     }
 
-    .edu-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
+    .edu-item {
+      background: var(--card);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      transition: var(--transition);
     }
 
-    .edu-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
-    }
-
-    .edu-cert-box {
+    .edu-thumb {
       position: relative;
-      height: 185px;
-      background: var(--bg-secondary);
-      border-bottom: 1px solid var(--border-color);
-      overflow: hidden;
+      height: 170px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
     }
 
-    .edu-cert-img {
+    .edu-thumb img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    .cert-placeholder {
-      color: var(--text-secondary);
-      font-size: 0.86rem;
+    .edu-empty {
+      color: var(--muted);
+      font-size: 0.85rem;
       text-align: center;
-      padding: 16px;
+      padding: 12px;
     }
 
-    .protected-media {
+    .edu-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 3;
+      background: var(--accent);
+      color: #06101d;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 6px;
+    }
+
+    .no-save-img {
       user-select: none;
       -webkit-user-select: none;
       -webkit-touch-callout: none;
       pointer-events: none;
     }
 
-    .protected-shield {
+    .no-save-shield {
       position: absolute;
       inset: 0;
       z-index: 2;
@@ -532,416 +500,464 @@
       -webkit-user-select: none;
     }
 
-    .edu-badge {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      z-index: 3;
-      background: var(--accent);
-      color: #06101c;
-      font-weight: 700;
-      font-size: 0.78rem;
-      padding: 4px 10px;
-      border-radius: 8px;
-    }
-
     .edu-body {
-      padding: 20px;
+      padding: 18px;
       display: flex;
       flex-direction: column;
       flex: 1;
     }
 
-    .edu-year {
-      font-size: 0.82rem;
-      color: var(--accent);
+    .edu-period {
+      font-size: 0.8rem;
       font-weight: 600;
+      color: var(--accent);
       margin-bottom: 4px;
     }
 
-    .edu-degree {
-      font-size: 1.15rem;
+    .edu-body h3 {
+      font-size: 1.08rem;
       margin-bottom: 6px;
     }
 
-    .edu-inst {
-      color: var(--text-secondary);
-      font-size: 0.92rem;
+    .edu-school {
+      font-size: 0.88rem;
+      color: var(--muted);
       margin-bottom: 8px;
     }
 
-    .edu-result {
-      font-size: 0.86rem;
+    .edu-meta {
+      font-size: 0.84rem;
       font-weight: 600;
       margin-bottom: 14px;
-      color: var(--text-primary);
     }
 
-    .edu-actions {
+    .edu-foot {
       margin-top: auto;
       display: flex;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
-    /* =========================================
-       6. EXTRACURRICULAR (SCOUT SUB-TABS & SPORTS)
-       ========================================= */
-    .main-tabs, .sub-tabs, .filter-tabs {
+    /* Tabs & Activities */
+    .tab-row {
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
       gap: 10px;
-      margin-bottom: 28px;
-    }
-
-    .tab-btn, .filter-btn {
-      padding: 9px 18px;
-      border-radius: 999px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      color: var(--text-secondary);
-      font-size: 0.88rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .tab-btn.active, .tab-btn:hover,
-    .filter-btn.active, .filter-btn:hover {
-      background: var(--accent);
-      color: #06101c;
-      border-color: var(--accent);
-      font-weight: 600;
-    }
-
-    .scout-panel {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      padding: 26px;
       margin-bottom: 24px;
     }
 
-    .scout-header {
+    .pill-btn {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
+      font-size: 0.86rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--ease);
+    }
+
+    .pill-btn:hover,
+    .pill-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #06101d;
+      font-weight: 600;
+    }
+
+    .scout-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .scout-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 14px;
+      gap: 10px;
+      margin-bottom: 10px;
     }
 
-    .scout-desc {
-      color: var(--text-secondary);
-      margin-bottom: 20px;
+    .scout-text {
+      color: var(--muted);
+      margin-bottom: 18px;
+      font-size: 0.95rem;
     }
 
-    .gallery-grid {
+    .photo-strip {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
     }
 
-    .gallery-card {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
+    .photo-tile {
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 12px;
       overflow: hidden;
       cursor: pointer;
-      transition: var(--transition);
     }
 
-    .gallery-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-3px);
-    }
-
-    .gallery-card img {
+    .photo-tile img {
       width: 100%;
-      height: 165px;
+      height: 150px;
       object-fit: cover;
       display: block;
     }
 
-    .gallery-thumb-placeholder {
-      height: 165px;
+    .photo-blank {
+      height: 150px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--text-secondary);
+      color: var(--muted);
       font-size: 0.84rem;
       padding: 12px;
       text-align: center;
     }
 
-    .gallery-caption {
+    .photo-cap {
       padding: 10px 12px;
-      font-size: 0.86rem;
-      color: var(--text-secondary);
+      font-size: 0.84rem;
+      color: var(--muted);
     }
 
-    .upload-strip {
-      margin-top: 20px;
-      padding-top: 16px;
-      border-top: 1px dashed var(--border-color);
+    .strip-footer {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--border);
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 10px;
     }
 
-    .sports-grid, .design-grid, .skills-grid, .projects-grid {
+    .cards-3 {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-      gap: 22px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
     }
 
-    .sport-card, .design-card, .skill-card, .project-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
+    .entry-card {
+      background: var(--card);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
-      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
     }
 
-    .sport-card:hover, .design-card:hover, .skill-card:hover, .project-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
-    }
-
-    .card-img-top {
-      width: 100%;
-      height: 190px;
-      object-fit: cover;
-      display: block;
-      cursor: pointer;
-    }
-
-    .card-img-placeholder {
-      width: 100%;
-      height: 190px;
-      background: var(--bg-secondary);
-      border-bottom: 1px solid var(--border-color);
+    .entry-media {
+      height: 175px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--text-secondary);
-      font-size: 0.86rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      cursor: pointer;
     }
 
-    .card-body {
+    .entry-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .entry-body {
       padding: 18px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
     }
 
-    .skill-card { padding: 20px; }
+    .entry-cat {
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+    }
 
-    .skill-top {
+    .entry-body h3 {
+      font-size: 1.1rem;
+      margin: 6px 0 4px;
+    }
+
+    .entry-sub {
+      font-size: 0.84rem;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .entry-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 14px;
+      flex: 1;
+    }
+
+    .chip-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .chip {
+      font-size: 0.75rem;
+      padding: 3px 9px;
+      border-radius: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .skill-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+    }
+
+    .skill-head {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 10px;
+      font-size: 0.92rem;
     }
 
-    .skill-info {
-      display: flex;
+    .skill-head span {
+      display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
+      font-weight: 600;
     }
 
-    .skill-info i { color: var(--accent); font-size: 1.3rem; }
+    .skill-head i {
+      color: var(--accent);
+    }
 
-    .progress-bar {
-      width: 100%;
-      height: 7px;
-      background: var(--border-color);
+    .meter {
+      height: 6px;
       border-radius: 999px;
+      background: var(--border);
       overflow: hidden;
     }
 
-    .progress-fill {
+    .meter-fill {
       height: 100%;
       background: var(--accent);
       border-radius: 999px;
     }
 
-    .project-card { display: flex; flex-direction: column; }
-    .project-body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
-    .project-category {
-      font-size: 0.76rem;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 700;
-      letter-spacing: 0.8px;
-    }
-    .project-title { font-size: 1.18rem; margin: 6px 0 8px; }
-    .project-desc { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 14px; flex: 1; }
-    .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
-    .tag {
-      font-size: 0.76rem;
-      padding: 3px 9px;
-      border-radius: 6px;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      color: var(--text-secondary);
-    }
-    .project-actions { display: flex; gap: 10px; }
-
-    /* =========================================
-       7. VIDEO RESUME & CV DOWNLOAD SECTION
-       ========================================= */
-    .cv-video-grid {
+    /* Video & CV */
+    .media-cv-grid {
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
-      gap: 28px;
+      gap: 24px;
       align-items: start;
     }
 
-    .media-box, .cv-box {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
+    .panel-card {
+      background: var(--card);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 24px;
+      padding: 22px;
     }
 
-    .video-wrapper {
-      position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-      background: #000;
-      margin-bottom: 14px;
-    }
-
-    .video-player {
-      width: 100%;
-      max-height: 360px;
-      display: block;
-      background: #000;
-      user-select: none;
-      -webkit-user-select: none;
-    }
-
-    .cv-highlights {
-      margin: 16px 0 22px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      color: var(--text-secondary);
-      font-size: 0.92rem;
-    }
-
-    .cv-highlights li i {
-      color: var(--accent);
-      margin-right: 8px;
-    }
-
-    /* =========================================
-       8. CONTACT, FOOTER, MODAL & TOAST
-       ========================================= */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 32px;
-    }
-
-    .contact-info-list { display: flex; flex-direction: column; gap: 14px; }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      padding: 15px 16px;
-      border-radius: var(--radius);
-    }
-
-    .contact-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 11px;
-      background: var(--accent-glow);
-      color: var(--accent);
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
-    }
-
-    .contact-form {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      padding: 26px;
-      border-radius: var(--radius);
-    }
-
-    .form-group { margin-bottom: 16px; }
-    .form-group label { display: block; font-size: 0.88rem; font-weight: 500; margin-bottom: 6px; }
-
-    .form-control {
-      width: 100%;
-      padding: 12px 14px;
-      border-radius: 10px;
-      border: 1px solid var(--border-color);
-      background: var(--bg-secondary);
-      color: var(--text-primary);
-      font-family: inherit;
-      font-size: 0.92rem;
-      outline: none;
-    }
-
-    .form-control:focus { border-color: var(--accent); }
-    textarea.form-control { min-height: 110px; resize: vertical; }
-
-    .privacy-note {
-      margin-top: 12px;
-      font-size: 0.82rem;
-      color: var(--text-secondary);
+    .panel-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 10px;
       display: flex;
       align-items: center;
       gap: 8px;
     }
 
-    footer {
-      border-top: 1px solid var(--border-color);
-      padding: 28px 0;
-      text-align: center;
-      color: var(--text-secondary);
+    .panel-card h3 i {
+      color: var(--accent);
+    }
+
+    .video-shell {
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
+      margin-bottom: 12px;
+    }
+
+    .video-el {
+      width: 100%;
+      max-height: 350px;
+      display: block;
+      background: #000;
+    }
+
+    .panel-note {
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    .cv-points {
+      margin: 14px 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .cv-points li i {
+      color: var(--accent);
+      margin-right: 8px;
+    }
+
+    .btn-pair {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 28px;
+    }
+
+    .contact-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .contact-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 15px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .contact-card i {
+      color: var(--accent);
+      font-size: 1.05rem;
+    }
+
+    .contact-card small {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .contact-card strong,
+    .contact-card a {
+      font-size: 0.92rem;
+      font-weight: 600;
+      word-break: break-word;
+    }
+
+    .contact-card a {
+      color: var(--accent);
+    }
+
+    .field {
+      margin-bottom: 14px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.86rem;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .input {
+      width: 100%;
+      padding: 11px 13px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-family: inherit;
       font-size: 0.9rem;
     }
 
-    .modal-backdrop {
+    .input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    textarea.input {
+      min-height: 105px;
+      resize: vertical;
+    }
+
+    .form-foot {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 0;
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    /* Modal & Toast */
+    .modal-bg {
       position: fixed;
       inset: 0;
       background: rgba(0, 0, 0, 0.78);
-      backdrop-filter: blur(6px);
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 18px;
       z-index: 2000;
     }
 
-    .modal-backdrop.open { display: flex; }
+    .modal-bg.open {
+      display: flex;
+    }
 
-    .modal-box {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: 18px;
-      max-width: 820px;
+    .modal-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      max-width: 800px;
       width: 100%;
       max-height: 90vh;
       overflow-y: auto;
       position: relative;
     }
 
-    .modal-close {
+    .modal-x {
       position: sticky;
-      top: 12px;
+      top: 10px;
       float: right;
-      margin: 12px 12px 0 0;
-      width: 36px;
-      height: 36px;
+      margin: 10px 10px 0 0;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
       border: none;
       background: rgba(0, 0, 0, 0.65);
@@ -950,289 +966,312 @@
       z-index: 10;
     }
 
-    .modal-img-wrap {
+    .modal-media-box {
       position: relative;
-      background: #050811;
+      background: #060911;
     }
 
-    .modal-img {
+    .modal-pic {
       width: 100%;
       max-height: 520px;
       object-fit: contain;
-      background: #050811;
       display: block;
     }
 
-    .modal-pdf {
+    .modal-frame {
       width: 100%;
-      height: 70vh;
+      height: 68vh;
       border: none;
       display: block;
-      background: #050811;
+      background: #060911;
     }
 
-    .modal-content { padding: 22px; }
-
-    .back-to-top {
-      position: fixed;
-      bottom: 22px;
-      left: 22px;
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      border: 1px solid var(--border-color);
-      background: var(--bg-secondary);
-      color: var(--text-primary);
-      display: grid;
-      place-items: center;
-      cursor: pointer;
-      opacity: 0;
-      pointer-events: none;
-      transition: var(--transition);
-      z-index: 1500;
-    }
-
-    .back-to-top.show {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .back-to-top:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    .toast {
-      position: fixed;
-      bottom: 22px;
-      right: 22px;
-      background: var(--bg-secondary);
-      border: 1px solid var(--accent);
-      color: var(--text-primary);
-      padding: 13px 20px;
-      border-radius: 12px;
-      box-shadow: var(--shadow);
+    .modal-info {
+      padding: 18px 22px;
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 10px;
-      transform: translateY(120px);
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .toast-box {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--surface);
+      border: 1px solid var(--accent);
+      color: var(--text);
+      padding: 11px 16px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      transform: translateY(90px);
       opacity: 0;
-      transition: var(--transition);
+      transition: all var(--ease);
       z-index: 3000;
     }
 
-    .toast.show { transform: translateY(0); opacity: 1; }
-
-    @media (max-width: 960px) {
-      .hero-grid, .about-grid, .cv-video-grid, .contact-grid {
-        grid-template-columns: 1fr;
-      }
-      .hero-visual { order: -1; }
+    .toast-box.show {
+      transform: translateY(0);
+      opacity: 1;
     }
 
-    @media (max-width: 820px) {
-      .menu-btn { display: grid; }
-      .nav-links {
+    @media (max-width: 920px) {
+      .hero-layout,
+      .bio-split,
+      .media-cv-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-portrait {
+        order: -1;
+      }
+    }
+
+    @media (max-width: 780px) {
+      .burger {
+        display: grid;
+      }
+
+      .nav-menu {
         position: fixed;
-        top: 72px;
+        top: 70px;
         left: 0;
         width: 100%;
-        background: var(--bg-secondary);
-        border-bottom: 1px solid var(--border-color);
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
         flex-direction: column;
-        padding: 20px;
+        align-items: flex-start;
+        padding: 18px 4%;
         gap: 14px;
-        transform: translateY(-160%);
-        transition: var(--transition);
+        transform: translateY(-150%);
+        transition: transform var(--ease);
       }
-      .nav-links.active { transform: translateY(0); }
+
+      .nav-menu.open {
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="container nav-inner">
-      <a href="#home" class="logo" id="nav-brand">Sabbir's<span>Space</span></a>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a href="#home" class="brand">Sabbir<span>.</span></a>
       <nav>
-        <ul class="nav-links" id="nav-links">
+        <ul class="nav-menu" id="nav-menu">
           <li><a href="#home" class="active">Home</a></li>
-          <li><a href="#personal">Personal</a></li>
-          <li><a href="#academic">Academic</a></li>
-          <li><a href="#extracurricular">Activities</a></li>
-          <li><a href="#graphics">Graphics</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#resume-cv">Video & CV</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#activities">Activities</a></li>
+          <li><a href="#design">Design</a></li>
+          <li><a href="#work">Projects</a></li>
+          <li><a href="#cv-video">CV & Video</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
-      <div class="nav-actions">
-        <button type="button" class="theme-btn" id="theme-toggle" aria-label="Toggle Theme">
+      <div class="topbar-tools">
+        <button type="button" class="icon-btn" id="theme-btn" aria-label="Switch theme">
           <i class="fas fa-sun"></i>
         </button>
-        <button type="button" class="menu-btn" id="menu-toggle" aria-label="Toggle Menu">
+        <button type="button" class="icon-btn burger" id="burger-btn" aria-label="Toggle navigation">
           <i class="fas fa-bars"></i>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- HERO SECTION -->
   <section class="hero" id="home">
-    <div class="container hero-grid">
-      <div class="hero-content">
-        <div class="hero-badge">
-          <span class="status-dot"></span>
-          <span id="hero-status">Student Associate • Senior Rover Mate • DIU CSE (64th Batch)</span>
+    <div class="wrap hero-layout">
+      <div>
+        <div class="role-pill">
+          <i class="fas fa-circle-check"></i>
+          <span>DIU CSE (64th Batch) • Senior Rover Mate • Crew Council VP</span>
         </div>
-        <h1 class="hero-title">Hi, I'm <span id="hero-name">Sabbir Ahommed</span></h1>
-        <div class="hero-typing">
-          I do <span id="typed-text"></span><span class="typing-cursor">|</span>
+        <h1>Sabbir Ahommed</h1>
+        <div class="hero-role-line">
+          Focus areas: <strong id="role-typed"></strong><span class="cursor">|</span>
         </div>
-        <p class="hero-desc" id="hero-bio"></p>
-        <div class="hero-btns">
-          <a href="#resume-cv" class="btn btn-primary">
-            <i class="fas fa-file-download"></i> CV & Video Resume
+        <p class="hero-summary">
+          B.Sc. in Computer Science and Engineering undergraduate at Daffodil International University (ID: 0242310005101349). Active in Rover Scouting leadership, volunteer protocol, machine learning & web development, and custom sports apparel design.
+        </p>
+        <div class="cta-row">
+          <a href="#cv-video" class="btn btn-main">
+            <i class="fas fa-file-pdf"></i> CV & Video Resume
           </a>
-          <a href="#extracurricular" class="btn btn-outline">
-            <i class="fas fa-campground"></i> Scout & Sports
+          <a href="#activities" class="btn btn-ghost">
+            <i class="fas fa-compass"></i> Scout & Sports
           </a>
-          <a href="#contact" class="btn btn-outline">
-            <i class="fas fa-paper-plane"></i> Contact
+          <a href="#contact" class="btn btn-ghost">
+            <i class="fas fa-envelope"></i> Contact
           </a>
         </div>
-        <div class="hero-socials" id="hero-socials"></div>
+        <div class="social-row">
+          <a href="https://github.com/sabbir87" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="#cv-video" class="social-link" aria-label="Curriculum Vitae">
+            <i class="fas fa-file-alt"></i>
+          </a>
+          <a href="#contact" class="social-link" aria-label="Contact Form">
+            <i class="fas fa-paper-plane"></i>
+          </a>
+        </div>
       </div>
 
-      <div class="hero-visual">
-        <div class="avatar-card">
-          <img src="sabbir.jpeg" alt="Sabbir Ahommed Profile Photo" class="avatar-img" id="hero-img" />
-          <div class="floating-chip">
-            <i class="fas fa-award"></i>
-            <span id="hero-chip-text">Student Associate • CSE • Rover</span>
+      <div class="hero-portrait">
+        <div class="portrait-frame">
+          <img src="sabbir.jpeg" alt="Sabbir Ahommed" />
+          <div class="portrait-caption">
+            <i class="fas fa-map-pin"></i>
+            <span>Daffodil Smart City, Savar • From Shahagola, Naogaon</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PERSONAL INFORMATION & ABOUT -->
-  <section id="personal">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Personal Profile</span>
-        <h2 class="section-title">Personal Information</h2>
-        <p class="section-subtitle">Parents, permanent & current address, blood group, university role, and core overview.</p>
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-kicker">Profile</div>
+        <h2 class="sec-title">Personal Details & Background</h2>
+        <p class="sec-sub">Core personal details, family background, campus roles, and a quick look at what keeps me busy.</p>
       </div>
 
-      <div class="personal-grid" id="personal-info-grid"></div>
+      <div class="info-cards" id="personal-cards"></div>
 
-      <div class="about-grid">
-        <div class="about-text" id="about-paragraphs"></div>
-        <div class="stats-grid" id="about-stats"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ACADEMIC INFORMATION & CERTIFICATES -->
-  <section id="academic">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Education & Certificates</span>
-        <h2 class="section-title">Academic Journey (PSC to B.Sc.)</h2>
-        <p class="section-subtitle">Institutions attended from PSC, JSC, SSC, and HSC to B.Sc. in CSE with certificate preview & upload option.</p>
-      </div>
-      <div class="edu-grid" id="academic-grid"></div>
-    </div>
-  </section>
-
-  <!-- EXTRACURRICULAR ACTIVITIES (SCOUT SUB-TABS & SPORTS) -->
-  <section id="extracurricular">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Extracurricular Activities</span>
-        <h2 class="section-title">Rover Scouting & Sports</h2>
-        <p class="section-subtitle">Dedicated options for every Scout training/expedition with photo gallery, plus Volleyball & Cricket tournaments.</p>
-      </div>
-
-      <div class="main-tabs" id="activity-main-tabs">
-        <button type="button" class="tab-btn active" data-main="scout"><i class="fas fa-compass"></i> Scout Activities</button>
-        <button type="button" class="tab-btn" data-main="sports"><i class="fas fa-trophy"></i> Sports (Volleyball & Cricket)</button>
-      </div>
-
-      <!-- SCOUT SECTION -->
-      <div id="scout-section">
-        <div class="sub-tabs" id="scout-sub-tabs"></div>
-        <div class="scout-panel" id="scout-detail-panel"></div>
-      </div>
-
-      <!-- SPORTS SECTION -->
-      <div id="sports-section" style="display: none;">
-        <div class="filter-tabs" id="sports-filter-tabs">
-          <button type="button" class="filter-btn active" data-sport="all">All Tournaments</button>
-          <button type="button" class="filter-btn" data-sport="volleyball">Volleyball Tournament</button>
-          <button type="button" class="filter-btn" data-sport="cricket">Cricket Tournament</button>
+      <div class="bio-split">
+        <div class="bio-copy">
+          <p>
+            I am Sabbir Ahommed, originally from Shahagola, Atrai, Naogaon, and currently based around Daffodil Smart City in Birulia, Savar, Dhaka. At Daffodil International University, I study Computer Science and Engineering in the 64th Batch and work as a Student Associate.
+          </p>
+          <p>
+            In scouting, I serve as Senior Rover Mate and Vice President of the Crew Council at the DIU Air Rover Scout Group. My involvement includes camp organization, 150 km rambling expeditions, pioneering, Safe from Harm and JOTA-JOTI activities, campus volunteer coordination, and representing Bangladesh Scouts as a volunteer delegate at the BIMSTEC Conference 2025 in New Delhi.
+          </p>
+          <p>
+            On the technical and creative side, I build web applications, database-backed lab systems, 3D OpenGL simulations, and machine learning models for phishing detection and healthcare risk prediction, alongside designing custom sublimation jerseys, tracksuits, and event graphics.
+          </p>
         </div>
-        <div class="sports-grid" id="sports-grid"></div>
+
+        <div class="metric-grid">
+          <div class="metric-box">
+            <div class="metric-val">64th</div>
+            <div class="metric-lbl">CSE Batch, DIU</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val">150 km</div>
+            <div class="metric-lbl">Rambling Spirit</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val">2+ Yrs</div>
+            <div class="metric-lbl">Apparel & Graphics</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val">2025</div>
+            <div class="metric-lbl">BIMSTEC Volunteer</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- GRAPHIC DESIGN SHOWCASE -->
-  <section id="graphics">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Creative Work</span>
-        <h2 class="section-title">Graphic Design & Custom Sportswear</h2>
-        <p class="section-subtitle">Custom sublimation jerseys, tracksuits, event banners, and vector designs.</p>
+  <section id="education">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-kicker">Academics</div>
+        <h2 class="sec-title">Education & Mark Sheets</h2>
+        <p class="sec-sub">Academic milestones from JSC and SSC/HSC at Rajshahi Shikkha Board Govt. Model School and College to B.Sc. in CSE at DIU.</p>
       </div>
-      <div class="design-grid" id="design-grid"></div>
+      <div class="edu-list" id="education-list"></div>
     </div>
   </section>
 
-  <!-- SKILLS & TECHNICAL PROJECTS -->
-  <section id="projects">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Technical Work</span>
-        <h2 class="section-title">Skills & Featured Projects</h2>
-        <p class="section-subtitle">Software development, machine learning, and graphics simulation work.</p>
+  <section id="activities">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-kicker">Extracurricular</div>
+        <h2 class="sec-title">Rover Scouting & Sports</h2>
+        <p class="sec-sub">Scouting training, expeditions, and volunteer service alongside volleyball, cricket, and campus sports.</p>
       </div>
 
-      <div class="filter-tabs" id="skill-filters">
-        <button type="button" class="filter-btn active" data-filter="all">All Skills</button>
-        <button type="button" class="filter-btn" data-filter="frontend">Web & Graphics</button>
-        <button type="button" class="filter-btn" data-filter="backend">Programming & ML</button>
-        <button type="button" class="filter-btn" data-filter="tools">Tools</button>
+      <div class="tab-row" id="activity-switch">
+        <button type="button" class="pill-btn active" data-tab="scout">Scout Activities</button>
+        <button type="button" class="pill-btn" data-tab="sports">Sports & Tournaments</button>
       </div>
-      <div class="skills-grid" id="skills-container" style="margin-bottom: 52px;"></div>
 
-      <div class="filter-tabs" id="project-filters">
-        <button type="button" class="filter-btn active" data-filter="all">All Projects</button>
-        <button type="button" class="filter-btn" data-filter="web">Web Apps</button>
-        <button type="button" class="filter-btn" data-filter="ai">AI & 3D Graphics</button>
+      <div id="scout-area">
+        <div class="tab-row" id="scout-tabs"></div>
+        <div class="scout-box" id="scout-view"></div>
       </div>
-      <div class="projects-grid" id="projects-container"></div>
+
+      <div id="sports-area" style="display: none;">
+        <div class="tab-row" id="sport-filters">
+          <button type="button" class="pill-btn active" data-sport="all">All</button>
+          <button type="button" class="pill-btn" data-sport="volleyball">Volleyball</button>
+          <button type="button" class="pill-btn" data-sport="cricket">Cricket</button>
+          <button type="button" class="pill-btn" data-sport="football">Football</button>
+        </div>
+        <div class="cards-3" id="sports-list"></div>
+      </div>
     </div>
   </section>
 
-  <!-- VIDEO RESUME & CV DOWNLOAD -->
-  <section id="resume-cv">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Resume & Introduction</span>
-        <h2 class="section-title">Video Resume & Download CV</h2>
-        <p class="section-subtitle">Watch video introduction or view/download my CV.</p>
+  <section id="design">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-kicker">Visual & Apparel Design</div>
+        <h2 class="sec-title">Sportswear & Graphic Work</h2>
+        <p class="sec-sub">Sublimation jerseys, athletic tracksuits, banners, and vector artwork created in Adobe Illustrator and Canva.</p>
+      </div>
+      <div class="cards-3" id="design-list"></div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-kicker">Engineering & Research</div>
+        <h2 class="sec-title">Skills & Projects</h2>
+        <p class="sec-sub">Tools, programming languages, academic lab systems, and machine learning work.</p>
       </div>
 
-      <div class="cv-video-grid">
-        <div class="media-box">
-          <h3 style="margin-bottom: 12px;"><i class="fas fa-video" style="color: var(--accent);"></i> Video Resume (View Only)</h3>
-          <div class="video-wrapper" oncontextmenu="return false;">
+      <div class="tab-row" id="skill-filter-row">
+        <button type="button" class="pill-btn active" data-skill="all">All</button>
+        <button type="button" class="pill-btn" data-skill="web-design">Web & Design</button>
+        <button type="button" class="pill-btn" data-skill="dev-ml">Programming & ML</button>
+        <button type="button" class="pill-btn" data-skill="tools">Databases & Tools</button>
+      </div>
+      <div class="skills-grid" id="skills-list"></div>
+
+      <div class="tab-row" id="project-filter-row">
+        <button type="button" class="pill-btn active" data-proj="all">All Projects</button>
+        <button type="button" class="pill-btn" data-proj="ai">AI & Graphics</button>
+        <button type="button" class="pill-btn" data-proj="web">Web & Database</button>
+      </div>
+      <div class="cards-3" id="projects-list"></div>
+    </div>
+  </section>
+
+  <section id="cv-video">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-kicker">Documents & Intro</div>
+        <h2 class="sec-title">Video Resume & CV</h2>
+        <p class="sec-sub">Watch the video introduction directly or view/download my curriculum vitae.</p>
+      </div>
+
+      <div class="media-cv-grid">
+        <div class="panel-card">
+          <h3><i class="fas fa-play-circle"></i> Video Resume</h3>
+          <div class="video-shell" oncontextmenu="return false;">
             <video
-              id="video-resume-player"
-              class="video-player"
+              id="resume-video"
+              class="video-el"
               src="https://raw.githubusercontent.com/sabbir87/sabbir-portfolio/main/vedio_resume.mp4"
               controls
               controlsList="nodownload noplaybackrate"
@@ -1240,36 +1279,34 @@
               playsinline
               preload="metadata"
             >
-              Your browser does not support HTML5 video.
+              Your browser does not support video playback.
             </video>
           </div>
-          <p id="video-status-note" style="font-size: 0.86rem; color: var(--text-secondary);">
-            View-only video resume stream. Downloading is disabled.
-          </p>
+          <p class="panel-note">Streaming playback only; download option is disabled.</p>
         </div>
 
-        <div class="cv-box">
-          <h3 style="margin-bottom: 8px;"><i class="fas fa-file-pdf" style="color: var(--accent);"></i> Curriculum Vitae (CV)</h3>
-          <p style="color: var(--text-secondary); font-size: 0.92rem;">
-            Complete academic record, university Student Associate & Rover Scout leadership, international conference experience, technical projects, and sportswear/design portfolio.
+        <div class="panel-card">
+          <h3><i class="fas fa-file-pdf"></i> Curriculum Vitae</h3>
+          <p class="panel-note">
+            Overview of my CSE coursework, scouting leadership, volunteer assignments, projects, and design work.
           </p>
-          <ul class="cv-highlights">
-            <li><i class="fas fa-check-circle"></i> Student Associate & B.Sc. in CSE (64th Batch) — DIU</li>
-            <li><i class="fas fa-check-circle"></i> Senior Rover Mate & Crew Council VP (Air Rover Scout Group)</li>
-            <li><i class="fas fa-check-circle"></i> Volunteer Representative — BIMSTEC Conference 2025 (India)</li>
-            <li><i class="fas fa-check-circle"></i> AI Phishing Detection Thesis, Web & 3D OpenGL Projects</li>
+          <ul class="cv-points">
+            <li><i class="fas fa-check"></i> Student Associate & B.Sc. in CSE (64th Batch), DIU</li>
+            <li><i class="fas fa-check"></i> Senior Rover Mate & Crew Council VP, DIUARSG</li>
+            <li><i class="fas fa-check"></i> Volunteer Representative, BIMSTEC Conference 2025</li>
+            <li><i class="fas fa-check"></i> Hybrid Phishing Detection (AI), Web & OpenGL Projects</li>
           </ul>
-          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <div class="btn-pair">
             <a
               href="https://sabbir87.github.io/sabbir-portfolio/CV_Sabbir_Ahommed.pdf"
-              id="cv-download-btn"
+              id="download-cv"
               download="CV_Sabbir_Ahommed.pdf"
-              class="btn btn-primary"
+              class="btn btn-main"
               style="flex: 1; justify-content: center;"
             >
-              <i class="fas fa-download"></i> Download CV (PDF)
+              <i class="fas fa-download"></i> Download CV
             </a>
-            <button type="button" id="cv-view-btn" class="btn btn-outline" style="justify-content: center;">
+            <button type="button" id="open-cv" class="btn btn-ghost">
               <i class="fas fa-eye"></i> View CV
             </button>
           </div>
@@ -1278,746 +1315,621 @@
     </div>
   </section>
 
-  <!-- CONTACT SECTION -->
   <section id="contact">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Get In Touch</span>
-        <h2 class="section-title">Contact Me</h2>
-        <p class="section-subtitle">Reach out for collaboration, volunteer/scout coordination, custom sportswear design, or academic inquiries.</p>
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-kicker">Get in Touch</div>
+        <h2 class="sec-title">Contact</h2>
+        <p class="sec-sub">Send a message regarding projects, scouting or volunteer coordination, or custom sportswear orders.</p>
       </div>
 
       <div class="contact-grid">
-        <div class="contact-info-list" id="contact-info-list"></div>
+        <div class="contact-stack" id="contact-cards"></div>
 
-        <form class="contact-form" id="contact-form">
-          <div class="form-group">
-            <label for="sender-name">Your Name</label>
-            <input type="text" id="sender-name" class="form-control" placeholder="Enter your name" required />
+        <form class="panel-card" id="mail-form">
+          <div class="field">
+            <label for="c-name">Name</label>
+            <input type="text" id="c-name" class="input" placeholder="Your name" required />
           </div>
-          <div class="form-group">
-            <label for="sender-email">Your Email</label>
-            <input type="email" id="sender-email" class="form-control" placeholder="Enter your email address" required />
+          <div class="field">
+            <label for="c-email">Email</label>
+            <input type="email" id="c-email" class="input" placeholder="you@example.com" required />
           </div>
-          <div class="form-group">
-            <label for="sender-subject">Subject</label>
-            <input type="text" id="sender-subject" class="form-control" placeholder="Project, Scouting, Design, or Inquiry" required />
+          <div class="field">
+            <label for="c-subject">Subject</label>
+            <input type="text" id="c-subject" class="input" placeholder="Topic of your message" required />
           </div>
-          <div class="form-group">
-            <label for="sender-message">Message</label>
-            <textarea id="sender-message" class="form-control" placeholder="Write your message..." required></textarea>
+          <div class="field">
+            <label for="c-body">Message</label>
+            <textarea id="c-body" class="input" placeholder="Write your message..." required></textarea>
           </div>
-          <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
-            <i class="fas fa-paper-plane"></i> Send Message
+          <button type="submit" class="btn btn-main" style="width: 100%; justify-content: center;">
+            <i class="fas fa-paper-plane"></i> Compose in Mail App
           </button>
-          <p class="privacy-note">
-            <i class="fas fa-shield-alt"></i>
-            Static GitHub Pages form: validates inputs in-browser and opens your mail client with pre-filled details.
-          </p>
+          <p class="form-foot">Opens your default email client with the entered details.</p>
         </form>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
-    <div class="container">
-      <p>&copy; <span id="footer-year">2026</span> Sabbir Ahommed. Built with HTML, CSS & JavaScript.</p>
+    <div class="wrap">
+      <p>&copy; <span id="year">2026</span> Sabbir Ahommed</p>
     </div>
   </footer>
 
-  <!-- PREVIEW MODAL -->
-  <div class="modal-backdrop" id="preview-modal" aria-hidden="true">
-    <div class="modal-box" role="dialog" aria-modal="true">
-      <button type="button" class="modal-close" id="modal-close" aria-label="Close Modal">
+  <div class="modal-bg" id="modal-bg" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true">
+      <button type="button" class="modal-x" id="modal-x" aria-label="Close preview">
         <i class="fas fa-times"></i>
       </button>
-      <div id="modal-body-content"></div>
+      <div id="modal-slot"></div>
     </div>
   </div>
 
-  <!-- BACK TO TOP & TOAST -->
-  <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to Top">
-    <i class="fas fa-arrow-up"></i>
-  </button>
-
-  <div class="toast" id="toast">
-    <i class="fas fa-check-circle" style="color: var(--accent);"></i>
-    <span id="toast-message">Action completed!</span>
+  <div class="toast-box" id="toast-box">
+    <span id="toast-text">Done</span>
   </div>
 
   <script>
-    /* =========================================
-       PORTFOLIO DATA
-       ========================================= */
-    const portfolioData = {
-      profile: {
-        name: "Sabbir Ahommed",
-        status: "Student Associate • Senior Rover Mate • DIU CSE (64th Batch)",
-        chipText: "Student Associate • CSE • Rover",
-        avatar: "sabbir.jpeg",
-        cvUrl: "https://sabbir87.github.io/sabbir-portfolio/CV_Sabbir_Ahommed.pdf",
-        videoResumeUrl: "https://raw.githubusercontent.com/sabbir87/sabbir-portfolio/main/vedio_resume.mp4",
-        roles: [
-          "Web & UI Development",
-          "AI & ML Research",
-          "Rover Scout Leadership",
-          "Custom Sportswear Design"
-        ],
-        bio: "Computer Science & Engineering undergraduate at Daffodil International University (64th Batch), Student Associate, Senior Rover Mate & Crew Council Vice President at DIU Air Rover Scout Group, and custom sportswear/graphic designer.",
-        personalInfo: [
-          { icon: "fas fa-user-tie", label: "Father's Name", value: "Md. Mokteb Ali" },
-          { icon: "fas fa-user", label: "Mother's Name", value: "Most. Pahari Begum" },
-          { icon: "fas fa-map-marker-alt", label: "Permanent Address", value: "Shahagola, Atrai, Naogaon" },
-          { icon: "fas fa-building", label: "Current Residence", value: "Daffodil Smart City, Birulia, Savar, Dhaka" },
-          { icon: "fas fa-graduation-cap", label: "University & Batch", value: "Daffodil International University (CSE 64th)" },
-          { icon: "fas fa-campground", label: "Scouting Role", value: "Senior Rover Mate & Crew Council VP (DIUARSG)" }
-        ],
-        aboutParagraphs: [
-          "I am Sabbir Ahommed, a B.Sc. in Computer Science and Engineering student at Daffodil International University. Alongside academics, I actively serve in leadership roles within the DIU Air Rover Scout Group and contribute to campus and community initiatives.",
-          "My technical interests span web interfaces, database-backed web systems, 3D graphics simulations, and applied machine learning—including research on hybrid phishing website detection and healthcare risk prediction.",
-          "Outside of coding, I design custom sublimation sports jerseys, tracksuits, vector graphics, and event banners, and enjoy competitive cricket, football, and volleyball."
-        ],
-        stats: [
-          { number: "64th", label: "CSE Batch (DIU)" },
-          { number: "2+ Yrs", label: "Graphic & Apparel Design" },
-          { number: "150 km", label: "Rover Rambling Spirit" },
-          { number: "2025", label: "BIMSTEC Scout Delegate" }
-        ]
-      },
-
-      academic: [
+    const DATA = {
+      roles: [
+        "Web & UI Development",
+        "AI & Machine Learning",
+        "Rover Scout Leadership",
+        "Custom Sportswear Design"
+      ],
+      personal: [
+        { icon: "fas fa-user", label: "Father", value: "Md. Mokteb Ali" },
+        { icon: "fas fa-user", label: "Mother", value: "Most. Pahari Begum" },
+        { icon: "fas fa-home", label: "Home Town", value: "Shahagola, Atrai, Naogaon" },
+        { icon: "fas fa-location-dot", label: "Current Area", value: "Daffodil Smart City, Birulia, Savar, Dhaka" },
+        { icon: "fas fa-university", label: "University", value: "Daffodil International University (ID: 0242310005101349)" },
+        { icon: "fas fa-campground", label: "Rover Scouting", value: "Senior Rover Mate & Crew Council VP (DIUARSG)" }
+      ],
+      education: [
         {
-          badge: "B.Sc. (Ongoing)",
-          year: "2023 – Present",
-          degree: "B.Sc. in Computer Science & Engineering",
-          institution: "Daffodil International University (DIU)",
-          result: "ID: 0242310005101349 • 64th Batch",
-          image: "",
-          protected: false
+          tag: "B.Sc.",
+          period: "2023 – Present",
+          title: "B.Sc. in Computer Science & Engineering",
+          school: "Daffodil International University",
+          meta: "64th Batch • Student Associate",
+          img: "",
+          viewOnly: false
         },
         {
-          badge: "HSC",
-          year: "2021",
-          degree: "Higher Secondary Certificate (Science)",
-          institution: "Rajshahi Shikkha Board Govt. Model School and College",
-          result: "GPA: 5.00 / 5.00",
-          image: "https://raw.githubusercontent.com/sabbir87/sabbir-portfolio/main/HSC%20Mark%20Sheet.jpeg",
-          protected: true
+          tag: "HSC",
+          period: "2021",
+          title: "Higher Secondary Certificate (Science)",
+          school: "Rajshahi Shikkha Board Govt. Model School and College",
+          meta: "GPA: 5.00 / 5.00",
+          img: "https://raw.githubusercontent.com/sabbir87/sabbir-portfolio/main/HSC%20Mark%20Sheet.jpeg",
+          viewOnly: true
         },
         {
-          badge: "SSC",
-          year: "2019",
-          degree: "Secondary School Certificate (Science)",
-          institution: "Rajshahi Shikkha Board Govt. Model School and College",
-          result: "GPA: 4.72 / 5.00",
-          image: "",
-          protected: false
+          tag: "SSC",
+          period: "2019",
+          title: "Secondary School Certificate (Science)",
+          school: "Rajshahi Shikkha Board Govt. Model School and College",
+          meta: "GPA: 4.72 / 5.00",
+          img: "",
+          viewOnly: false
         },
         {
-          badge: "JSC",
-          year: "2016",
-          degree: "Junior School Certificate",
-          institution: "Rajshahi Shikkha Board Govt. Model School and College",
-          result: "JSC Mark Sheet (View Only)",
-          image: "https://raw.githubusercontent.com/sabbir87/sabbir-portfolio/main/JSC%20Mark%20Sheet.jpg.jpeg",
-          protected: true
+          tag: "JSC",
+          period: "2016",
+          title: "Junior School Certificate",
+          school: "Rajshahi Shikkha Board Govt. Model School and College",
+          meta: "Mark Sheet Record",
+          img: "https://raw.githubusercontent.com/sabbir87/sabbir-portfolio/main/JSC%20Mark%20Sheet.jpg.jpeg",
+          viewOnly: true
         }
       ],
-
-      scoutActivities: [
+      scouting: [
         {
-          id: "investiture-training",
-          title: "Investiture & Rover Mate Training",
-          badge: "Training & Leadership",
-          description: "Participation and coordination in Investiture Camps, Air Scout Unit Leader Basic Course, and Rover Mate training courses at National & Regional Scout Training Centers.",
+          id: "camps",
+          name: "Training & Investiture",
+          badge: "Scouting",
+          desc: "Attended and helped coordinate Investiture Camps, Air Scout Unit Leader Basic Course, and Rover Mate training sessions at National and Regional Scout Training Centers, plus Safe from Harm and JOTA-JOTI outreach.",
           photos: [
-            { src: "", caption: "Scout training & leadership camp session" },
-            { src: "", caption: "Unit coordination & team briefing" }
+            { src: "", cap: "Scout training & camp session" },
+            { src: "", cap: "Unit leadership & coordination" }
           ]
         },
         {
-          id: "rambling-service",
-          title: "150 km Rambling & Community Service",
-          badge: "Expedition & SDG",
-          description: "Long-distance rambling (পরিভ্রমণ) expeditions, pioneering skill sessions, JOTA-JOTI outreach, Safe from Harm training, and community clean-up & dengue awareness drives.",
+          id: "expeditions",
+          name: "Rambling & Community",
+          badge: "Service",
+          desc: "Long-distance rambling (পরিভ্রমণ) hikes, pioneering work, and weekly clean-up & dengue prevention drives across campus and nearby Savar/Ashulia areas.",
           photos: [
-            { src: "", caption: "Outdoor field expedition & community outreach" },
-            { src: "", caption: "SDG & clean-up awareness initiative" }
+            { src: "", cap: "Rambling & outdoor field work" },
+            { src: "", cap: "Community clean-up initiative" }
           ]
         },
         {
-          id: "bimstec-protocol",
-          title: "BIMSTEC 2025 & University Protocol",
-          badge: "Volunteer & Protocol",
-          description: "Served as a Volunteer Representative for Bangladesh Scouts at BIMSTEC Conference 2025 (New Delhi) and coordinated Rover Scout volunteer & protocol teams for major university events.",
+          id: "protocol",
+          name: "BIMSTEC & Campus Duty",
+          badge: "Volunteer",
+          desc: "Represented Bangladesh Scouts as a Volunteer Representative at the BIMSTEC Conference 2025 in New Delhi and coordinated Rover Scout volunteer and VIP protocol teams at DIU.",
           photos: [
-            { src: "", caption: "International & campus protocol duty" },
-            { src: "", caption: "Volunteer team deployment" }
+            { src: "", cap: "Volunteer & protocol assignment" },
+            { src: "", cap: "Event team briefing" }
           ]
         }
       ],
-
       sports: [
         {
-          type: "volleyball",
+          sport: "volleyball",
           title: "Inter Regiment Volleyball Tournament",
-          subtitle: "Bangladesh National Cadet Corps (BNCC)",
-          detail: "Represented BNCC in the Inter Regiment Volleyball Tournament.",
-          image: ""
+          org: "Bangladesh National Cadet Corps (BNCC)",
+          desc: "Played for BNCC in the Inter Regiment Volleyball Tournament.",
+          img: ""
         },
         {
-          type: "cricket",
-          title: "Shahagola Cricket Championship",
-          subtitle: "Shahagola Cricket Team & শাহাগোলা তরুণ সংসদ",
-          detail: "Captained the winning squad in the March 2026 tournament and received the championship trophy.",
-          image: ""
-        },
-        {
-          type: "volleyball",
+          sport: "volleyball",
           title: "Inter University Volleyball Tournament",
-          subtitle: "University Sports Representation",
-          detail: "Competed in Inter University Volleyball competition representing team spirit and court agility.",
-          image: ""
+          org: "University Sports",
+          desc: "Competed in the Inter University Volleyball Tournament.",
+          img: ""
         },
         {
-          type: "cricket",
-          title: "DIU Central Club Football & Campus Sports",
-          subtitle: "DIU Air Rover Scout Group Team",
-          detail: "Active team player across campus tournaments and inter-club sports events.",
-          image: ""
+          sport: "cricket",
+          title: "Shahagola Cricket Championship",
+          org: "Shahagola Cricket Team & শাহাগোলা তরুণ সংসদ",
+          desc: "Captained the winning team in the March 2026 tournament and received the championship trophy.",
+          img: ""
+        },
+        {
+          sport: "football",
+          title: "DIU Central Club Football",
+          org: "DIU Air Rover Scout Group",
+          desc: "Played for the DIU Air Rover Scout Group squad in the DIU Central Club Football Tournament.",
+          img: ""
         }
       ],
-
       designs: [
         {
-          title: "Custom Sublimation Sports Jerseys",
-          category: "Sportswear Pattern Design",
-          desc: "Geometric, chevron, and dynamic team jersey layouts tailored for clubs and tournaments.",
-          image: ""
+          cat: "Sportswear",
+          title: "Sublimation Jerseys",
+          desc: "Custom team jersey layouts with geometric, chevron, and abstract patterns.",
+          img: ""
         },
         {
-          title: "Tracksuits & Athletic Trousers",
-          category: "Apparel & Mockups",
-          desc: "Coordinated sports tracksuits and training wear designs with clean color blocking.",
-          image: ""
+          cat: "Apparel",
+          title: "Tracksuits & Trousers",
+          desc: "Matching sports tracksuits and training trousers designed for teams and events.",
+          img: ""
         },
         {
-          title: "Event Banners & Vector Graphics",
-          category: "Illustrator & Canva",
-          desc: "Camp banners, scouting event posters, logos, and custom vector illustrations.",
-          image: ""
+          cat: "Graphics",
+          title: "Banners & Vector Art",
+          desc: "Event banners, posters, and vector graphics in Adobe Illustrator and Canva.",
+          img: ""
         }
       ],
-
       skills: [
-        { name: "HTML5 & CSS3", category: "frontend", level: 90, icon: "fab fa-html5" },
-        { name: "JavaScript", category: "frontend", level: 78, icon: "fab fa-js" },
-        { name: "Adobe Illustrator & Canva", category: "frontend", level: 88, icon: "fas fa-pen-nib" },
-        { name: "Python & ML (LightGBM / RF)", category: "backend", level: 84, icon: "fab fa-python" },
-        { name: "C, C++ (OpenGL) & Java", category: "backend", level: 82, icon: "fas fa-code" },
-        { name: "SQL, MySQL & XAMPP", category: "tools", level: 80, icon: "fas fa-database" },
-        { name: "Git, GitHub & VS Code", category: "tools", level: 85, icon: "fab fa-github" }
+        { name: "HTML5 & CSS3", group: "web-design", pct: 90, icon: "fab fa-html5" },
+        { name: "JavaScript", group: "web-design", pct: 78, icon: "fab fa-js" },
+        { name: "Illustrator & Canva", group: "web-design", pct: 88, icon: "fas fa-pen-nib" },
+        { name: "Python & ML", group: "dev-ml", pct: 84, icon: "fab fa-python" },
+        { name: "C, C++ (OpenGL) & Java", group: "dev-ml", pct: 82, icon: "fas fa-code" },
+        { name: "SQL, MySQL & XAMPP", group: "tools", pct: 80, icon: "fas fa-database" },
+        { name: "Git, GitHub & VS Code", group: "tools", pct: 85, icon: "fab fa-github" }
       ],
-
       projects: [
         {
-          title: "Hybrid Phishing Website Detection (AI)",
-          category: "ai",
-          desc: "B.Sc. thesis research in Python evaluating machine learning & ensemble models (Random Forest, Decision Tree, SVM, Gradient Boosting, LightGBM, CatBoost, VotingClassifier) for phishing URL detection.",
-          tags: ["Python", "Machine Learning", "LightGBM", "CatBoost"],
-          repoUrl: "https://github.com/sabbir87"
+          kind: "ai",
+          title: "Hybrid Phishing Website Detection",
+          desc: "B.Sc. thesis work in Python comparing Random Forest, Decision Tree, SVM, Gradient Boosting, LightGBM, CatBoost, and VotingClassifier for detecting phishing websites.",
+          tags: ["Python", "LightGBM", "CatBoost", "ML"],
+          link: "https://github.com/sabbir87"
         },
         {
-          title: "Ticket Kothay — Movie Ticket Booking",
-          category: "web",
-          desc: "Web-based movie ticket booking system built with HTML5, CSS3, JavaScript, and SQL for structured database management and booking workflows.",
+          kind: "web",
+          title: "Ticket Kothay",
+          desc: "Movie ticket booking web system built with HTML5, CSS3, JavaScript, and SQL for database lab coursework.",
           tags: ["HTML5", "CSS3", "JavaScript", "SQL"],
-          repoUrl: "https://github.com/sabbir87"
+          link: "https://github.com/sabbir87"
         },
         {
-          title: "DIU Air Traffic Control (3D Simulation)",
-          category: "ai",
-          desc: "Interactive 3D air traffic control simulation developed in C++ using OpenGL and GLUT for Computer Graphics coursework.",
-          tags: ["C++", "OpenGL", "GLUT", "3D Graphics"],
-          repoUrl: "https://github.com/sabbir87"
+          kind: "ai",
+          title: "DIU Air Traffic Control (3D)",
+          desc: "3D air traffic control simulation developed in C++ using OpenGL and GLUT for Computer Graphics lab.",
+          tags: ["C++", "OpenGL", "GLUT"],
+          link: "https://github.com/sabbir87"
         }
       ],
-
-      socials: [
-        { icon: "fab fa-github", url: "https://github.com/sabbir87", label: "GitHub" },
-        { icon: "fas fa-envelope", url: "#contact", label: "Email" },
-        { icon: "fas fa-file-pdf", url: "#resume-cv", label: "CV" }
-      ],
-
-      contactItems: [
-        { icon: "fas fa-envelope", label: "Email", value: "sabbir.ahommed@example.com", copyText: "sabbir.ahommed@example.com" },
-        { icon: "fab fa-github", label: "GitHub Repository", value: "github.com/sabbir87/sabbir-portfolio", url: "https://github.com/sabbir87/sabbir-portfolio" },
-        { icon: "fas fa-map-marker-alt", label: "Location", value: "Daffodil Smart City, Ashulia / Savar, Dhaka" }
+      contacts: [
+        { icon: "fas fa-envelope", label: "Email", value: "sabbir.ahommed@example.com", copy: "sabbir.ahommed@example.com" },
+        { icon: "fab fa-github", label: "GitHub", value: "github.com/sabbir87/sabbir-portfolio", url: "https://github.com/sabbir87/sabbir-portfolio" },
+        { icon: "fas fa-map-marker-alt", label: "Address", value: "Daffodil Smart City, Birulia, Savar, Dhaka" }
       ]
     };
 
-    /* =========================================
-       HELPER DOM & MODAL / TOAST
-       ========================================= */
-    const modal = document.getElementById("preview-modal");
-    const modalBody = document.getElementById("modal-body-content");
-    const toast = document.getElementById("toast");
-    const toastMessage = document.getElementById("toast-message");
+    const modalBg = document.getElementById("modal-bg");
+    const modalSlot = document.getElementById("modal-slot");
+    const toastBox = document.getElementById("toast-box");
+    const toastText = document.getElementById("toast-text");
+    let toastTimer;
 
-    function showToast(msg) {
-      toastMessage.textContent = msg;
-      toast.classList.add("show");
-      clearTimeout(window.toastTimer);
-      window.toastTimer = setTimeout(() => toast.classList.remove("show"), 2800);
+    function notify(msg) {
+      toastText.textContent = msg;
+      toastBox.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toastBox.classList.remove("show"), 2500);
     }
 
-    function openModal(html) {
-      modalBody.innerHTML = html;
-      modal.classList.add("open");
-      modal.setAttribute("aria-hidden", "false");
+    function showModal(markup) {
+      modalSlot.innerHTML = markup;
+      modalBg.classList.add("open");
+      modalBg.setAttribute("aria-hidden", "false");
     }
 
-    function closeModal() {
-      modal.classList.remove("open");
-      modal.setAttribute("aria-hidden", "true");
-      modalBody.innerHTML = "";
+    function hideModal() {
+      modalBg.classList.remove("open");
+      modalBg.setAttribute("aria-hidden", "true");
+      modalSlot.innerHTML = "";
     }
 
-    document.getElementById("modal-close").addEventListener("click", closeModal);
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) closeModal();
+    document.getElementById("modal-x").addEventListener("click", hideModal);
+    modalBg.addEventListener("click", (e) => {
+      if (e.target === modalBg) hideModal();
     });
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeModal();
+      if (e.key === "Escape") hideModal();
     });
 
-    /* =========================================
-       THEME & MOBILE NAV
-       ========================================= */
-    const themeToggle = document.getElementById("theme-toggle");
-    function setTheme(theme) {
-      document.documentElement.setAttribute("data-theme", theme);
-      localStorage.setItem("portfolio-theme", theme);
-      themeToggle.innerHTML = theme === "dark"
-        ? '<i class="fas fa-sun"></i>'
-        : '<i class="fas fa-moon"></i>';
-    }
-    setTheme(localStorage.getItem("portfolio-theme") || "dark");
-    themeToggle.addEventListener("click", () => {
-      const current = document.documentElement.getAttribute("data-theme");
-      setTheme(current === "dark" ? "light" : "dark");
-    });
-
-    const menuToggle = document.getElementById("menu-toggle");
-    const navLinks = document.getElementById("nav-links");
-    menuToggle.addEventListener("click", () => navLinks.classList.toggle("active"));
-    navLinks.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => navLinks.classList.remove("active"));
-    });
-
-    /* =========================================
-       HERO & TYPING EFFECT
-       ========================================= */
-    document.getElementById("hero-status").textContent = portfolioData.profile.status;
-    document.getElementById("hero-name").textContent = portfolioData.profile.name;
-    document.getElementById("hero-bio").textContent = portfolioData.profile.bio;
-    document.getElementById("hero-img").src = portfolioData.profile.avatar;
-    document.getElementById("hero-chip-text").textContent = portfolioData.profile.chipText;
-
-    document.getElementById("hero-socials").innerHTML = portfolioData.socials
-      .map((s) => `<a href="${s.url}" class="social-icon" aria-label="${s.label}" ${s.url.startsWith("http") ? 'target="_blank" rel="noopener"' : ""}><i class="${s.icon}"></i></a>`)
-      .join("");
-
-    const typedEl = document.getElementById("typed-text");
-    const roles = portfolioData.profile.roles;
-    let roleIdx = 0, charIdx = 0, deleting = false;
-    function typeLoop() {
-      const currentRole = roles[roleIdx];
-      typedEl.textContent = deleting
-        ? currentRole.slice(0, --charIdx)
-        : currentRole.slice(0, ++charIdx);
-
-      let delay = deleting ? 55 : 95;
-      if (!deleting && charIdx === currentRole.length) {
-        delay = 1400;
-        deleting = true;
-      } else if (deleting && charIdx === 0) {
-        deleting = false;
-        roleIdx = (roleIdx + 1) % roles.length;
-        delay = 350;
-      }
-      setTimeout(typeLoop, delay);
-    }
-    typeLoop();
-
-    /* =========================================
-       PERSONAL & ACADEMIC RENDERING
-       ========================================= */
-    document.getElementById("personal-info-grid").innerHTML = portfolioData.profile.personalInfo
-      .map((item) => `
-        <div class="info-card">
-          <div class="info-icon"><i class="${item.icon}"></i></div>
-          <div>
-            <div class="info-label">${item.label}</div>
-            <div class="info-value">${item.value}</div>
-          </div>
-        </div>
-      `)
-      .join("");
-
-    document.getElementById("about-paragraphs").innerHTML = portfolioData.profile.aboutParagraphs
-      .map((p) => `<p>${p}</p>`)
-      .join("");
-
-    document.getElementById("about-stats").innerHTML = portfolioData.profile.stats
-      .map((st) => `
-        <div class="stat-card">
-          <div class="stat-number">${st.number}</div>
-          <div class="stat-label">${st.label}</div>
-        </div>
-      `)
-      .join("");
-
-    function renderAcademic() {
-      const grid = document.getElementById("academic-grid");
-      grid.innerHTML = portfolioData.academic
-        .map((edu, idx) => `
-          <article class="edu-card">
-            <div class="edu-cert-box" ${edu.protected ? 'oncontextmenu="return false;"' : ""}>
-              ${edu.image
-                ? `<img src="${edu.image}" alt="${edu.degree}" class="edu-cert-img ${edu.protected ? "protected-media" : ""}" id="edu-img-${idx}" draggable="false" />`
-                : `<div class="cert-placeholder"><i class="fas fa-certificate" style="font-size: 1.5rem; margin-bottom: 6px; display: block;"></i>${edu.badge} Record</div>`
-              }
-              ${edu.protected && edu.image ? '<div class="protected-shield" oncontextmenu="return false;" ondragstart="return false;"></div>' : ""}
-              <span class="edu-badge">${edu.badge}</span>
-            </div>
-            <div class="edu-body">
-              <div class="edu-year">${edu.year}</div>
-              <h3 class="edu-degree">${edu.degree}</h3>
-              <p class="edu-inst">${edu.institution}</p>
-              <p class="edu-result">${edu.result}</p>
-              <div class="edu-actions">
-                ${edu.image ? `
-                  <button type="button" class="btn btn-outline btn-sm" onclick="previewImage('${edu.image}', '${edu.degree} — ${edu.institution}', ${Boolean(edu.protected)})">
-                    <i class="fas fa-eye"></i> ${edu.protected ? "View Mark Sheet" : "Preview"}
-                  </button>
-                ` : ""}
-                ${edu.protected ? "" : `
-                  <label class="btn btn-outline btn-sm" style="cursor: pointer;">
-                    <i class="fas fa-upload"></i> Update Image
-                    <input type="file" accept="image/*" hidden onchange="updateAcademicImage(event, ${idx})" />
-                  </label>
-                `}
-              </div>
-            </div>
-          </article>
-        `)
-        .join("");
-    }
-
-    window.updateAcademicImage = function(event, idx) {
-      const file = event.target.files[0];
-      if (!file) return;
-      const url = URL.createObjectURL(file);
-      portfolioData.academic[idx].image = url;
-      renderAcademic();
-      showToast("Certificate/card image updated for this session.");
-    };
-
-    window.previewImage = function(src, caption, isProtected = false) {
+    function viewPhoto(src, note, viewOnly = false) {
       if (!src) return;
-      openModal(`
-        <div class="modal-img-wrap" ${isProtected ? 'oncontextmenu="return false;"' : ""}>
-          <img src="${src}" alt="${caption}" class="modal-img ${isProtected ? "protected-media" : ""}" draggable="false" />
-          ${isProtected ? '<div class="protected-shield" oncontextmenu="return false;" ondragstart="return false;"></div>' : ""}
+      showModal(`
+        <div class="modal-media-box" ${viewOnly ? 'oncontextmenu="return false;"' : ""}>
+          <img src="${src}" alt="${note}" class="modal-pic ${viewOnly ? "no-save-img" : ""}" draggable="false" />
+          ${viewOnly ? '<div class="no-save-shield" oncontextmenu="return false;" ondragstart="return false;"></div>' : ""}
         </div>
-        <div class="modal-content" style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;">
-          <p style="color: var(--text-secondary);">${caption}</p>
-          ${isProtected ? '<span class="section-tag" style="margin-bottom: 0;"><i class="fas fa-lock"></i> View Only • Download Disabled</span>' : ""}
+        <div class="modal-info">
+          <span>${note}</span>
+          ${viewOnly ? '<span><i class="fas fa-lock"></i> View only</span>' : ""}
         </div>
       `);
-    };
+    }
 
-    renderAcademic();
+    // Theme
+    const themeBtn = document.getElementById("theme-btn");
+    function applyTheme(mode) {
+      document.documentElement.setAttribute("data-theme", mode);
+      localStorage.setItem("sabbir_theme", mode);
+      themeBtn.innerHTML = mode === "dark" ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    }
+    applyTheme(localStorage.getItem("sabbir_theme") || "dark");
+    themeBtn.addEventListener("click", () => {
+      const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      applyTheme(next);
+    });
 
-    /* =========================================
-       SCOUT & SPORTS TABS
-       ========================================= */
-    const mainTabs = document.querySelectorAll("#activity-main-tabs .tab-btn");
-    const scoutSection = document.getElementById("scout-section");
-    const sportsSection = document.getElementById("sports-section");
+    // Mobile menu & active nav link
+    const burgerBtn = document.getElementById("burger-btn");
+    const navMenu = document.getElementById("nav-menu");
+    burgerBtn.addEventListener("click", () => navMenu.classList.toggle("open"));
+    navMenu.querySelectorAll("a").forEach((a) => {
+      a.addEventListener("click", () => navMenu.classList.remove("open"));
+    });
 
-    mainTabs.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        mainTabs.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-        const target = btn.getAttribute("data-main");
-        scoutSection.style.display = target === "scout" ? "block" : "none";
-        sportsSection.style.display = target === "sports" ? "block" : "none";
+    const navAnchors = Array.from(navMenu.querySelectorAll("a"));
+    const pageSections = Array.from(document.querySelectorAll("section[id]"));
+    window.addEventListener("scroll", () => {
+      const pos = window.scrollY + 120;
+      let currentId = "home";
+      for (const sec of pageSections) {
+        if (pos >= sec.offsetTop) currentId = sec.id;
+      }
+      navAnchors.forEach((a) => {
+        a.classList.toggle("active", a.getAttribute("href") === `#${currentId}`);
       });
     });
 
-    const scoutSubTabs = document.getElementById("scout-sub-tabs");
-    const scoutPanel = document.getElementById("scout-detail-panel");
-    let activeScoutId = portfolioData.scoutActivities[0].id;
+    // Typing line
+    const roleTyped = document.getElementById("role-typed");
+    let rIndex = 0, cIndex = 0, erasing = false;
+    function stepType() {
+      const word = DATA.roles[rIndex];
+      roleTyped.textContent = erasing ? word.slice(0, --cIndex) : word.slice(0, ++cIndex);
+      let wait = erasing ? 45 : 85;
+      if (!erasing && cIndex === word.length) {
+        erasing = true;
+        wait = 1400;
+      } else if (erasing && cIndex === 0) {
+        erasing = false;
+        rIndex = (rIndex + 1) % DATA.roles.length;
+        wait = 300;
+      }
+      setTimeout(stepType, wait);
+    }
+    stepType();
 
-    function renderScoutSubTabs() {
-      scoutSubTabs.innerHTML = portfolioData.scoutActivities
-        .map((act) => `
-          <button type="button" class="tab-btn ${act.id === activeScoutId ? "active" : ""}" data-scout="${act.id}">
-            ${act.title}
-          </button>
-        `)
-        .join("");
+    // Personal cards
+    document.getElementById("personal-cards").innerHTML = DATA.personal.map((p) => `
+      <div class="info-card">
+        <i class="${p.icon}"></i>
+        <div>
+          <small>${p.label}</small>
+          <strong>${p.value}</strong>
+        </div>
+      </div>
+    `).join("");
 
-      scoutSubTabs.querySelectorAll(".tab-btn").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          activeScoutId = btn.getAttribute("data-scout");
-          renderScoutSubTabs();
-          renderScoutPanel();
-        });
-      });
+    // Education cards
+    function paintEducation() {
+      document.getElementById("education-list").innerHTML = DATA.education.map((ed, idx) => `
+        <article class="edu-item">
+          <div class="edu-thumb" ${ed.viewOnly ? 'oncontextmenu="return false;"' : ""}>
+            ${ed.img
+              ? `<img src="${ed.img}" alt="${ed.title}" class="${ed.viewOnly ? "no-save-img" : ""}" draggable="false" />`
+              : `<div class="edu-empty"><i class="fas fa-graduation-cap" style="display:block;font-size:1.3rem;margin-bottom:6px;color:var(--accent);"></i>${ed.tag}</div>`
+            }
+            ${ed.viewOnly && ed.img ? '<div class="no-save-shield" oncontextmenu="return false;" ondragstart="return false;"></div>' : ""}
+            <span class="edu-tag">${ed.tag}</span>
+          </div>
+          <div class="edu-body">
+            <div class="edu-period">${ed.period}</div>
+            <h3>${ed.title}</h3>
+            <p class="edu-school">${ed.school}</p>
+            <p class="edu-meta">${ed.meta}</p>
+            <div class="edu-foot">
+              ${ed.img ? `
+                <button type="button" class="btn btn-ghost btn-sm" onclick="viewPhoto('${ed.img}', '${ed.title} — ${ed.school}', ${ed.viewOnly})">
+                  <i class="fas fa-eye"></i> View
+                </button>
+              ` : ""}
+              ${ed.viewOnly ? "" : `
+                <label class="btn btn-ghost btn-sm" style="cursor:pointer;">
+                  <i class="fas fa-image"></i> Set Photo
+                  <input type="file" accept="image/*" hidden onchange="setEduPhoto(event, ${idx})" />
+                </label>
+              `}
+            </div>
+          </div>
+        </article>
+      `).join("");
     }
 
-    function renderScoutPanel() {
-      const act = portfolioData.scoutActivities.find((a) => a.id === activeScoutId);
-      if (!act) return;
+    window.setEduPhoto = function(e, idx) {
+      const f = e.target.files[0];
+      if (!f) return;
+      DATA.education[idx].img = URL.createObjectURL(f);
+      paintEducation();
+      notify("Photo set for this session.");
+    };
+    paintEducation();
 
-      scoutPanel.innerHTML = `
-        <div class="scout-header">
-          <h3>${act.title}</h3>
-          <span class="section-tag" style="margin-bottom: 0;">${act.badge}</span>
+    // Activities (Scout & Sports)
+    const switchBtns = document.querySelectorAll("#activity-switch .pill-btn");
+    const scoutArea = document.getElementById("scout-area");
+    const sportsArea = document.getElementById("sports-area");
+
+    switchBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        switchBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        const isScout = btn.dataset.tab === "scout";
+        scoutArea.style.display = isScout ? "block" : "none";
+        sportsArea.style.display = isScout ? "none" : "block";
+      });
+    });
+
+    const scoutTabs = document.getElementById("scout-tabs");
+    const scoutView = document.getElementById("scout-view");
+    let currentScout = DATA.scouting[0].id;
+
+    function paintScout() {
+      scoutTabs.innerHTML = DATA.scouting.map((s) => `
+        <button type="button" class="pill-btn ${s.id === currentScout ? "active" : ""}" data-s="${s.id}">${s.name}</button>
+      `).join("");
+
+      scoutTabs.querySelectorAll("button").forEach((b) => {
+        b.addEventListener("click", () => {
+          currentScout = b.dataset.s;
+          paintScout();
+        });
+      });
+
+      const item = DATA.scouting.find((s) => s.id === currentScout);
+      scoutView.innerHTML = `
+        <div class="scout-top">
+          <h3>${item.name}</h3>
+          <span class="entry-cat">${item.badge}</span>
         </div>
-        <p class="scout-desc">${act.description}</p>
-        <div class="gallery-grid">
-          ${act.photos.map((p) => `
-            <div class="gallery-card" ${p.src ? `onclick="previewImage('${p.src}', '${p.caption}')"` : ""}>
-              ${p.src
-                ? `<img src="${p.src}" alt="${p.caption}" />`
-                : `<div class="gallery-thumb-placeholder">No photo added yet</div>`
+        <p class="scout-text">${item.desc}</p>
+        <div class="photo-strip">
+          ${item.photos.map((ph) => `
+            <div class="photo-tile" ${ph.src ? `onclick="viewPhoto('${ph.src}', '${ph.cap}')"` : ""}>
+              ${ph.src
+                ? `<img src="${ph.src}" alt="${ph.cap}" />`
+                : `<div class="photo-blank">Photo slot</div>`
               }
-              <div class="gallery-caption">${p.caption}</div>
+              <div class="photo-cap">${ph.cap}</div>
             </div>
           `).join("")}
         </div>
-        <div class="upload-strip">
-          <span style="font-size: 0.86rem; color: var(--text-secondary);">Add a photo to this activity gallery (session preview):</span>
-          <label class="btn btn-outline btn-sm" style="cursor: pointer;">
+        <div class="strip-footer">
+          <span class="panel-note">Preview a local photo in this session:</span>
+          <label class="btn btn-ghost btn-sm" style="cursor:pointer;">
             <i class="fas fa-plus"></i> Add Photo
-            <input type="file" accept="image/*" hidden id="scout-photo-upload" />
+            <input type="file" accept="image/*" hidden id="scout-add-file" />
           </label>
         </div>
       `;
 
-      const uploadInput = document.getElementById("scout-photo-upload");
-      uploadInput.addEventListener("change", (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
-        const url = URL.createObjectURL(file);
-        act.photos.push({ src: url, caption: file.name });
-        renderScoutPanel();
-        showToast("Photo added to gallery.");
+      document.getElementById("scout-add-file").addEventListener("change", (e) => {
+        const f = e.target.files[0];
+        if (!f) return;
+        item.photos.push({ src: URL.createObjectURL(f), cap: f.name });
+        paintScout();
+        notify("Photo added to preview.");
       });
     }
+    paintScout();
 
-    renderScoutSubTabs();
-    renderScoutPanel();
+    const sportsList = document.getElementById("sports-list");
+    const sportFilterBtns = document.querySelectorAll("#sport-filters .pill-btn");
 
-    const sportsGrid = document.getElementById("sports-grid");
-    const sportsFilterBtns = document.querySelectorAll("#sports-filter-tabs .filter-btn");
-
-    function renderSports(filter = "all") {
-      const list = filter === "all"
-        ? portfolioData.sports
-        : portfolioData.sports.filter((s) => s.type === filter);
-
-      sportsGrid.innerHTML = list
-        .map((sp) => `
-          <article class="sport-card">
-            ${sp.image
-              ? `<img src="${sp.image}" alt="${sp.title}" class="card-img-top" onclick="previewImage('${sp.image}', '${sp.title} — ${sp.detail}')" />`
-              : `<div class="card-img-placeholder"><i class="fas fa-trophy" style="margin-right: 8px; color: var(--accent);"></i>${sp.title}</div>`
+    function paintSports(filter = "all") {
+      const rows = filter === "all" ? DATA.sports : DATA.sports.filter((x) => x.sport === filter);
+      sportsList.innerHTML = rows.map((sp) => `
+        <article class="entry-card">
+          <div class="entry-media" ${sp.img ? `onclick="viewPhoto('${sp.img}', '${sp.title}')"` : ""}>
+            ${sp.img
+              ? `<img src="${sp.img}" alt="${sp.title}" />`
+              : `<span><i class="fas fa-medal" style="color:var(--accent);margin-right:6px;"></i>${sp.sport.toUpperCase()}</span>`
             }
-            <div class="card-body">
-              <span class="project-category">${sp.type}</span>
-              <h3 style="margin: 6px 0 4px;">${sp.title}</h3>
-              <p style="font-size: 0.86rem; color: var(--accent); margin-bottom: 8px;">${sp.subtitle}</p>
-              <p style="font-size: 0.9rem; color: var(--text-secondary);">${sp.detail}</p>
-            </div>
-          </article>
-        `)
-        .join("");
-    }
-
-    sportsFilterBtns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        sportsFilterBtns.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-        renderSports(btn.getAttribute("data-sport"));
-      });
-    });
-    renderSports();
-
-    /* =========================================
-       GRAPHICS, SKILLS & PROJECTS
-       ========================================= */
-    document.getElementById("design-grid").innerHTML = portfolioData.designs
-      .map((d) => `
-        <article class="design-card">
-          ${d.image
-            ? `<img src="${d.image}" alt="${d.title}" class="card-img-top" onclick="previewImage('${d.image}', '${d.title} — ${d.desc}')" />`
-            : `<div class="card-img-placeholder"><i class="fas fa-pen-nib" style="margin-right: 8px; color: var(--accent);"></i>${d.title}</div>`
-          }
-          <div class="card-body">
-            <span class="project-category">${d.category}</span>
-            <h3 style="margin: 6px 0 8px;">${d.title}</h3>
-            <p style="font-size: 0.9rem; color: var(--text-secondary);">${d.desc}</p>
+          </div>
+          <div class="entry-body">
+            <span class="entry-cat">${sp.sport}</span>
+            <h3>${sp.title}</h3>
+            <div class="entry-sub">${sp.org}</div>
+            <p class="entry-desc">${sp.desc}</p>
           </div>
         </article>
-      `)
-      .join("");
+      `).join("");
+    }
 
-    const skillsContainer = document.getElementById("skills-container");
-    const skillFilterBtns = document.querySelectorAll("#skill-filters .filter-btn");
+    sportFilterBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        sportFilterBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        paintSports(btn.dataset.sport);
+      });
+    });
+    paintSports();
 
-    function renderSkills(filter = "all") {
-      const items = filter === "all"
-        ? portfolioData.skills
-        : portfolioData.skills.filter((sk) => sk.category === filter);
+    // Design cards
+    document.getElementById("design-list").innerHTML = DATA.designs.map((d) => `
+      <article class="entry-card">
+        <div class="entry-media" ${d.img ? `onclick="viewPhoto('${d.img}', '${d.title}')"` : ""}>
+          ${d.img
+            ? `<img src="${d.img}" alt="${d.title}" />`
+            : `<span><i class="fas fa-layer-group" style="color:var(--accent);margin-right:6px;"></i>${d.cat}</span>`
+          }
+        </div>
+        <div class="entry-body">
+          <span class="entry-cat">${d.cat}</span>
+          <h3>${d.title}</h3>
+          <p class="entry-desc">${d.desc}</p>
+        </div>
+      </article>
+    `).join("");
 
-      skillsContainer.innerHTML = items
-        .map((sk) => `
-          <div class="skill-card">
-            <div class="skill-top">
-              <div class="skill-info">
-                <i class="${sk.icon}"></i>
-                <strong>${sk.name}</strong>
-              </div>
-              <span style="font-size: 0.86rem; color: var(--accent); font-weight: 600;">${sk.level}%</span>
+    // Skills
+    const skillsList = document.getElementById("skills-list");
+    const skillBtns = document.querySelectorAll("#skill-filter-row .pill-btn");
+
+    function paintSkills(filter = "all") {
+      const rows = filter === "all" ? DATA.skills : DATA.skills.filter((s) => s.group === filter);
+      skillsList.innerHTML = rows.map((s) => `
+        <div class="skill-box">
+          <div class="skill-head">
+            <span><i class="${s.icon}"></i>${s.name}</span>
+            <small style="color:var(--accent);font-weight:600;">${s.pct}%</small>
+          </div>
+          <div class="meter">
+            <div class="meter-fill" style="width:${s.pct}%;"></div>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    skillBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        skillBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        paintSkills(btn.dataset.skill);
+      });
+    });
+    paintSkills();
+
+    // Projects
+    const projectsList = document.getElementById("projects-list");
+    const projBtns = document.querySelectorAll("#project-filter-row .pill-btn");
+
+    function paintProjects(filter = "all") {
+      const rows = filter === "all" ? DATA.projects : DATA.projects.filter((p) => p.kind === filter);
+      projectsList.innerHTML = rows.map((p) => `
+        <article class="entry-card">
+          <div class="entry-body">
+            <span class="entry-cat">${p.kind}</span>
+            <h3>${p.title}</h3>
+            <p class="entry-desc">${p.desc}</p>
+            <div class="chip-list">
+              ${p.tags.map((t) => `<span class="chip">${t}</span>`).join("")}
             </div>
-            <div class="progress-bar">
-              <div class="progress-fill" style="width: ${sk.level}%;"></div>
+            <div>
+              <a href="${p.link}" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
+                <i class="fab fa-github"></i> GitHub
+              </a>
             </div>
           </div>
-        `)
-        .join("");
+        </article>
+      `).join("");
     }
 
-    skillFilterBtns.forEach((btn) => {
+    projBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
-        skillFilterBtns.forEach((b) => b.classList.remove("active"));
+        projBtns.forEach((b) => b.classList.remove("active"));
         btn.classList.add("active");
-        renderSkills(btn.getAttribute("data-filter"));
+        paintProjects(btn.dataset.proj);
       });
     });
-    renderSkills();
+    paintProjects();
 
-    const projectsContainer = document.getElementById("projects-container");
-    const projectFilterBtns = document.querySelectorAll("#project-filters .filter-btn");
+    // Video & CV
+    const resumeVideo = document.getElementById("resume-video");
+    resumeVideo.addEventListener("contextmenu", (e) => e.preventDefault());
 
-    function renderProjects(filter = "all") {
-      const items = filter === "all"
-        ? portfolioData.projects
-        : portfolioData.projects.filter((pr) => pr.category === filter);
-
-      projectsContainer.innerHTML = items
-        .map((pr) => `
-          <article class="project-card">
-            <div class="project-body">
-              <span class="project-category">${pr.category}</span>
-              <h3 class="project-title">${pr.title}</h3>
-              <p class="project-desc">${pr.desc}</p>
-              <div class="project-tags">
-                ${pr.tags.map((t) => `<span class="tag">${t}</span>`).join("")}
-              </div>
-              <div class="project-actions">
-                <a href="${pr.repoUrl}" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
-                  <i class="fab fa-github"></i> GitHub
-                </a>
-              </div>
-            </div>
-          </article>
-        `)
-        .join("");
-    }
-
-    projectFilterBtns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        projectFilterBtns.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-        renderProjects(btn.getAttribute("data-filter"));
-      });
-    });
-    renderProjects();
-
-    /* =========================================
-       VIDEO RESUME & CV SHOW / DOWNLOAD
-       ========================================= */
-    const videoPlayer = document.getElementById("video-resume-player");
-    videoPlayer.src = portfolioData.profile.videoResumeUrl;
-    videoPlayer.addEventListener("contextmenu", (e) => e.preventDefault());
-
-    const cvDownloadBtn = document.getElementById("cv-download-btn");
-    const cvViewBtn = document.getElementById("cv-view-btn");
-    cvDownloadBtn.href = portfolioData.profile.cvUrl;
-
-    cvViewBtn.addEventListener("click", () => {
-      const url = portfolioData.profile.cvUrl;
-      openModal(`
-        <iframe src="${url}" class="modal-pdf" title="CV Preview"></iframe>
-        <div class="modal-content" style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;">
-          <span style="font-size: 0.9rem; color: var(--text-secondary);">CV_Sabbir_Ahommed.pdf</span>
-          <a href="${url}" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
-            <i class="fas fa-external-link-alt"></i> Open in New Tab
+    document.getElementById("open-cv").addEventListener("click", () => {
+      const cvHref = document.getElementById("download-cv").getAttribute("href");
+      showModal(`
+        <iframe src="${cvHref}" class="modal-frame" title="CV Preview"></iframe>
+        <div class="modal-info">
+          <span>CV_Sabbir_Ahommed.pdf</span>
+          <a href="${cvHref}" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
+            <i class="fas fa-external-link-alt"></i> Open in Tab
           </a>
         </div>
       `);
     });
 
-    /* =========================================
-       CONTACT, COPY, SCROLL & FOOTER
-       ========================================= */
-    document.getElementById("contact-info-list").innerHTML = portfolioData.contactItems
-      .map((c) => `
-        <div class="contact-item">
-          <div class="contact-icon"><i class="${c.icon}"></i></div>
-          <div style="flex: 1; min-width: 0;">
-            <div class="info-label">${c.label}</div>
-            ${c.url
-              ? `<a href="${c.url}" target="_blank" rel="noopener" class="info-value" style="color: var(--accent);">${c.value}</a>`
-              : `<div class="info-value">${c.value}</div>`
-            }
-          </div>
-          ${c.copyText
-            ? `<button type="button" class="btn btn-outline btn-sm" onclick="copyValue('${c.copyText}')"><i class="fas fa-copy"></i></button>`
-            : ""
+    // Contact
+    document.getElementById("contact-cards").innerHTML = DATA.contacts.map((c) => `
+      <div class="contact-card">
+        <i class="${c.icon}"></i>
+        <div style="flex:1;min-width:0;">
+          <small>${c.label}</small>
+          ${c.url
+            ? `<a href="${c.url}" target="_blank" rel="noopener">${c.value}</a>`
+            : `<strong>${c.value}</strong>`
           }
         </div>
-      `)
-      .join("");
+        ${c.copy
+          ? `<button type="button" class="btn btn-ghost btn-sm" onclick="copyVal('${c.copy}')"><i class="fas fa-copy"></i></button>`
+          : ""
+        }
+      </div>
+    `).join("");
 
-    window.copyValue = function(text) {
-      navigator.clipboard.writeText(text).then(() => showToast("Copied to clipboard!"));
+    window.copyVal = function(val) {
+      navigator.clipboard.writeText(val).then(() => notify("Copied to clipboard."));
     };
 
-    document.getElementById("contact-form").addEventListener("submit", (e) => {
+    document.getElementById("mail-form").addEventListener("submit", (e) => {
       e.preventDefault();
-      const name = document.getElementById("sender-name").value.trim();
-      const email = document.getElementById("sender-email").value.trim();
-      const subject = encodeURIComponent(document.getElementById("sender-subject").value.trim());
-      const message = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${document.getElementById("sender-message").value.trim()}`);
-      window.location.href = `mailto:sabbir.ahommed@example.com?subject=${subject}&body=${message}`;
-      showToast("Opening your email client...");
+      const name = document.getElementById("c-name").value.trim();
+      const email = document.getElementById("c-email").value.trim();
+      const subj = encodeURIComponent(document.getElementById("c-subject").value.trim());
+      const msg = encodeURIComponent(`From: ${name} (${email})\n\n${document.getElementById("c-body").value.trim()}`);
+      window.location.href = `mailto:sabbir.ahommed@example.com?subject=${subj}&body=${msg}`;
+      notify("Opening mail client...");
     });
 
-    const backToTop = document.getElementById("back-to-top");
-    window.addEventListener("scroll", () => {
-      backToTop.classList.toggle("show", window.scrollY > 400);
-    });
-    backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
-
-    document.getElementById("footer-year").textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
