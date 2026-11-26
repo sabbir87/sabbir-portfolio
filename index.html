@@ -316,28 +316,31 @@
       font-size: 0.81rem;
     }
 
-    .quick-links {
+    /* Social Media Icons Row */
+    .social-icons-row {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
+      align-items: center;
     }
 
-    .quick-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 6px 12px;
-      border-radius: 8px;
+    .social-icon-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 11px;
       background: var(--surface);
       border: 1px solid var(--border);
-      font-size: 0.83rem;
       color: var(--muted);
-      transition: border-color var(--ease), color var(--ease);
+      display: grid;
+      place-items: center;
+      font-size: 1.08rem;
+      transition: transform var(--ease), border-color var(--ease), color var(--ease), background-color var(--ease);
     }
 
-    .quick-pill:hover {
-      border-color: var(--scout-accent);
-      color: var(--text);
+    .social-icon-btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--air-accent);
+      color: var(--air-accent);
     }
 
     .profile-card {
@@ -985,7 +988,7 @@
       flex-wrap: wrap;
     }
 
-    /* Contact Section (Left Info + Short Designation | Right Simple Name, Mail, Text, Send) */
+    /* Contact Section */
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1085,10 +1088,18 @@
 
     footer {
       border-top: 1px solid var(--border);
-      padding: 24px 0;
+      padding: 28px 0;
       text-align: center;
       font-size: 0.88rem;
       color: var(--muted);
+    }
+
+    .footer-socials {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
     }
 
     /* Modal & Toast */
@@ -1278,17 +1289,9 @@
             <i class="fas fa-envelope"></i> Contact
           </a>
         </div>
-        <div class="quick-links">
-          <a href="https://wa.me/8801721994526" target="_blank" rel="noopener" class="quick-pill">
-            <i class="fab fa-whatsapp" style="color: var(--scout-accent);"></i> 01721994526
-          </a>
-          <a href="mailto:sabbirahommed91@gmail.com" class="quick-pill">
-            <i class="fas fa-envelope" style="color: var(--air-accent);"></i> sabbirahommed91@gmail.com
-          </a>
-          <a href="https://github.com/sabbir87" target="_blank" rel="noopener" class="quick-pill">
-            <i class="fab fa-github"></i> github.com/sabbir87
-          </a>
-        </div>
+
+        <!-- SOCIAL MEDIA ICONS: Facebook, Instagram, Telegram, Twitter (X), Gmail, WhatsApp, GitHub, LinkedIn -->
+        <div class="social-icons-row" id="hero-social-icons"></div>
       </div>
 
       <div class="hero-portrait">
@@ -1475,11 +1478,14 @@
       <div class="sec-head">
         <div class="sec-eyebrow"><i class="fas fa-address-book"></i> Contact</div>
         <h2 class="sec-title">Contact Information</h2>
-        <p class="sec-sub">Reach out via email, WhatsApp, or phone, or send a quick message using the form.</p>
+        <p class="sec-sub">Reach out via email, WhatsApp, phone, or social channels, or send a quick message using the form.</p>
       </div>
 
       <div class="contact-grid">
-        <div class="contact-stack" id="contact-info-stack"></div>
+        <div>
+          <div class="contact-stack" id="contact-info-stack"></div>
+          <div class="social-icons-row" id="contact-social-icons" style="margin-top: 16px;"></div>
+        </div>
 
         <form class="panel" id="simple-message-form">
           <div class="form-field">
@@ -1504,6 +1510,7 @@
 
   <footer>
     <div class="container">
+      <div class="footer-socials" id="footer-social-icons"></div>
       <p>&copy; <span id="footer-year">2026</span> Sabbir Ahommed • Blood Group: B+</p>
     </div>
   </footer>
@@ -1528,6 +1535,17 @@
         "Web & Database Systems",
         "AI & Machine Learning",
         "Custom Sports Apparel Design"
+      ],
+
+      socials: [
+        { name: "Facebook", icon: "fab fa-facebook-f", url: "https://facebook.com/" },
+        { name: "Instagram", icon: "fab fa-instagram", url: "https://instagram.com/" },
+        { name: "Telegram", icon: "fab fa-telegram-plane", url: "https://t.me/+8801721994526" },
+        { name: "Twitter (X)", icon: "fab fa-x-twitter", url: "https://x.com/" },
+        { name: "Gmail", icon: "fas fa-envelope", url: "mailto:sabbirahommed91@gmail.com" },
+        { name: "WhatsApp", icon: "fab fa-whatsapp", url: "https://wa.me/8801721994526" },
+        { name: "GitHub", icon: "fab fa-github", url: "https://github.com/sabbir87" },
+        { name: "LinkedIn", icon: "fab fa-linkedin-in", url: "https://linkedin.com/" }
       ],
 
       personalInfo: [
@@ -1776,6 +1794,12 @@ void displayScene(void) {
           url: "tel:01590030988"
         },
         {
+          icon: "fas fa-droplet",
+          label: "Blood Group",
+          value: "B+",
+          copy: "B+"
+        },
+        {
           icon: "fas fa-location-dot",
           label: "Address",
           value: "Daffodil Smart City, Birulia, Savar, Dhaka",
@@ -1792,6 +1816,24 @@ void displayScene(void) {
         }
       ]
     };
+
+    /* Render Social Media Icons (Hero, Contact & Footer) */
+    function buildSocialButtons() {
+      return PORTFOLIO.socials.map((s) => `
+        <a
+          href="${s.url}"
+          ${s.url.startsWith("http") ? 'target="_blank" rel="noopener"' : ""}
+          class="social-icon-btn"
+          title="${s.name}"
+          aria-label="${s.name}"
+        >
+          <i class="${s.icon}"></i>
+        </a>
+      `).join("");
+    }
+    document.getElementById("hero-social-icons").innerHTML = buildSocialButtons();
+    document.getElementById("contact-social-icons").innerHTML = buildSocialButtons();
+    document.getElementById("footer-social-icons").innerHTML = buildSocialButtons();
 
     /* Modal & Toast */
     const modalBackdrop = document.getElementById("modal-backdrop");
