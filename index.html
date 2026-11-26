@@ -498,12 +498,22 @@
       background: var(--bg-secondary);
       border-bottom: 1px solid var(--border-color);
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .edu-cert-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    .cert-placeholder {
+      color: var(--text-secondary);
+      font-size: 0.86rem;
+      text-align: center;
+      padding: 16px;
     }
 
     .protected-media {
@@ -654,6 +664,17 @@
       display: block;
     }
 
+    .gallery-thumb-placeholder {
+      height: 165px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      font-size: 0.84rem;
+      padding: 12px;
+      text-align: center;
+    }
+
     .gallery-caption {
       padding: 10px 12px;
       font-size: 0.86rem;
@@ -696,6 +717,18 @@
       object-fit: cover;
       display: block;
       cursor: pointer;
+    }
+
+    .card-img-placeholder {
+      width: 100%;
+      height: 190px;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      font-size: 0.86rem;
     }
 
     .card-body {
@@ -772,12 +805,21 @@
       padding: 24px;
     }
 
+    .video-wrapper {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
+      margin-bottom: 14px;
+    }
+
     .video-player {
       width: 100%;
       max-height: 360px;
-      border-radius: 12px;
+      display: block;
       background: #000;
-      margin-bottom: 14px;
+      user-select: none;
+      -webkit-user-select: none;
     }
 
     .cv-highlights {
@@ -1181,22 +1223,29 @@
       <div class="section-header">
         <span class="section-tag">Resume & Introduction</span>
         <h2 class="section-title">Video Resume & Download CV</h2>
-        <p class="section-subtitle">Watch video introduction, upload a new video resume from your device, or view/download my CV.</p>
+        <p class="section-subtitle">Watch video introduction or view/download my CV.</p>
       </div>
 
       <div class="cv-video-grid">
         <div class="media-box">
-          <h3 style="margin-bottom: 12px;"><i class="fas fa-video" style="color: var(--accent);"></i> Video Resume</h3>
-          <video id="video-resume-player" class="video-player" controls preload="metadata">
-            Your browser does not support HTML5 video.
-          </video>
-          <p id="video-status-note" style="font-size: 0.86rem; color: var(--text-secondary); margin-bottom: 14px;">
-            Upload a video file below to preview your video resume in this browser session.
+          <h3 style="margin-bottom: 12px;"><i class="fas fa-video" style="color: var(--accent);"></i> Video Resume (View Only)</h3>
+          <div class="video-wrapper" oncontextmenu="return false;">
+            <video
+              id="video-resume-player"
+              class="video-player"
+              src="https://raw.githubusercontent.com/sabbir87/sabbir-portfolio/main/vedio_resume.mp4"
+              controls
+              controlsList="nodownload noplaybackrate"
+              disablePictureInPicture
+              playsinline
+              preload="metadata"
+            >
+              Your browser does not support HTML5 video.
+            </video>
+          </div>
+          <p id="video-status-note" style="font-size: 0.86rem; color: var(--text-secondary);">
+            View-only video resume stream. Downloading is disabled.
           </p>
-          <label class="btn btn-outline btn-sm" style="cursor: pointer;">
-            <i class="fas fa-upload"></i> Upload Video Resume
-            <input type="file" id="video-upload-input" accept="video/*" hidden />
-          </label>
         </div>
 
         <div class="cv-box">
@@ -1308,6 +1357,7 @@
         chipText: "Student Associate • CSE • Rover",
         avatar: "sabbir.jpeg",
         cvUrl: "https://sabbir87.github.io/sabbir-portfolio/CV_Sabbir_Ahommed.pdf",
+        videoResumeUrl: "https://raw.githubusercontent.com/sabbir87/sabbir-portfolio/main/vedio_resume.mp4",
         roles: [
           "Web & UI Development",
           "AI & ML Research",
@@ -1343,7 +1393,7 @@
           degree: "B.Sc. in Computer Science & Engineering",
           institution: "Daffodil International University (DIU)",
           result: "ID: 0242310005101349 • 64th Batch",
-          image: "sabbir.jpeg",
+          image: "",
           protected: false
         },
         {
@@ -1361,7 +1411,7 @@
           degree: "Secondary School Certificate (Science)",
           institution: "Rajshahi Shikkha Board Govt. Model School and College",
           result: "GPA: 4.72 / 5.00",
-          image: "sabbir.jpeg",
+          image: "",
           protected: false
         },
         {
@@ -1382,8 +1432,8 @@
           badge: "Training & Leadership",
           description: "Participation and coordination in Investiture Camps, Air Scout Unit Leader Basic Course, and Rover Mate training courses at National & Regional Scout Training Centers.",
           photos: [
-            { src: "sabbir.jpeg", caption: "Scout training & leadership camp session" },
-            { src: "sabbir.jpeg", caption: "Unit coordination & team briefing" }
+            { src: "", caption: "Scout training & leadership camp session" },
+            { src: "", caption: "Unit coordination & team briefing" }
           ]
         },
         {
@@ -1392,8 +1442,8 @@
           badge: "Expedition & SDG",
           description: "Long-distance rambling (পরিভ্রমণ) expeditions, pioneering skill sessions, JOTA-JOTI outreach, Safe from Harm training, and community clean-up & dengue awareness drives.",
           photos: [
-            { src: "sabbir.jpeg", caption: "Outdoor field expedition & community outreach" },
-            { src: "sabbir.jpeg", caption: "SDG & clean-up awareness initiative" }
+            { src: "", caption: "Outdoor field expedition & community outreach" },
+            { src: "", caption: "SDG & clean-up awareness initiative" }
           ]
         },
         {
@@ -1402,33 +1452,40 @@
           badge: "Volunteer & Protocol",
           description: "Served as a Volunteer Representative for Bangladesh Scouts at BIMSTEC Conference 2025 (New Delhi) and coordinated Rover Scout volunteer & protocol teams for major university events.",
           photos: [
-            { src: "sabbir.jpeg", caption: "International & campus protocol duty" },
-            { src: "sabbir.jpeg", caption: "Volunteer team deployment" }
+            { src: "", caption: "International & campus protocol duty" },
+            { src: "", caption: "Volunteer team deployment" }
           ]
         }
       ],
 
       sports: [
         {
+          type: "volleyball",
+          title: "Inter Regiment Volleyball Tournament",
+          subtitle: "Bangladesh National Cadet Corps (BNCC)",
+          detail: "Represented BNCC in the Inter Regiment Volleyball Tournament.",
+          image: ""
+        },
+        {
           type: "cricket",
           title: "Shahagola Cricket Championship",
           subtitle: "Shahagola Cricket Team & শাহাগোলা তরুণ সংসদ",
           detail: "Captained the winning squad in the March 2026 tournament and received the championship trophy.",
-          image: "sabbir.jpeg"
+          image: ""
         },
         {
           type: "volleyball",
           title: "Inter University Volleyball Tournament",
           subtitle: "University Sports Representation",
           detail: "Competed in Inter University Volleyball competition representing team spirit and court agility.",
-          image: "sabbir.jpeg"
+          image: ""
         },
         {
           type: "cricket",
           title: "DIU Central Club Football & Campus Sports",
           subtitle: "DIU Air Rover Scout Group Team",
           detail: "Active team player across campus tournaments and inter-club sports events.",
-          image: "sabbir.jpeg"
+          image: ""
         }
       ],
 
@@ -1437,19 +1494,19 @@
           title: "Custom Sublimation Sports Jerseys",
           category: "Sportswear Pattern Design",
           desc: "Geometric, chevron, and dynamic team jersey layouts tailored for clubs and tournaments.",
-          image: "sabbir.jpeg"
+          image: ""
         },
         {
           title: "Tracksuits & Athletic Trousers",
           category: "Apparel & Mockups",
           desc: "Coordinated sports tracksuits and training wear designs with clean color blocking.",
-          image: "sabbir.jpeg"
+          image: ""
         },
         {
           title: "Event Banners & Vector Graphics",
           category: "Illustrator & Canva",
           desc: "Camp banners, scouting event posters, logos, and custom vector illustrations.",
-          image: "sabbir.jpeg"
+          image: ""
         }
       ],
 
@@ -1628,8 +1685,11 @@
         .map((edu, idx) => `
           <article class="edu-card">
             <div class="edu-cert-box" ${edu.protected ? 'oncontextmenu="return false;"' : ""}>
-              <img src="${edu.image}" alt="${edu.degree}" class="edu-cert-img ${edu.protected ? "protected-media" : ""}" id="edu-img-${idx}" draggable="false" />
-              ${edu.protected ? '<div class="protected-shield" oncontextmenu="return false;" ondragstart="return false;"></div>' : ""}
+              ${edu.image
+                ? `<img src="${edu.image}" alt="${edu.degree}" class="edu-cert-img ${edu.protected ? "protected-media" : ""}" id="edu-img-${idx}" draggable="false" />`
+                : `<div class="cert-placeholder"><i class="fas fa-certificate" style="font-size: 1.5rem; margin-bottom: 6px; display: block;"></i>${edu.badge} Record</div>`
+              }
+              ${edu.protected && edu.image ? '<div class="protected-shield" oncontextmenu="return false;" ondragstart="return false;"></div>' : ""}
               <span class="edu-badge">${edu.badge}</span>
             </div>
             <div class="edu-body">
@@ -1638,9 +1698,11 @@
               <p class="edu-inst">${edu.institution}</p>
               <p class="edu-result">${edu.result}</p>
               <div class="edu-actions">
-                <button type="button" class="btn btn-outline btn-sm" onclick="previewImage('${edu.image}', '${edu.degree} — ${edu.institution}', ${Boolean(edu.protected)})">
-                  <i class="fas fa-eye"></i> ${edu.protected ? "View Mark Sheet" : "Preview"}
-                </button>
+                ${edu.image ? `
+                  <button type="button" class="btn btn-outline btn-sm" onclick="previewImage('${edu.image}', '${edu.degree} — ${edu.institution}', ${Boolean(edu.protected)})">
+                    <i class="fas fa-eye"></i> ${edu.protected ? "View Mark Sheet" : "Preview"}
+                  </button>
+                ` : ""}
                 ${edu.protected ? "" : `
                   <label class="btn btn-outline btn-sm" style="cursor: pointer;">
                     <i class="fas fa-upload"></i> Update Image
@@ -1664,6 +1726,7 @@
     };
 
     window.previewImage = function(src, caption, isProtected = false) {
+      if (!src) return;
       openModal(`
         <div class="modal-img-wrap" ${isProtected ? 'oncontextmenu="return false;"' : ""}>
           <img src="${src}" alt="${caption}" class="modal-img ${isProtected ? "protected-media" : ""}" draggable="false" />
@@ -1729,8 +1792,11 @@
         <p class="scout-desc">${act.description}</p>
         <div class="gallery-grid">
           ${act.photos.map((p) => `
-            <div class="gallery-card" onclick="previewImage('${p.src}', '${p.caption}')">
-              <img src="${p.src}" alt="${p.caption}" />
+            <div class="gallery-card" ${p.src ? `onclick="previewImage('${p.src}', '${p.caption}')"` : ""}>
+              ${p.src
+                ? `<img src="${p.src}" alt="${p.caption}" />`
+                : `<div class="gallery-thumb-placeholder">No photo added yet</div>`
+              }
               <div class="gallery-caption">${p.caption}</div>
             </div>
           `).join("")}
@@ -1769,7 +1835,10 @@
       sportsGrid.innerHTML = list
         .map((sp) => `
           <article class="sport-card">
-            <img src="${sp.image}" alt="${sp.title}" class="card-img-top" onclick="previewImage('${sp.image}', '${sp.title} — ${sp.detail}')" />
+            ${sp.image
+              ? `<img src="${sp.image}" alt="${sp.title}" class="card-img-top" onclick="previewImage('${sp.image}', '${sp.title} — ${sp.detail}')" />`
+              : `<div class="card-img-placeholder"><i class="fas fa-trophy" style="margin-right: 8px; color: var(--accent);"></i>${sp.title}</div>`
+            }
             <div class="card-body">
               <span class="project-category">${sp.type}</span>
               <h3 style="margin: 6px 0 4px;">${sp.title}</h3>
@@ -1796,7 +1865,10 @@
     document.getElementById("design-grid").innerHTML = portfolioData.designs
       .map((d) => `
         <article class="design-card">
-          <img src="${d.image}" alt="${d.title}" class="card-img-top" onclick="previewImage('${d.image}', '${d.title} — ${d.desc}')" />
+          ${d.image
+            ? `<img src="${d.image}" alt="${d.title}" class="card-img-top" onclick="previewImage('${d.image}', '${d.title} — ${d.desc}')" />`
+            : `<div class="card-img-placeholder"><i class="fas fa-pen-nib" style="margin-right: 8px; color: var(--accent);"></i>${d.title}</div>`
+          }
           <div class="card-body">
             <span class="project-category">${d.category}</span>
             <h3 style="margin: 6px 0 8px;">${d.title}</h3>
@@ -1883,18 +1955,8 @@
        VIDEO RESUME & CV SHOW / DOWNLOAD
        ========================================= */
     const videoPlayer = document.getElementById("video-resume-player");
-    const videoUploadInput = document.getElementById("video-upload-input");
-    const videoStatusNote = document.getElementById("video-status-note");
-
-    videoUploadInput.addEventListener("change", (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-      const objectUrl = URL.createObjectURL(file);
-      videoPlayer.src = objectUrl;
-      videoPlayer.load();
-      videoStatusNote.textContent = `Loaded "${file.name}" for this browser session.`;
-      showToast("Video resume loaded!");
-    });
+    videoPlayer.src = portfolioData.profile.videoResumeUrl;
+    videoPlayer.addEventListener("contextmenu", (e) => e.preventDefault());
 
     const cvDownloadBtn = document.getElementById("cv-download-btn");
     const cvViewBtn = document.getElementById("cv-view-btn");
