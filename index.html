@@ -10,28 +10,25 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <style>
-    /* =======================================================
-       THEME PALETTE: AIRFORCE BLUE + SCOUT OLIVE + EARTH TONES
-       ======================================================= */
     :root {
-      --bg: #0b1320;
-      --bg-alt: #101b2d;
-      --surface: #152338;
+      --bg: #0c1320;
+      --bg-alt: #111b2d;
+      --surface: #152238;
       --text: #eef3f8;
-      --muted: #a3b2c7;
+      --muted: #9fb0c7;
       --air-accent: #38bdf8;
       --air-deep: #0284c7;
       --scout-accent: #7aa95c;
       --scout-warm: #d4a359;
-      --border: rgba(163, 178, 199, 0.14);
-      --nav-bg: rgba(11, 19, 32, 0.9);
+      --border: rgba(159, 176, 199, 0.14);
+      --nav-bg: rgba(12, 19, 32, 0.9);
       --radius: 14px;
       --ease: 0.24s ease;
     }
 
     [data-theme="light"] {
       --bg: #f4f7f5;
-      --bg-alt: #eaf0ed;
+      --bg-alt: #e8efe9;
       --surface: #ffffff;
       --text: #13202c;
       --muted: #4b5d6b;
@@ -92,8 +89,8 @@
     }
 
     .sec-head {
-      max-width: 680px;
-      margin-bottom: 38px;
+      max-width: 720px;
+      margin-bottom: 36px;
     }
 
     .sec-eyebrow {
@@ -119,9 +116,7 @@
       font-size: 0.96rem;
     }
 
-    /* =======================================================
-       NAVBAR
-       ======================================================= */
+    /* Navbar */
     .navbar {
       position: fixed;
       top: 0;
@@ -202,9 +197,7 @@
       display: none;
     }
 
-    /* =======================================================
-       HERO
-       ======================================================= */
+    /* Hero */
     .hero {
       padding: 122px 0 76px;
       background:
@@ -263,7 +256,7 @@
 
     .hero-bio {
       color: var(--muted);
-      max-width: 610px;
+      max-width: 620px;
       margin-bottom: 24px;
       font-size: 0.97rem;
     }
@@ -281,7 +274,7 @@
       gap: 8px;
       padding: 11px 19px;
       border-radius: 10px;
-      font-size: 0.89rem;
+      font-size: 0.9rem;
       font-weight: 600;
       border: 1px solid transparent;
       cursor: pointer;
@@ -387,9 +380,7 @@
       font-size: 0.78rem;
     }
 
-    /* =======================================================
-       PERSONAL & ACADEMIC
-       ======================================================= */
+    /* Personal & Education */
     .info-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -531,9 +522,7 @@
       flex-wrap: wrap;
     }
 
-    /* =======================================================
-       ACTIVITIES (2 PARTS: SCOUTING & SPORTS)
-       ======================================================= */
+    /* Activities */
     .part-switch {
       display: flex;
       flex-wrap: wrap;
@@ -827,9 +816,7 @@
       flex: 1;
     }
 
-    /* =======================================================
-       INTERNATIONAL EVENT SECTION
-       ======================================================= */
+    /* International Event */
     .intl-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -859,9 +846,7 @@
       margin-bottom: 22px;
     }
 
-    /* =======================================================
-       PROJECTS & CODE VIEWER
-       ======================================================= */
+    /* Projects */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
@@ -934,9 +919,7 @@
       margin-top: 12px;
     }
 
-    /* =======================================================
-       CV & VIDEO RESUME
-       ======================================================= */
+    /* CV & Video */
     .media-cv-grid {
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
@@ -1002,9 +985,7 @@
       flex-wrap: wrap;
     }
 
-    /* =======================================================
-       CONTACT SECTION
-       ======================================================= */
+    /* Contact Section (Left Info + Short Designation | Right Simple Name, Mail, Text, Send) */
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1012,9 +993,9 @@
       align-items: start;
     }
 
-    .contact-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    .contact-stack {
+      display: flex;
+      flex-direction: column;
       gap: 12px;
     }
 
@@ -1022,27 +1003,37 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 14px 15px;
+      padding: 15px 17px;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
+      justify-content: space-between;
       gap: 12px;
     }
 
-    .c-card i {
+    .c-card-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .c-card-left i {
       color: var(--air-accent);
       font-size: 1rem;
+      margin-top: 3px;
       flex-shrink: 0;
     }
 
     .c-card small {
       display: block;
-      font-size: 0.73rem;
+      font-size: 0.75rem;
       color: var(--muted);
+      margin-bottom: 2px;
     }
 
     .c-card strong,
     .c-card a {
-      font-size: 0.88rem;
+      font-size: 0.92rem;
       font-weight: 600;
       word-break: break-word;
     }
@@ -1051,26 +1042,35 @@
       color: var(--air-accent);
     }
 
+    .designation-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
     .form-field {
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
     .form-field label {
       display: block;
-      font-size: 0.86rem;
-      font-weight: 500;
-      margin-bottom: 5px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 6px;
     }
 
     .form-input {
       width: 100%;
-      padding: 10px 13px;
+      padding: 11px 14px;
       border-radius: 10px;
       border: 1px solid var(--border);
       background: var(--bg-alt);
       color: var(--text);
       font-family: inherit;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
     }
 
     .form-input:focus {
@@ -1079,14 +1079,8 @@
     }
 
     textarea.form-input {
-      min-height: 110px;
+      min-height: 130px;
       resize: vertical;
-    }
-
-    .form-tip {
-      margin-top: 10px;
-      font-size: 0.8rem;
-      color: var(--muted);
     }
 
     footer {
@@ -1097,9 +1091,7 @@
       color: var(--muted);
     }
 
-    /* =======================================================
-       MODAL & TOAST
-       ======================================================= */
+    /* Modal & Toast */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -1266,24 +1258,24 @@
       <div>
         <div class="unit-tag">
           <i class="fas fa-plane-up"></i>
-          <span>DIU CSE (64th) • Senior Rover Mate & Crew Council VP</span>
+          <span>DIU CSE (64th) • Senior Rover Mate • Student Associate</span>
         </div>
         <h1>Sabbir Ahommed</h1>
         <div class="hero-typed">
-          Working in <strong id="typed-role"></strong><span class="cursor">|</span>
+          Focus in <strong id="typed-role"></strong><span class="cursor">|</span>
         </div>
         <p class="hero-bio">
-          B.Sc. in Computer Science and Engineering student at Daffodil International University (ID: 0242310005101349), Student Associate, Senior Rover Mate & Vice President of the Crew Council at DIU Air Rover Scout Group, and custom sports apparel designer.
+          Student at Daffodil International University, Department of CSE (ID: 0242310005101349), Senior Rover Mate at Daffodil International University Air Rover Scout Group, and Student Associate at Daffodil International University.
         </p>
         <div class="btn-group">
           <a href="#activities" class="btn btn-scout">
             <i class="fas fa-compass"></i> Scout & Sports
           </a>
           <a href="#projects" class="btn btn-air">
-            <i class="fas fa-code"></i> Projects & Code
+            <i class="fas fa-code"></i> Projects & GitHub
           </a>
           <a href="#contact" class="btn btn-line">
-            <i class="fas fa-message"></i> Contact Me
+            <i class="fas fa-envelope"></i> Contact
           </a>
         </div>
         <div class="quick-links">
@@ -1303,7 +1295,7 @@
         <div class="profile-card">
           <img src="sabbir.jpeg" alt="Sabbir Ahommed" />
           <div class="profile-meta">
-            <span><i class="fas fa-location-dot" style="color: var(--air-accent);"></i> Birulia, Savar, Dhaka</span>
+            <span><i class="fas fa-location-dot" style="color: var(--air-accent);"></i> Daffodil Smart City, Savar</span>
             <span class="blood-badge">Blood: B+</span>
           </div>
         </div>
@@ -1329,15 +1321,15 @@
       <div class="sec-head">
         <div class="sec-eyebrow"><i class="fas fa-campground"></i> Extracurricular Activities</div>
         <h2 class="sec-title">Rover Scouting & Sports</h2>
-        <p class="sec-sub">Two separate sections: Rover Scouting profile, activities, certificates, and gallery; and Sports events with details and gallery.</p>
+        <p class="sec-sub">Separate sections for Rover Scouting (profile, activities, certificates, gallery) and Sports (events with details and gallery).</p>
       </div>
 
       <div class="part-switch" id="activity-part-tabs">
         <button type="button" class="tab-pill active" data-part="scout">
-          <i class="fas fa-compass"></i> 1. Scout Profile & Activities
+          <i class="fas fa-compass"></i> Scout Profile & Activities
         </button>
         <button type="button" class="tab-pill" data-part="sports">
-          <i class="fas fa-trophy"></i> 2. Sports & Events
+          <i class="fas fa-trophy"></i> Sports & Events
         </button>
       </div>
 
@@ -1352,7 +1344,7 @@
             <span class="blood-badge">150 km Rambling • SDG & Service</span>
           </div>
           <p>
-            Active Rover Scout leader at Daffodil International University Air Rover Scout Group, involved in camp planning, pioneering, 150 km rambling (পরিভ্রমণ) expeditions, JOTA-JOTI outreach, Safe from Harm certification, weekly clean-up & dengue awareness drives, and volunteer/VIP protocol duties.
+            Active Rover Scout leader at Daffodil International University Air Rover Scout Group, involved in camp organization, pioneering, 150 km rambling (পরিভ্রমণ) hikes, JOTA-JOTI outreach, Safe from Harm training, weekly clean-up & dengue awareness drives, and volunteer/VIP protocol duties.
           </p>
           <div class="scout-tags">
             <span class="scout-tag">Senior Rover Mate</span>
@@ -1367,7 +1359,7 @@
         <div class="activity-detail-box" id="scout-activity-box"></div>
       </div>
 
-      <!-- PART 2: SPORTS (NO CERTIFICATES, DETAILS + GALLERY ONLY) -->
+      <!-- PART 2: SPORTS (DETAILS + GALLERY ONLY) -->
       <div id="sports-part" style="display: none;">
         <div class="sub-activity-tabs" id="sports-filter-tabs">
           <button type="button" class="sub-pill active" data-sfilter="all">All Sports Events</button>
@@ -1400,7 +1392,7 @@
       <div class="sec-head">
         <div class="sec-eyebrow"><i class="fas fa-globe"></i> International Exposure</div>
         <h2 class="sec-title">International Event</h2>
-        <p class="sec-sub">Details, certificate preview, and event gallery from international representation.</p>
+        <p class="sec-sub">Event details, certificate preview, and gallery from international representation.</p>
       </div>
 
       <div class="intl-card" id="international-box"></div>
@@ -1411,8 +1403,8 @@
     <div class="container">
       <div class="sec-head">
         <div class="sec-eyebrow"><i class="fas fa-laptop-code"></i> Technical Projects</div>
-        <h2 class="sec-title">Projects & GitHub Code</h2>
-        <p class="sec-sub">Each project includes its overview along with GitHub repository access and a built-in code viewer.</p>
+        <h2 class="sec-title">Projects & GitHub</h2>
+        <p class="sec-sub">Project overviews with GitHub repository links and code preview.</p>
       </div>
 
       <div class="projects-grid" id="projects-grid"></div>
@@ -1477,39 +1469,34 @@
     </div>
   </section>
 
+  <!-- CONTACT SECTION -->
   <section id="contact">
     <div class="container">
       <div class="sec-head">
-        <div class="sec-eyebrow"><i class="fas fa-address-book"></i> Contact Me</div>
-        <h2 class="sec-title">Contact Information & Message</h2>
-        <p class="sec-sub">Direct phone, WhatsApp, personal and university email, blood group, and a message form to text/send inquiries.</p>
+        <div class="sec-eyebrow"><i class="fas fa-address-book"></i> Contact</div>
+        <h2 class="sec-title">Contact Information</h2>
+        <p class="sec-sub">Reach out via email, WhatsApp, or phone, or send a quick message using the form.</p>
       </div>
 
       <div class="contact-grid">
-        <div class="contact-cards" id="contact-details-grid"></div>
+        <div class="contact-stack" id="contact-info-stack"></div>
 
-        <form class="panel" id="contact-message-form">
-          <h3 style="margin-bottom: 14px;"><i class="fas fa-paper-plane"></i> Send a Message</h3>
+        <form class="panel" id="simple-message-form">
           <div class="form-field">
-            <label for="msg-name">Your Name</label>
-            <input type="text" id="msg-name" class="form-input" placeholder="Enter your name" required />
+            <label for="sender-name">Name</label>
+            <input type="text" id="sender-name" class="form-input" placeholder="Your name" required />
           </div>
           <div class="form-field">
-            <label for="msg-email">Your Email</label>
-            <input type="email" id="msg-email" class="form-input" placeholder="Enter your email" required />
+            <label for="sender-mail">Mail</label>
+            <input type="email" id="sender-mail" class="form-input" placeholder="you@example.com" required />
           </div>
           <div class="form-field">
-            <label for="msg-subject">Subject</label>
-            <input type="text" id="msg-subject" class="form-input" placeholder="Subject of your message" required />
-          </div>
-          <div class="form-field">
-            <label for="msg-body">Message</label>
-            <textarea id="msg-body" class="form-input" placeholder="Write your message here..." required></textarea>
+            <label for="sender-text">Text</label>
+            <textarea id="sender-text" class="form-input" placeholder="Write your message..." required></textarea>
           </div>
           <button type="submit" class="btn btn-air" style="width: 100%; justify-content: center;">
-            <i class="fas fa-paper-plane"></i> Send Message
+            <i class="fas fa-paper-plane"></i> Send
           </button>
-          <p class="form-tip">Opens your email client addressed to sabbirahommed91@gmail.com with your message filled in.</p>
         </form>
       </div>
     </div>
@@ -1517,7 +1504,7 @@
 
   <footer>
     <div class="container">
-      <p>&copy; <span id="footer-year">2026</span> Sabbir Ahommed • Blood Group: B+ • DIU CSE (64th)</p>
+      <p>&copy; <span id="footer-year">2026</span> Sabbir Ahommed • Blood Group: B+</p>
     </div>
   </footer>
 
@@ -1547,7 +1534,7 @@
         { icon: "fas fa-user", label: "Father's Name", value: "Md. Mokteb Ali" },
         { icon: "fas fa-user", label: "Mother's Name", value: "Most. Pahari Begum" },
         { icon: "fas fa-droplet", label: "Blood Group", value: "B+" },
-        { icon: "fas fa-location-dot", label: "Current Residence", value: "Daffodil Smart City, Birulia, Savar, Dhaka" },
+        { icon: "fas fa-location-dot", label: "Current Address", value: "Daffodil Smart City, Birulia, Savar, Dhaka" },
         { icon: "fas fa-home", label: "Permanent Address", value: "Shahagola, Atrai, Naogaon" },
         { icon: "fas fa-graduation-cap", label: "University & ID", value: "Daffodil International University (0242310005101349)" }
       ],
@@ -1759,19 +1746,54 @@ void displayScene(void) {
         }
       ],
 
-      contacts: [
-        { icon: "fab fa-whatsapp", label: "WhatsApp", value: "01721994526", copy: "01721994526", url: "https://wa.me/8801721994526" },
-        { icon: "fas fa-phone", label: "Contact Number", value: "01590030988", copy: "01590030988", url: "tel:01590030988" },
-        { icon: "fas fa-envelope", label: "Personal Mail", value: "sabbirahommed91@gmail.com", copy: "sabbirahommed91@gmail.com", url: "mailto:sabbirahommed91@gmail.com" },
-        { icon: "fas fa-graduation-cap", label: "Education Mail", value: "ahommed23105101349@diu.edu.bd", copy: "ahommed23105101349@diu.edu.bd", url: "mailto:ahommed23105101349@diu.edu.bd" },
-        { icon: "fas fa-droplet", label: "Blood Group", value: "B+", copy: "B+" },
-        { icon: "fab fa-github", label: "GitHub", value: "github.com/sabbir87", url: "https://github.com/sabbir87" }
+      contactItems: [
+        {
+          icon: "fas fa-envelope",
+          label: "Personal Mail",
+          value: "sabbirahommed91@gmail.com",
+          copy: "sabbirahommed91@gmail.com",
+          url: "mailto:sabbirahommed91@gmail.com"
+        },
+        {
+          icon: "fas fa-graduation-cap",
+          label: "Education Mail",
+          value: "ahommed23105101349@diu.edu.bd",
+          copy: "ahommed23105101349@diu.edu.bd",
+          url: "mailto:ahommed23105101349@diu.edu.bd"
+        },
+        {
+          icon: "fab fa-whatsapp",
+          label: "WhatsApp Number",
+          value: "01721994526",
+          copy: "01721994526",
+          url: "https://wa.me/8801721994526"
+        },
+        {
+          icon: "fas fa-phone",
+          label: "Contact",
+          value: "01590030988",
+          copy: "01590030988",
+          url: "tel:01590030988"
+        },
+        {
+          icon: "fas fa-location-dot",
+          label: "Address",
+          value: "Daffodil Smart City, Birulia, Savar, Dhaka",
+          copy: "Daffodil Smart City, Birulia, Savar, Dhaka"
+        },
+        {
+          icon: "fas fa-briefcase",
+          label: "Short Designation",
+          lines: [
+            "Student at Daffodil International University, Department Of CSE.",
+            "Senior Rover Mate, Daffodil International University Air Rover Scout Group.",
+            "Student Associate at Daffodil International University."
+          ]
+        }
       ]
     };
 
-    /* =======================================================
-       MODAL & TOAST
-       ======================================================= */
+    /* Modal & Toast */
     const modalBackdrop = document.getElementById("modal-backdrop");
     const modalContentSlot = document.getElementById("modal-content-slot");
     const toastEl = document.getElementById("toast");
@@ -1841,7 +1863,7 @@ void displayScene(void) {
               <h3 style="margin-top:4px;">${escapeHtml(proj.title)}</h3>
             </div>
             <a href="${proj.githubUrl}" target="_blank" rel="noopener" class="btn btn-line btn-sm">
-              <i class="fab fa-github"></i> Open GitHub
+              <i class="fab fa-github"></i> GitHub
             </a>
           </div>
           <div class="code-viewer">${escapeHtml(proj.codeSample)}</div>
@@ -1849,9 +1871,7 @@ void displayScene(void) {
       `);
     };
 
-    /* =======================================================
-       THEME, NAV & TYPING
-       ======================================================= */
+    /* Theme, Nav & Typing */
     const themeBtn = document.getElementById("theme-btn");
     function setThemeMode(mode) {
       document.documentElement.setAttribute("data-theme", mode);
@@ -1902,9 +1922,7 @@ void displayScene(void) {
     }
     runTyped();
 
-    /* =======================================================
-       PERSONAL & EDUCATION
-       ======================================================= */
+    /* Personal & Education */
     document.getElementById("personal-info-grid").innerHTML = PORTFOLIO.personalInfo.map((item) => `
       <div class="info-box">
         <i class="${item.icon}"></i>
@@ -1958,9 +1976,7 @@ void displayScene(void) {
     };
     renderEducation();
 
-    /* =======================================================
-       ACTIVITIES: PART 1 (SCOUT) & PART 2 (SPORTS)
-       ======================================================= */
+    /* Activities: Scout & Sports */
     const partTabs = document.querySelectorAll("#activity-part-tabs .tab-pill");
     const scoutPart = document.getElementById("scout-part");
     const sportsPart = document.getElementById("sports-part");
@@ -2070,7 +2086,6 @@ void displayScene(void) {
     };
     renderScoutActivities();
 
-    // Sports events + gallery (no certificate section)
     const sportsEventsGrid = document.getElementById("sports-events-grid");
     const sportsFilterTabs = document.querySelectorAll("#sports-filter-tabs .sub-pill");
 
@@ -2127,9 +2142,7 @@ void displayScene(void) {
       showToast("Added photo to Sports gallery.");
     });
 
-    /* =======================================================
-       INTERNATIONAL EVENT SECTION
-       ======================================================= */
+    /* International Event */
     function renderInternationalEvent() {
       const intl = PORTFOLIO.internationalEvent;
       document.getElementById("international-box").innerHTML = `
@@ -2209,9 +2222,7 @@ void displayScene(void) {
     };
     renderInternationalEvent();
 
-    /* =======================================================
-       PROJECTS & CODE VIEWER
-       ======================================================= */
+    /* Projects */
     document.getElementById("projects-grid").innerHTML = PORTFOLIO.projects.map((pr, idx) => `
       <article class="proj-card">
         <span class="proj-kind">${escapeHtml(pr.kind)}</span>
@@ -2222,7 +2233,7 @@ void displayScene(void) {
         </div>
         <div class="proj-btns">
           <button type="button" class="btn btn-air btn-sm" onclick="openCodeModal(${idx})">
-            <i class="fas fa-code"></i> View Code
+            <i class="fas fa-code"></i> Code
           </button>
           <a href="${pr.githubUrl}" target="_blank" rel="noopener" class="btn btn-line btn-sm">
             <i class="fab fa-github"></i> GitHub
@@ -2231,9 +2242,7 @@ void displayScene(void) {
       </article>
     `).join("");
 
-    /* =======================================================
-       VIDEO RESUME & CV
-       ======================================================= */
+    /* Video & CV */
     const resumeVideoEl = document.getElementById("resume-video");
     resumeVideoEl.addEventListener("contextmenu", (e) => e.preventDefault());
 
@@ -2250,40 +2259,41 @@ void displayScene(void) {
       `);
     });
 
-    /* =======================================================
-       CONTACT DETAILS & MESSAGE FORM
-       ======================================================= */
-    document.getElementById("contact-details-grid").innerHTML = PORTFOLIO.contacts.map((c) => `
+    /* Contact Info & Simple Message Form */
+    document.getElementById("contact-info-stack").innerHTML = PORTFOLIO.contactItems.map((item) => `
       <div class="c-card">
-        <i class="${c.icon}"></i>
-        <div style="flex:1;min-width:0;">
-          <small>${escapeHtml(c.label)}</small>
-          ${c.url
-            ? `<a href="${c.url}" ${c.url.startsWith("http") ? 'target="_blank" rel="noopener"' : ""}>${escapeHtml(c.value)}</a>`
-            : `<strong>${escapeHtml(c.value)}</strong>`
-          }
+        <div class="c-card-left">
+          <i class="${item.icon}"></i>
+          <div style="min-width:0;">
+            <small>${escapeHtml(item.label)}</small>
+            ${item.lines
+              ? `<div class="designation-lines">${item.lines.map((line) => `<span>${escapeHtml(line)}</span>`).join("")}</div>`
+              : item.url
+                ? `<a href="${item.url}" ${item.url.startsWith("http") ? 'target="_blank" rel="noopener"' : ""}>${escapeHtml(item.value)}</a>`
+                : `<strong>${escapeHtml(item.value)}</strong>`
+            }
+          </div>
         </div>
-        ${c.copy
-          ? `<button type="button" class="btn btn-line btn-sm" onclick="copyText('${c.copy}')" aria-label="Copy ${escapeHtml(c.label)}"><i class="fas fa-copy"></i></button>`
+        ${item.copy
+          ? `<button type="button" class="btn btn-line btn-sm" onclick="copyText('${escapeHtml(item.copy)}')" aria-label="Copy ${escapeHtml(item.label)}"><i class="fas fa-copy"></i></button>`
           : ""
         }
       </div>
     `).join("");
 
     window.copyText = function(val) {
-      navigator.clipboard.writeText(val).then(() => showToast(`Copied: ${val}`));
+      navigator.clipboard.writeText(val).then(() => showToast("Copied to clipboard."));
     };
 
-    document.getElementById("contact-message-form").addEventListener("submit", (e) => {
+    document.getElementById("simple-message-form").addEventListener("submit", (e) => {
       e.preventDefault();
-      const name = document.getElementById("msg-name").value.trim();
-      const email = document.getElementById("msg-email").value.trim();
-      const subject = encodeURIComponent(document.getElementById("msg-subject").value.trim());
-      const body = encodeURIComponent(
-        `Sender Name: ${name}\nSender Email: ${email}\n\n${document.getElementById("msg-body").value.trim()}`
-      );
+      const name = document.getElementById("sender-name").value.trim();
+      const mail = document.getElementById("sender-mail").value.trim();
+      const text = document.getElementById("sender-text").value.trim();
+      const subject = encodeURIComponent(`Message from ${name}`);
+      const body = encodeURIComponent(`Name: ${name}\nMail: ${mail}\n\n${text}`);
       window.location.href = `mailto:sabbirahommed91@gmail.com?subject=${subject}&body=${body}`;
-      showToast("Opening mail app for sabbirahommed91@gmail.com...");
+      showToast("Opening mail app...");
     });
 
     document.getElementById("footer-year").textContent = new Date().getFullYear();
