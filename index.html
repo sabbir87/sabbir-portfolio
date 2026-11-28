@@ -2445,10 +2445,6 @@ void displayScene(void) {
     /* Identity Docs: NID Card (View + Download) & Passport (View Only) */
     function renderIdentityDocs() {
       document.getElementById("identity-docs-grid").innerHTML = PORTFOLIO.identityDocs.map((doc, idx) => {
-        const viewerUrl = doc.fileUrl
-          ? (doc.isPassport ? `${doc.fileUrl}#toolbar=0&navpanes=0` : doc.fileUrl)
-          : "";
-
         return `
           <article class="id-doc-card ${doc.isPassport ? "passport-card" : ""}">
             <div class="id-doc-head">
@@ -2482,7 +2478,6 @@ void displayScene(void) {
                 <input type="file" accept="application/pdf,image/*" hidden onchange="uploadIdentityFile(event, ${idx})" />
               </label>
             </div>
-            ${viewerUrl ? "" : ""}
           </article>
         `;
       }).join("");
