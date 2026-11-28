@@ -11,33 +11,37 @@
 
   <style>
     :root {
-      --bg: #0c1320;
-      --bg-alt: #111b2d;
-      --surface: #152238;
-      --text: #eef3f8;
-      --muted: #9fb0c7;
+      --bg: #071124;
+      --bg-alt: #0b1933;
+      --surface: #102344;
+      --text: #f1f5fb;
+      --muted: #9eb3d1;
+      --navy-primary: #1d4ed8;
+      --navy-bright: #3b82f6;
+      --navy-glow: rgba(59, 130, 246, 0.24);
       --air-accent: #38bdf8;
-      --air-deep: #0284c7;
       --scout-accent: #7aa95c;
       --scout-warm: #d4a359;
-      --border: rgba(159, 176, 199, 0.14);
-      --nav-bg: rgba(12, 19, 32, 0.92);
+      --border: rgba(148, 175, 214, 0.16);
+      --nav-bg: rgba(7, 17, 36, 0.9);
       --radius: 14px;
-      --ease: 0.24s ease;
+      --ease: 0.28s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     [data-theme="light"] {
-      --bg: #f4f7f5;
-      --bg-alt: #e8efe9;
+      --bg: #eef3fa;
+      --bg-alt: #e1e9f5;
       --surface: #ffffff;
-      --text: #13202c;
-      --muted: #4b5d6b;
+      --text: #0b1933;
+      --muted: #465a78;
+      --navy-primary: #1e3a8a;
+      --navy-bright: #1d4ed8;
+      --navy-glow: rgba(30, 58, 138, 0.14);
       --air-accent: #0369a1;
-      --air-deep: #075985;
       --scout-accent: #4d7c2c;
       --scout-warm: #b47b2b;
-      --border: rgba(19, 32, 44, 0.12);
-      --nav-bg: rgba(244, 247, 245, 0.94);
+      --border: rgba(11, 25, 51, 0.13);
+      --nav-bg: rgba(238, 243, 250, 0.92);
     }
 
     *, *::before, *::after {
@@ -88,6 +92,28 @@
       border-top: none;
     }
 
+    /* Smooth Scroll Reveal Animations */
+    .anim-item {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1), box-shadow var(--ease), border-color var(--ease);
+    }
+
+    .anim-item.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-7px); }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0 0 var(--navy-glow); }
+      50% { box-shadow: 0 10px 28px -6px var(--navy-glow); }
+    }
+
     .sec-head {
       max-width: 720px;
       margin-bottom: 36px;
@@ -101,7 +127,7 @@
       font-weight: 700;
       letter-spacing: 0.09em;
       text-transform: uppercase;
-      color: var(--scout-accent);
+      color: var(--navy-bright);
       margin-bottom: 8px;
     }
 
@@ -124,7 +150,7 @@
       width: 100%;
       z-index: 1000;
       background: var(--nav-bg);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
     }
 
@@ -161,7 +187,7 @@
     }
 
     .live-chip i {
-      color: var(--air-accent);
+      color: var(--navy-bright);
     }
 
     .utility-right-group {
@@ -183,11 +209,13 @@
       font-size: 0.78rem;
       font-weight: 600;
       cursor: pointer;
+      transition: all var(--ease);
     }
 
     .cal-trigger-btn:hover {
-      border-color: var(--scout-accent);
-      color: var(--scout-accent);
+      border-color: var(--navy-bright);
+      color: var(--navy-bright);
+      transform: translateY(-1px);
     }
 
     .lang-select {
@@ -200,11 +228,12 @@
       font-size: 0.78rem;
       font-weight: 600;
       cursor: pointer;
+      transition: all var(--ease);
     }
 
     .lang-select:focus {
       outline: none;
-      border-color: var(--air-accent);
+      border-color: var(--navy-bright);
     }
 
     #google_translate_element {
@@ -231,7 +260,7 @@
     }
 
     .brand span {
-      color: var(--air-accent);
+      color: var(--navy-bright);
     }
 
     .brand em {
@@ -249,13 +278,30 @@
       font-size: 0.86rem;
       font-weight: 500;
       color: var(--muted);
-      transition: color var(--ease);
+      transition: color var(--ease), transform var(--ease);
       white-space: nowrap;
+      position: relative;
+    }
+
+    .nav-list a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: var(--navy-bright);
+      transition: width var(--ease);
+    }
+
+    .nav-list a:hover::after,
+    .nav-list a.active::after {
+      width: 100%;
     }
 
     .nav-list a:hover,
     .nav-list a.active {
-      color: var(--air-accent);
+      color: var(--navy-bright);
     }
 
     .nav-actions {
@@ -274,12 +320,13 @@
       display: grid;
       place-items: center;
       cursor: pointer;
-      transition: border-color var(--ease), color var(--ease);
+      transition: border-color var(--ease), color var(--ease), transform var(--ease);
     }
 
     .icon-btn:hover {
-      border-color: var(--air-accent);
-      color: var(--air-accent);
+      border-color: var(--navy-bright);
+      color: var(--navy-bright);
+      transform: translateY(-2px);
     }
 
     .burger-btn {
@@ -290,8 +337,8 @@
     .hero {
       padding: 152px 0 76px;
       background:
-        radial-gradient(circle at 85% 20%, rgba(56, 189, 248, 0.11), transparent 42%),
-        radial-gradient(circle at 15% 80%, rgba(122, 169, 92, 0.10), transparent 45%);
+        radial-gradient(circle at 82% 22%, rgba(29, 78, 216, 0.24), transparent 45%),
+        radial-gradient(circle at 15% 80%, rgba(59, 130, 246, 0.12), transparent 48%);
     }
 
     .hero-grid {
@@ -307,12 +354,13 @@
       gap: 8px;
       padding: 6px 14px;
       border-radius: 999px;
-      background: rgba(56, 189, 248, 0.12);
-      border: 1px solid rgba(56, 189, 248, 0.28);
-      color: var(--air-accent);
+      background: rgba(59, 130, 246, 0.14);
+      border: 1px solid rgba(59, 130, 246, 0.34);
+      color: var(--navy-bright);
       font-size: 0.83rem;
       font-weight: 600;
       margin-bottom: 16px;
+      animation: pulseGlow 3.2s infinite;
     }
 
     .hero h1 {
@@ -334,7 +382,7 @@
     }
 
     .cursor {
-      color: var(--air-accent);
+      color: var(--navy-bright);
       animation: blink 0.9s infinite;
     }
 
@@ -370,14 +418,19 @@
       transition: all var(--ease);
     }
 
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
     .btn-air {
-      background: var(--air-accent);
-      color: #07111e;
+      background: var(--navy-bright);
+      color: #ffffff;
     }
 
     .btn-air:hover {
-      background: var(--air-deep);
+      background: var(--navy-primary);
       color: #ffffff;
+      box-shadow: 0 8px 20px -6px var(--navy-glow);
     }
 
     .btn-scout {
@@ -396,8 +449,8 @@
     }
 
     .btn-line:hover {
-      border-color: var(--air-accent);
-      color: var(--air-accent);
+      border-color: var(--navy-bright);
+      color: var(--navy-bright);
     }
 
     .btn-sm {
@@ -426,19 +479,20 @@
     }
 
     .social-icon-btn:hover {
-      transform: translateY(-2px);
-      border-color: var(--air-accent);
-      color: var(--air-accent);
+      transform: translateY(-3px);
+      border-color: var(--navy-bright);
+      color: var(--navy-bright);
     }
 
     .profile-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-top: 3px solid var(--air-accent);
+      border-top: 3px solid var(--navy-bright);
       border-radius: 18px;
       padding: 12px;
       max-width: 340px;
       margin: 0 auto;
+      animation: floatSlow 5.5s ease-in-out infinite;
     }
 
     .profile-card img {
@@ -465,8 +519,8 @@
     .blood-badge {
       padding: 2px 9px;
       border-radius: 999px;
-      background: rgba(122, 169, 92, 0.16);
-      color: var(--scout-accent);
+      background: rgba(59, 130, 246, 0.16);
+      color: var(--navy-bright);
       font-weight: 700;
       font-size: 0.78rem;
     }
@@ -487,10 +541,17 @@
       display: flex;
       gap: 13px;
       align-items: flex-start;
+      transition: transform var(--ease), border-color var(--ease), box-shadow var(--ease);
+    }
+
+    .info-box:hover {
+      transform: translateY(-3px);
+      border-color: var(--navy-bright);
+      box-shadow: 0 10px 22px -10px var(--navy-glow);
     }
 
     .info-box i {
-      color: var(--air-accent);
+      color: var(--navy-bright);
       margin-top: 3px;
     }
 
@@ -517,12 +578,18 @@
     .id-doc-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-left: 4px solid var(--air-accent);
+      border-left: 4px solid var(--navy-bright);
       border-radius: var(--radius);
       padding: 20px;
       display: flex;
       flex-direction: column;
       gap: 10px;
+      transition: transform var(--ease), border-color var(--ease), box-shadow var(--ease);
+    }
+
+    .id-doc-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px -10px var(--navy-glow);
     }
 
     .id-doc-card.passport-card {
@@ -569,6 +636,13 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      transition: transform var(--ease), border-color var(--ease), box-shadow var(--ease);
+    }
+
+    .edu-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--navy-bright);
+      box-shadow: 0 12px 24px -10px var(--navy-glow);
     }
 
     .edu-media {
@@ -586,6 +660,11 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .edu-card:hover .edu-media img {
+      transform: scale(1.04);
     }
 
     .edu-placeholder {
@@ -600,8 +679,8 @@
       top: 10px;
       left: 10px;
       z-index: 3;
-      background: var(--air-accent);
-      color: #07111e;
+      background: var(--navy-bright);
+      color: #ffffff;
       font-size: 0.74rem;
       font-weight: 700;
       padding: 3px 9px;
@@ -684,15 +763,16 @@
 
     .tab-pill:hover,
     .tab-pill.active {
-      background: var(--scout-accent);
-      border-color: var(--scout-accent);
-      color: #0b1407;
+      background: var(--navy-bright);
+      border-color: var(--navy-bright);
+      color: #ffffff;
+      transform: translateY(-1px);
     }
 
     .scout-profile-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-left: 4px solid var(--scout-accent);
+      border-left: 4px solid var(--navy-bright);
       border-radius: var(--radius);
       padding: 22px;
       margin-bottom: 22px;
@@ -723,9 +803,9 @@
       font-size: 0.78rem;
       padding: 4px 10px;
       border-radius: 7px;
-      background: rgba(122, 169, 92, 0.14);
-      color: var(--scout-accent);
-      border: 1px solid rgba(122, 169, 92, 0.28);
+      background: rgba(59, 130, 246, 0.14);
+      color: var(--navy-bright);
+      border: 1px solid rgba(59, 130, 246, 0.28);
       font-weight: 500;
     }
 
@@ -747,9 +827,15 @@
     .course-pill-card {
       background: var(--bg-alt);
       border: 1px solid var(--border);
-      border-left: 3px solid var(--air-accent);
+      border-left: 3px solid var(--navy-bright);
       border-radius: 10px;
       padding: 12px 14px;
+      transition: transform var(--ease), border-color var(--ease);
+    }
+
+    .course-pill-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--navy-bright);
     }
 
     .course-pill-card strong {
@@ -781,13 +867,14 @@
       font-size: 0.84rem;
       font-weight: 500;
       cursor: pointer;
+      transition: all var(--ease);
     }
 
     .sub-pill.active,
     .sub-pill:hover {
-      background: var(--air-accent);
-      border-color: var(--air-accent);
-      color: #07111e;
+      background: var(--navy-bright);
+      border-color: var(--navy-bright);
+      color: #ffffff;
       font-weight: 600;
     }
 
@@ -839,6 +926,12 @@
       border: 1px solid var(--border);
       border-radius: 12px;
       overflow: hidden;
+      transition: transform var(--ease), border-color var(--ease);
+    }
+
+    .cert-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--navy-bright);
     }
 
     .cert-thumb {
@@ -887,6 +980,12 @@
       border-radius: 12px;
       overflow: hidden;
       cursor: pointer;
+      transition: transform var(--ease), border-color var(--ease);
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-3px);
+      border-color: var(--navy-bright);
     }
 
     .gallery-item img {
@@ -937,6 +1036,12 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      transition: transform var(--ease), border-color var(--ease);
+    }
+
+    .sport-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--navy-bright);
     }
 
     .sport-pic {
@@ -970,7 +1075,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: var(--air-accent);
+      color: var(--navy-bright);
     }
 
     .sport-body h3 {
@@ -1007,6 +1112,13 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      transition: transform var(--ease), border-color var(--ease), box-shadow var(--ease);
+    }
+
+    .tour-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--navy-bright);
+      box-shadow: 0 12px 24px -10px var(--navy-glow);
     }
 
     .tour-pic {
@@ -1019,6 +1131,7 @@
       color: var(--muted);
       font-size: 0.85rem;
       cursor: pointer;
+      overflow: hidden;
     }
 
     .tour-pic img {
@@ -1026,6 +1139,11 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .tour-card:hover .tour-pic img {
+      transform: scale(1.04);
     }
 
     .tour-body {
@@ -1058,7 +1176,7 @@
     .intl-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-top: 3px solid var(--scout-warm);
+      border-top: 3px solid var(--navy-bright);
       border-radius: var(--radius);
       padding: 26px;
     }
@@ -1074,7 +1192,7 @@
 
     .intl-meta {
       font-size: 0.88rem;
-      color: var(--air-accent);
+      color: var(--navy-bright);
       font-weight: 600;
     }
 
@@ -1098,6 +1216,13 @@
       padding: 20px;
       display: flex;
       flex-direction: column;
+      transition: transform var(--ease), border-color var(--ease), box-shadow var(--ease);
+    }
+
+    .proj-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--navy-bright);
+      box-shadow: 0 12px 24px -10px var(--navy-glow);
     }
 
     .proj-kind {
@@ -1105,7 +1230,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: var(--air-accent);
+      color: var(--navy-bright);
     }
 
     .proj-card h3 {
@@ -1143,7 +1268,7 @@
     }
 
     .code-viewer {
-      background: #070c14;
+      background: #050c1a;
       color: #e2e8f0;
       border: 1px solid var(--border);
       border-radius: 12px;
@@ -1181,7 +1306,7 @@
     }
 
     .panel h3 i {
-      color: var(--air-accent);
+      color: var(--navy-bright);
     }
 
     .video-box {
@@ -1246,6 +1371,12 @@
       align-items: flex-start;
       justify-content: space-between;
       gap: 12px;
+      transition: transform var(--ease), border-color var(--ease);
+    }
+
+    .c-card:hover {
+      transform: translateX(3px);
+      border-color: var(--navy-bright);
     }
 
     .c-card-left {
@@ -1256,7 +1387,7 @@
     }
 
     .c-card-left i {
-      color: var(--air-accent);
+      color: var(--navy-bright);
       font-size: 1rem;
       margin-top: 3px;
       flex-shrink: 0;
@@ -1277,7 +1408,7 @@
     }
 
     .c-card a {
-      color: var(--air-accent);
+      color: var(--navy-bright);
     }
 
     .designation-lines {
@@ -1309,11 +1440,12 @@
       color: var(--text);
       font-family: inherit;
       font-size: 0.92rem;
+      transition: border-color var(--ease);
     }
 
     .form-input:focus {
       outline: none;
-      border-color: var(--air-accent);
+      border-color: var(--navy-bright);
     }
 
     textarea.form-input {
@@ -1371,17 +1503,17 @@
     }
 
     .cal-cell.today {
-      background: var(--air-accent);
-      color: #07111e;
+      background: var(--navy-bright);
+      color: #ffffff;
       font-weight: 700;
-      border-color: var(--air-accent);
+      border-color: var(--navy-bright);
     }
 
     /* Modal & Toast */
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.82);
       display: none;
       align-items: center;
       justify-content: center;
@@ -1402,6 +1534,12 @@
       max-height: 90vh;
       overflow-y: auto;
       position: relative;
+      animation: modalPop 0.25s ease-out;
+    }
+
+    @keyframes modalPop {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
     }
 
     .modal-close {
@@ -1421,7 +1559,7 @@
 
     .modal-img-wrap {
       position: relative;
-      background: #060911;
+      background: #050c1a;
     }
 
     .modal-img {
@@ -1436,7 +1574,7 @@
       height: 68vh;
       border: none;
       display: block;
-      background: #060911;
+      background: #050c1a;
     }
 
     .modal-body {
@@ -1458,7 +1596,7 @@
       bottom: 20px;
       right: 20px;
       background: var(--surface);
-      border: 1px solid var(--scout-accent);
+      border: 1px solid var(--navy-bright);
       color: var(--text);
       padding: 11px 16px;
       border-radius: 10px;
@@ -1472,6 +1610,15 @@
     .toast.show {
       transform: translateY(0);
       opacity: 1;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .anim-item, .profile-card, .unit-tag, .modal-dialog {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
     }
 
     @media (max-width: 980px) {
@@ -1624,7 +1771,7 @@
         <div class="profile-card">
           <img src="sabbir.jpeg" alt="Sabbir Ahommed" />
           <div class="profile-meta">
-            <span><i class="fas fa-location-dot" style="color: var(--air-accent);"></i> Daffodil Smart City, Savar</span>
+            <span><i class="fas fa-location-dot" style="color: var(--navy-bright);"></i> Daffodil Smart City, Savar</span>
             <span class="blood-badge">Blood: B+</span>
           </div>
         </div>
@@ -1634,7 +1781,7 @@
 
   <section id="personal">
     <div class="container">
-      <div class="sec-head">
+      <div class="sec-head anim-item">
         <div class="sec-eyebrow"><i class="fas fa-id-card"></i> Personal & Academic</div>
         <h2 class="sec-title">Profile, Identity & Education Records</h2>
         <p class="sec-sub">Date of birth, personal information, NID card (view & download), Passport (view only), and academic records.</p>
@@ -1651,7 +1798,7 @@
 
   <section id="activities">
     <div class="container">
-      <div class="sec-head">
+      <div class="sec-head anim-item">
         <div class="sec-eyebrow"><i class="fas fa-campground"></i> Extracurricular Activities</div>
         <h2 class="sec-title">Rover Scouting & Sports</h2>
         <p class="sec-sub">Separate sections for Rover Scouting (profile, courses, activities, certificates, gallery) and Sports (events with details and gallery).</p>
@@ -1668,7 +1815,7 @@
 
       <!-- PART 1: SCOUT -->
       <div id="scout-part">
-        <div class="scout-profile-card">
+        <div class="scout-profile-card anim-item">
           <div class="scout-profile-top">
             <div>
               <span class="sport-type">Rover Scout Profile</span>
@@ -1690,7 +1837,7 @@
           </div>
         </div>
 
-        <div class="course-directory-box">
+        <div class="course-directory-box anim-item">
           <div class="sub-block-title" style="margin-bottom: 0;">
             <i class="fas fa-graduation-cap"></i> Completed & Participated Scout Courses
           </div>
@@ -1698,7 +1845,7 @@
         </div>
 
         <div class="sub-activity-tabs" id="scout-activity-tabs"></div>
-        <div class="activity-detail-box" id="scout-activity-box"></div>
+        <div class="activity-detail-box anim-item" id="scout-activity-box"></div>
       </div>
 
       <!-- PART 2: SPORTS -->
@@ -1732,7 +1879,7 @@
   <!-- TOUR & TRAVELS SECTION (NATIONAL & INTERNATIONAL) -->
   <section id="tours">
     <div class="container">
-      <div class="sec-head">
+      <div class="sec-head anim-item">
         <div class="sec-eyebrow"><i class="fas fa-plane-departure"></i> Tour & Travels</div>
         <h2 class="sec-title">Tour & Travels (National & International)</h2>
         <p class="sec-sub">Places visited inside the country (National) and abroad (International) with destination photo preview.</p>
@@ -1746,7 +1893,7 @@
 
       <div class="tour-cards-grid" id="tour-places-grid"></div>
 
-      <div class="activity-detail-box">
+      <div class="activity-detail-box anim-item">
         <div class="sub-block-title">
           <i class="fas fa-camera-retro"></i> Travel Photo Showcase
         </div>
@@ -1764,19 +1911,19 @@
 
   <section id="international">
     <div class="container">
-      <div class="sec-head">
+      <div class="sec-head anim-item">
         <div class="sec-eyebrow"><i class="fas fa-globe"></i> International Exposure</div>
         <h2 class="sec-title">International Event</h2>
         <p class="sec-sub">Event details, certificate preview, and gallery from international representation.</p>
       </div>
 
-      <div class="intl-card" id="international-box"></div>
+      <div class="intl-card anim-item" id="international-box"></div>
     </div>
   </section>
 
   <section id="projects">
     <div class="container">
-      <div class="sec-head">
+      <div class="sec-head anim-item">
         <div class="sec-eyebrow"><i class="fas fa-laptop-code"></i> Technical Projects</div>
         <h2 class="sec-title">Projects & GitHub</h2>
         <p class="sec-sub">Project overviews with GitHub repository links and code preview.</p>
@@ -1788,14 +1935,14 @@
 
   <section id="cv-video">
     <div class="container">
-      <div class="sec-head">
+      <div class="sec-head anim-item">
         <div class="sec-eyebrow"><i class="fas fa-file-lines"></i> Resume & Introduction</div>
         <h2 class="sec-title">Video Resume & CV</h2>
         <p class="sec-sub">Watch the video resume (view-only) or view/download the CV.</p>
       </div>
 
       <div class="media-cv-grid">
-        <div class="panel">
+        <div class="panel anim-item">
           <h3><i class="fas fa-video"></i> Video Resume (View Only)</h3>
           <div class="video-box" oncontextmenu="return false;">
             <video
@@ -1814,7 +1961,7 @@
           <p class="panel-note">Direct download is disabled on the video player.</p>
         </div>
 
-        <div class="panel">
+        <div class="panel anim-item">
           <h3><i class="fas fa-file-pdf"></i> Curriculum Vitae</h3>
           <p class="panel-note">
             Academic background, scouting and volunteer leadership, technical projects, and sports/design experience.
@@ -1847,7 +1994,7 @@
   <!-- CONTACT SECTION -->
   <section id="contact">
     <div class="container">
-      <div class="sec-head">
+      <div class="sec-head anim-item">
         <div class="sec-eyebrow"><i class="fas fa-address-book"></i> Contact</div>
         <h2 class="sec-title">Contact Information</h2>
         <p class="sec-sub">Reach out via email, WhatsApp, phone, or social channels, or send a quick message using the form.</p>
@@ -1859,7 +2006,7 @@
           <div class="social-icons-row" id="contact-social-icons" style="margin-top: 16px;"></div>
         </div>
 
-        <form class="panel" id="simple-message-form">
+        <form class="panel anim-item" id="simple-message-form">
           <div class="form-field">
             <label for="sender-name">Name</label>
             <input type="text" id="sender-name" class="form-input" placeholder="Your name" required />
@@ -1922,6 +2069,8 @@
 
       personalInfo: [
         { icon: "fas fa-cake-candles", label: "Date of Birth", value: "18 November 2003" },
+        { icon: "fas fa-id-card", label: "NID No", value: "6463415403" },
+        { icon: "fas fa-passport", label: "Passport No", value: "A16991569" },
         { icon: "fas fa-user", label: "Father's Name", value: "Md. Mokteb Ali" },
         { icon: "fas fa-user", label: "Mother's Name", value: "Most. Pahari Begum" },
         { icon: "fas fa-droplet", label: "Blood Group", value: "B+" },
@@ -1934,19 +2083,19 @@
       identityDocs: [
         {
           id: "nid-doc",
-          title: "NID Card (PDF)",
+          title: "NID Card (No: 6463415403)",
           badge: "View & Download",
           isPassport: false,
-          description: "National Identity Card PDF document. Available to preview in-browser and download.",
+          description: "National Identity Card PDF document (NID: 6463415403). Available to preview in-browser and download.",
           fileUrl: "https://sabbir87.github.io/sabbir-portfolio/NID_Card_Sabbir_Ahommed.pdf",
           fileName: "NID_Card_Sabbir_Ahommed.pdf"
         },
         {
           id: "passport-doc",
-          title: "Passport",
+          title: "Passport (No: A16991569)",
           badge: "View Only",
           isPassport: true,
-          description: "Passport record configured for view-only inspection (download disabled).",
+          description: "Passport record (Passport No: A16991569) configured for view-only inspection (download disabled).",
           fileUrl: "",
           fileName: "Passport_Sabbir_Ahommed.pdf"
         }
@@ -2209,13 +2358,8 @@ void displayScene(void) {
         }
       ],
 
+      /* Contact Items Sequence Preserved */
       contactItems: [
-        {
-          icon: "fas fa-cake-candles",
-          label: "Date of Birth",
-          value: "18 November 2003",
-          copy: "18 November 2003"
-        },
         {
           icon: "fas fa-envelope",
           label: "Personal Mail",
@@ -2268,6 +2412,25 @@ void displayScene(void) {
       ]
     };
 
+    /* Scroll Reveal Observer */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+        }
+      });
+    }, { threshold: 0.1 });
+
+    function refreshRevealAnimations() {
+      document.querySelectorAll(".anim-item").forEach((el) => {
+        revealObserver.observe(el);
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.95) {
+          el.classList.add("is-visible");
+        }
+      });
+    }
+
     /* Live Time & Date + Calendar Modal */
     const liveDateEl = document.getElementById("live-date-text");
     const liveTimeEl = document.getElementById("live-time-text");
@@ -2312,7 +2475,7 @@ void displayScene(void) {
       openModal(`
         <div class="cal-box">
           <div class="cal-header">
-            <h3><i class="fas fa-calendar-days" style="color:var(--air-accent);"></i> ${monthTitle}</h3>
+            <h3><i class="fas fa-calendar-days" style="color:var(--navy-bright);"></i> ${monthTitle}</h3>
             <span class="blood-badge">Today: ${todayDate}</span>
           </div>
           <div class="cal-grid">${cellsHtml}</div>
@@ -2446,10 +2609,10 @@ void displayScene(void) {
     function renderIdentityDocs() {
       document.getElementById("identity-docs-grid").innerHTML = PORTFOLIO.identityDocs.map((doc, idx) => {
         return `
-          <article class="id-doc-card ${doc.isPassport ? "passport-card" : ""}">
+          <article class="id-doc-card anim-item ${doc.isPassport ? "passport-card" : ""}">
             <div class="id-doc-head">
               <h3>
-                <i class="fas ${doc.isPassport ? "fa-passport" : "fa-id-card"}" style="color:${doc.isPassport ? "var(--scout-warm)" : "var(--air-accent)"};"></i>
+                <i class="fas ${doc.isPassport ? "fa-passport" : "fa-id-card"}" style="color:${doc.isPassport ? "var(--scout-warm)" : "var(--navy-bright)"};"></i>
                 ${escapeHtml(doc.title)}
               </h3>
               <span class="blood-badge">${escapeHtml(doc.badge)}</span>
@@ -2481,6 +2644,7 @@ void displayScene(void) {
           </article>
         `;
       }).join("");
+      refreshRevealAnimations();
     }
 
     window.uploadIdentityFile = function(e, idx) {
@@ -2592,7 +2756,7 @@ void displayScene(void) {
 
     /* Personal & Education */
     document.getElementById("personal-info-grid").innerHTML = PORTFOLIO.personalInfo.map((item) => `
-      <div class="info-box">
+      <div class="info-box anim-item">
         <i class="${item.icon}"></i>
         <div>
           <small>${escapeHtml(item.label)}</small>
@@ -2603,11 +2767,11 @@ void displayScene(void) {
 
     function renderEducation() {
       document.getElementById("education-grid").innerHTML = PORTFOLIO.education.map((edu, i) => `
-        <article class="edu-card">
+        <article class="edu-card anim-item">
           <div class="edu-media" ${edu.viewOnly ? 'oncontextmenu="return false;"' : ""}>
             ${edu.image
               ? `<img src="${edu.image}" alt="${escapeHtml(edu.title)}" class="${edu.viewOnly ? "protected-img" : ""}" draggable="false" />`
-              : `<div class="edu-placeholder"><i class="fas fa-book-open" style="display:block;font-size:1.3rem;margin-bottom:6px;color:var(--air-accent);"></i>${escapeHtml(edu.badge)}</div>`
+              : `<div class="edu-placeholder"><i class="fas fa-book-open" style="display:block;font-size:1.3rem;margin-bottom:6px;color:var(--navy-bright);"></i>${escapeHtml(edu.badge)}</div>`
             }
             ${edu.viewOnly && edu.image ? '<div class="protected-layer" oncontextmenu="return false;" ondragstart="return false;"></div>' : ""}
             <span class="edu-chip">${escapeHtml(edu.badge)}</span>
@@ -2633,6 +2797,7 @@ void displayScene(void) {
           </div>
         </article>
       `).join("");
+      refreshRevealAnimations();
     }
 
     window.uploadEduPhoto = function(e, idx) {
@@ -2656,6 +2821,7 @@ void displayScene(void) {
         const isScout = btn.dataset.part === "scout";
         scoutPart.style.display = isScout ? "block" : "none";
         sportsPart.style.display = isScout ? "none" : "block";
+        refreshRevealAnimations();
       });
     });
 
@@ -2743,6 +2909,7 @@ void displayScene(void) {
         renderScoutActivities();
         showToast("Added photo to Scout gallery.");
       });
+      refreshRevealAnimations();
     }
 
     window.uploadScoutCert = function(e, actIdx, certIdx) {
@@ -2763,7 +2930,7 @@ void displayScene(void) {
         : PORTFOLIO.sportsEvents.filter((item) => item.sport === filter);
 
       sportsEventsGrid.innerHTML = list.map((ev) => `
-        <article class="sport-card">
+        <article class="sport-card anim-item">
           <div class="sport-pic" onclick="previewPhotoModal('${ev.image}', '${escapeHtml(ev.title)}', false)">
             ${ev.image
               ? `<img src="${ev.image}" alt="${escapeHtml(ev.title)}" />`
@@ -2778,6 +2945,7 @@ void displayScene(void) {
           </div>
         </article>
       `).join("");
+      refreshRevealAnimations();
     }
 
     sportsFilterTabs.forEach((btn) => {
@@ -2824,11 +2992,11 @@ void displayScene(void) {
       tourPlacesGrid.innerHTML = list.map((place) => {
         const realIdx = PORTFOLIO.tourPlaces.indexOf(place);
         return `
-          <article class="tour-card">
+          <article class="tour-card anim-item">
             <div class="tour-pic" onclick="previewPhotoModal('${place.image}', '${escapeHtml(place.title)} — ${escapeHtml(place.location)}', false)">
               ${place.image
                 ? `<img src="${place.image}" alt="${escapeHtml(place.title)}" />`
-                : `<span><i class="fas fa-map-location-dot" style="color:var(--air-accent);margin-right:6px;"></i>${escapeHtml(place.region.toUpperCase())} PHOTO</span>`
+                : `<span><i class="fas fa-map-location-dot" style="color:var(--navy-bright);margin-right:6px;"></i>${escapeHtml(place.region.toUpperCase())} PHOTO</span>`
               }
             </div>
             <div class="tour-body">
@@ -2849,6 +3017,7 @@ void displayScene(void) {
           </article>
         `;
       }).join("");
+      refreshRevealAnimations();
     }
 
     window.uploadTourPlacePic = function(e, idx) {
@@ -2974,7 +3143,7 @@ void displayScene(void) {
 
     /* Projects */
     document.getElementById("projects-grid").innerHTML = PORTFOLIO.projects.map((pr, idx) => `
-      <article class="proj-card">
+      <article class="proj-card anim-item">
         <span class="proj-kind">${escapeHtml(pr.kind)}</span>
         <h3>${escapeHtml(pr.title)}</h3>
         <p>${escapeHtml(pr.desc)}</p>
@@ -3009,9 +3178,9 @@ void displayScene(void) {
       `);
     });
 
-    /* Contact Info & Simple Message Form */
+    /* Contact Info & Simple Message Form (Sequence Preserved) */
     document.getElementById("contact-info-stack").innerHTML = PORTFOLIO.contactItems.map((item) => `
-      <div class="c-card">
+      <div class="c-card anim-item">
         <div class="c-card-left">
           <i class="${item.icon}"></i>
           <div style="min-width:0;">
@@ -3047,6 +3216,7 @@ void displayScene(void) {
     });
 
     document.getElementById("footer-year").textContent = new Date().getFullYear();
+    refreshRevealAnimations();
   </script>
   <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
